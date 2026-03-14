@@ -1,0 +1,27 @@
+{
+  "doc_key": "putaway_task",
+  "doc_title": "Putaway Task",
+  "doc_kind": "workflow_case",
+  "status": "draft",
+  "module_id": "warehouse_operations",
+  "submodule_id": "warehouse_execution",
+  "app_id": "supply_chain_procurement",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "workflow_case",
+  "classification": {
+    "archetype": "workflow_case",
+    "bundle": "operations"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "operations",
+    "app": "supply_chain_procurement",
+    "module": "warehouse_operations",
+    "submodule": "warehouse_execution",
+    "reference_doc_id": "putaway_task",
+    "evidence_gaps": [
+      "directed putaway logic",
+      "exception handling"
+    ]
+  }
+}

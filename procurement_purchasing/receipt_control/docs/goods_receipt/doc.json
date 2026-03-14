@@ -1,0 +1,27 @@
+{
+  "doc_key": "goods_receipt",
+  "doc_title": "Goods Receipt",
+  "doc_kind": "transaction",
+  "status": "draft",
+  "module_id": "procurement_purchasing",
+  "submodule_id": "receipt_control",
+  "app_id": "supply_chain_procurement",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "transaction",
+  "classification": {
+    "archetype": "transaction",
+    "bundle": "operations"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "operations",
+    "app": "supply_chain_procurement",
+    "module": "procurement_purchasing",
+    "submodule": "receipt_control",
+    "reference_doc_id": "goods_receipt",
+    "evidence_gaps": [
+      "accepted/rejected quantity structure",
+      "inspection linkage"
+    ]
+  }
+}

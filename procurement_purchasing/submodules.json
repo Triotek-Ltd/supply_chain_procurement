@@ -1,0 +1,6 @@
+{
+  "submodules": [
+    "receipt_control",
+    "requisition_to_order"
+  ]
+}

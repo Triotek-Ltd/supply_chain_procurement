@@ -1,0 +1,8 @@
+{
+  "id": "warehouse_execution",
+  "title": "Warehouse Execution",
+  "app_id": "supply_chain_procurement",
+  "module_id": "warehouse_operations",
+  "type": "submodule",
+  "status": "draft"
+}

@@ -1,0 +1,27 @@
+{
+  "doc_key": "storage_bin",
+  "doc_title": "Storage Bin",
+  "doc_kind": "master",
+  "status": "draft",
+  "module_id": "warehouse_operations",
+  "submodule_id": "storage_control",
+  "app_id": "supply_chain_procurement",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "master",
+  "classification": {
+    "archetype": "master",
+    "bundle": "operations"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "operations",
+    "app": "supply_chain_procurement",
+    "module": "warehouse_operations",
+    "submodule": "storage_control",
+    "reference_doc_id": "storage_bin",
+    "evidence_gaps": [
+      "slotting rules",
+      "bin-capacity semantics"
+    ]
+  }
+}

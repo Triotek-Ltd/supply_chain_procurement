@@ -1,0 +1,8 @@
+{
+  "id": "inventory_management",
+  "title": "Inventory Management",
+  "app_id": "supply_chain_procurement",
+  "type": "module",
+  "status": "draft",
+  "supports_submodules": true
+}

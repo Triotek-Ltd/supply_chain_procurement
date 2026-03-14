@@ -1,0 +1,828 @@
+{
+  "identity": {
+    "doc_id": "inventory_movement",
+    "title": "Inventory Movement",
+    "archetype": "transaction",
+    "app": "supply_chain_procurement",
+    "module": "inventory_management",
+    "submodule": "stock_movements",
+    "source_kind": "reference_doc_generation_manifest",
+    "bundle_id": "operations",
+    "app_id": "supply_chain_procurement",
+    "module_id": "inventory_management",
+    "submodule_id": "stock_movements",
+    "doc_key": "inventory_movement"
+  },
+  "doc_key": "inventory_movement",
+  "doc_title": "Inventory Movement",
+  "allowed_actions": [
+    "create",
+    "review",
+    "approve",
+    "post",
+    "reverse",
+    "archive"
+  ],
+  "actions": {
+    "actions": [
+      "create",
+      "review",
+      "approve",
+      "post",
+      "reverse",
+      "archive"
+    ],
+    "families": {
+      "primary": [
+        "create",
+        "review"
+      ],
+      "workflow": [
+        "submit",
+        "post",
+        "cancel",
+        "adjust",
+        "refund",
+        "process"
+      ]
+    }
+  },
+  "schema": {
+    "field_groups": {
+      "system": [
+        "id",
+        "creation",
+        "modified",
+        "owner",
+        "docstatus",
+        "workflow_state"
+      ],
+      "identity": [
+        "title",
+        "reference_no"
+      ],
+      "content": [
+        "description",
+        "movement_code",
+        "movement_type",
+        "source_location",
+        "destination_location",
+        "item_lines",
+        "posting_state"
+      ],
+      "relations": [],
+      "amounts": [
+        "currency",
+        "total_amount"
+      ],
+      "dates": [
+        "transaction_date",
+        "posting_date"
+      ],
+      "parties": [
+        "party"
+      ],
+      "status": [
+        "workflow_state"
+      ]
+    },
+    "fields": [
+      {
+        "field_id": "title",
+        "label": "Title",
+        "type": "Data",
+        "required": true,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "reference_no",
+        "label": "Reference No",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "description",
+        "label": "Description",
+        "type": "Text",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "workflow_state",
+        "label": "Workflow State",
+        "type": "Select",
+        "required": true,
+        "read_only": false,
+        "options": {
+          "values": [
+            "draft",
+            "approved",
+            "posted",
+            "reversed",
+            "archived"
+          ]
+        },
+        "default": "draft",
+        "unique": false,
+        "linked_doc": null,
+        "purpose": "lifecycle_state",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "transaction_date",
+        "label": "Transaction Date",
+        "type": "Date",
+        "required": true,
+        "read_only": false,
+        "default": "Today",
+        "unique": false,
+        "options": null,
+        "purpose": "transaction_date",
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "party",
+        "label": "Party",
+        "type": "Link",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "primary_party",
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "currency",
+        "label": "Currency",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "currency_code",
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "total_amount",
+        "label": "Total Amount",
+        "type": "Currency",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "total_amount",
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": false,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "movement_code",
+        "label": "Movement Code",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "movement_type",
+        "label": "Movement Type",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "source_location",
+        "label": "Source Location",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "destination_location",
+        "label": "Destination Location",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "posting_date",
+        "label": "Posting Date",
+        "type": "Date",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "posting_date",
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "item_lines",
+        "label": "Item Lines",
+        "type": "JSON",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "structured_payload",
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "posting_state",
+        "label": "Posting State",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": true,
+          "sortable": true
+        }
+      }
+    ],
+    "title_field": "title",
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "movement_code",
+      "movement_type",
+      "source_location"
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "default_view": "List",
+    "status_field": "workflow_state",
+    "system_fields": [
+      "id",
+      "creation",
+      "modified",
+      "owner",
+      "docstatus",
+      "workflow_state"
+    ],
+    "record_contract": {
+      "doc_kind": "transaction",
+      "supports_attachments": true,
+      "supports_comments": true,
+      "supports_activity_log": true,
+      "supports_assignments": true
+    },
+    "lifecycle": {
+      "initial_state": "draft",
+      "states": [
+        "draft",
+        "approved",
+        "posted",
+        "reversed",
+        "archived"
+      ],
+      "terminal_states": [
+        "reversed",
+        "archived"
+      ]
+    },
+    "action_rules": {
+      "create": {
+        "allowed_in_states": [
+          "draft",
+          "approved",
+          "posted"
+        ],
+        "transitions_to": null
+      },
+      "review": {
+        "allowed_in_states": [
+          "draft",
+          "approved",
+          "posted"
+        ],
+        "transitions_to": null
+      },
+      "approve": {
+        "allowed_in_states": [
+          "draft",
+          "approved",
+          "posted"
+        ],
+        "transitions_to": "approved"
+      },
+      "post": {
+        "allowed_in_states": [
+          "draft",
+          "approved",
+          "posted"
+        ],
+        "transitions_to": null
+      },
+      "reverse": {
+        "allowed_in_states": [
+          "draft",
+          "approved",
+          "posted"
+        ],
+        "transitions_to": "reversed"
+      },
+      "archive": {
+        "allowed_in_states": [
+          "draft",
+          "approved",
+          "posted"
+        ],
+        "transitions_to": "archived"
+      }
+    },
+    "role_action_matrix": [
+      {
+        "role_id": "System Manager",
+        "actions": [
+          "create",
+          "update",
+          "view",
+          "list",
+          "record",
+          "review",
+          "assign",
+          "track",
+          "monitor",
+          "confirm",
+          "archive"
+        ]
+      }
+    ],
+    "transaction_behavior": {
+      "is_transactional": true,
+      "transaction_kind": "business_transaction",
+      "posting_behavior": {
+        "requires_posting": true,
+        "posting_action": "post",
+        "reversal_action": "cancel"
+      },
+      "party_model": {
+        "primary_party_field": "party",
+        "counterparty_field": null,
+        "party_roles": [
+          "primary_party"
+        ]
+      },
+      "value_model": {
+        "currency_field": "currency",
+        "amount_fields": [
+          "total_amount"
+        ],
+        "balance_impact": "none"
+      },
+      "reference_model": {
+        "reference_no_field": "reference_no",
+        "upstream_links": [],
+        "downstream_links": []
+      },
+      "line_items": {
+        "enabled": false,
+        "table_field": null,
+        "item_key_field": null,
+        "quantity_field": null,
+        "rate_field": null,
+        "amount_field": null
+      },
+      "fulfilment": {
+        "enabled": false,
+        "dispatch_state_field": null,
+        "delivery_state_field": null,
+        "completion_action": "confirm"
+      },
+      "audit": {
+        "track_state_history": true,
+        "track_action_log": true,
+        "track_external_refs": true
+      }
+    }
+  },
+  "settings": {
+    "display": {
+      "title_template": "{title}",
+      "subtitle_template": "{reference_no}",
+      "list_columns": [
+        "title",
+        "reference_no",
+        "transaction_date",
+        "party",
+        "total_amount",
+        "workflow_state"
+      ],
+      "default_filters": [],
+      "quick_entry": false
+    },
+    "related_docs": [
+      {
+        "doc_id": "stock_item",
+        "relation_type": "related",
+        "show_in_related_panel": true
+      },
+      {
+        "doc_id": "warehouse_record",
+        "relation_type": "related",
+        "show_in_related_panel": true
+      },
+      {
+        "doc_id": "goods_receipt",
+        "relation_type": "related",
+        "show_in_related_panel": true
+      },
+      {
+        "doc_id": "shipment_record",
+        "relation_type": "related",
+        "show_in_related_panel": true
+      },
+      {
+        "doc_id": "stock_adjustment",
+        "relation_type": "related",
+        "show_in_related_panel": true
+      }
+    ],
+    "lookup_rules": [],
+    "fetch_rules": [],
+    "reference_map": {
+      "primary_reference_field": "reference_no",
+      "reference_labels": []
+    },
+    "relation_rules": {
+      "parent_doc": null,
+      "child_docs": [],
+      "show_related_panel": true
+    },
+    "borrowed_fields": [
+      {
+        "description": "item"
+      },
+      {
+        "description": "location context from linked masters"
+      }
+    ],
+    "ui_panels": {
+      "show_activity_log": true,
+      "show_comments": true,
+      "show_assignments": true,
+      "show_related_docs": true
+    },
+    "integration": {
+      "external_refs": [],
+      "sync_rules": []
+    },
+    "runtime_hints": {
+      "doc_key": "inventory_movement",
+      "supports_related_lookup": true,
+      "supports_fetch_rules": true,
+      "workflow_hints": {
+        "business_objective": "receive, verify, store, monitor, count, reconcile, and replenish inventory accurately",
+        "actors": [
+          "storekeeper",
+          "warehouse operator",
+          "inventory controller",
+          "reviewer"
+        ],
+        "start_condition": "stock is received, moved, counted, or adjusted",
+        "ordered_steps": [
+          "Record inventory movement into storage.",
+          "Reconcile physical count variances and apply adjustments."
+        ],
+        "primary_actions": [
+          "create",
+          "review",
+          "approve",
+          "post",
+          "apply",
+          "close"
+        ],
+        "primary_transitions": [
+          "inventory_movement: draft -> approved -> posted"
+        ],
+        "downstream_effects": [
+          "inventory availability feeds purchasing, warehouse execution, logistics, and production planning"
+        ]
+      }
+    }
+  },
+  "classification": {
+    "category": "source business doc",
+    "bundle": "operations",
+    "archetype": "transaction",
+    "doc_kind": "transaction"
+  },
+  "behavior": {
+    "transaction_behavior": {
+      "is_transactional": true,
+      "transaction_kind": "business_transaction",
+      "posting_behavior": {
+        "requires_posting": true,
+        "posting_action": "post",
+        "reversal_action": "cancel"
+      },
+      "party_model": {
+        "primary_party_field": "party",
+        "counterparty_field": null,
+        "party_roles": [
+          "primary_party"
+        ]
+      },
+      "value_model": {
+        "currency_field": "currency",
+        "amount_fields": [
+          "total_amount"
+        ],
+        "balance_impact": "none"
+      },
+      "reference_model": {
+        "reference_no_field": "reference_no",
+        "upstream_links": [],
+        "downstream_links": []
+      },
+      "line_items": {
+        "enabled": false,
+        "table_field": null,
+        "item_key_field": null,
+        "quantity_field": null,
+        "rate_field": null,
+        "amount_field": null
+      },
+      "fulfilment": {
+        "enabled": false,
+        "dispatch_state_field": null,
+        "delivery_state_field": null,
+        "completion_action": "confirm"
+      },
+      "audit": {
+        "track_state_history": true,
+        "track_action_log": true,
+        "track_external_refs": true
+      }
+    },
+    "report_boundary_classification": "source business doc",
+    "validation_status": "ready",
+    "validation_warnings": []
+  },
+  "business_logic": {
+    "seeded": true,
+    "folders": [
+      "domain",
+      "actions",
+      "workflows",
+      "relations",
+      "reports",
+      "integrations"
+    ],
+    "seed_file": "logic_seed.json",
+    "handler_registry": "actions/registry.py",
+    "service_entrypoints": {
+      "domain": "domain/service.py",
+      "workflow": "workflows/service.py",
+      "relations": "relations/service.py",
+      "reports": "reports/service.py",
+      "integrations": "integrations/service.py"
+    },
+    "action_handlers": {
+      "base_dir": "actions",
+      "registry": "actions/registry.py",
+      "count": 6,
+      "files": [
+        "actions/create.py",
+        "actions/review.py",
+        "actions/approve.py",
+        "actions/post.py",
+        "actions/reverse.py",
+        "actions/archive.py"
+      ]
+    },
+    "classification": {
+      "archetype": "transaction",
+      "doc_kind": "transaction"
+    }
+  },
+  "runtime": {
+    "source_of_truth": "doc_folder",
+    "generated_from": [
+      "doc.json",
+      "schema.json",
+      "actions.json",
+      "settings.json",
+      "logic_seed.json"
+    ],
+    "generator": "plug.apps.doc.file_handler"
+  }
+}

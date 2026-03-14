@@ -1,0 +1,115 @@
+{
+  "doc_id": "warehouse_record",
+  "doc_title": "Warehouse Record",
+  "archetype": "master",
+  "doc_kind": "master",
+  "actions": [
+    "create",
+    "update",
+    "review",
+    "archive"
+  ],
+  "lifecycle": {
+    "initial_state": "active",
+    "states": [
+      "active",
+      "archived"
+    ],
+    "terminal_states": [
+      "archived"
+    ]
+  },
+  "related_doc_count": 5,
+  "fetch_rule_count": 0,
+  "action_handler_count": 4,
+  "archetype_profile": {
+    "workflow_profile": {
+      "mode": "entity_lifecycle",
+      "case_management": false
+    },
+    "reporting_profile": {
+      "supports_snapshots": false,
+      "supports_outputs": false
+    },
+    "integration_profile": {
+      "external_sync_enabled": false
+    },
+    "lifecycle_states": [
+      "active",
+      "archived"
+    ],
+    "is_transactional": false
+  },
+  "contract_summary": {
+    "title_field": "title",
+    "status_field": "workflow_state",
+    "reference_field": "reference_no",
+    "required_fields": [
+      "title",
+      "workflow_state"
+    ],
+    "field_purposes": {
+      "workflow_state": "lifecycle_state",
+      "active_status": "status_flag"
+    },
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "warehouse_code",
+      "name",
+      "site"
+    ],
+    "list_columns": [
+      "title",
+      "reference_no",
+      "workflow_state",
+      "modified"
+    ],
+    "initial_state": "active",
+    "lifecycle_states": [
+      "active",
+      "archived"
+    ],
+    "terminal_states": [
+      "archived"
+    ],
+    "action_targets": {
+      "create": null,
+      "update": null,
+      "review": null,
+      "archive": "archived"
+    }
+  },
+  "workflow_hints": {
+    "business_objective": "receive goods into warehouse storage, put them away correctly, pick them for orders, and keep warehouse records current",
+    "actors": [
+      "warehouse supervisor",
+      "receiving operator",
+      "picker",
+      "putaway operator"
+    ],
+    "start_condition": "goods are received or outgoing orders require warehouse execution",
+    "ordered_steps": [
+      "Keep warehouse locations and stock context aligned."
+    ],
+    "primary_actions": [
+      "update",
+      "review"
+    ],
+    "primary_transitions": [],
+    "downstream_effects": [
+      "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
+    ]
+  },
+  "related_docs": [
+    "storage_bin",
+    "goods_receipt",
+    "inventory_balance",
+    "pick_list",
+    "putaway_task"
+  ],
+  "borrowed_fields": [
+    "location/site metadata from facilities or org docs where applicable"
+  ]
+}

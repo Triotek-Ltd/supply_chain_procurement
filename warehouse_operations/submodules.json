@@ -1,0 +1,6 @@
+{
+  "submodules": [
+    "storage_control",
+    "warehouse_execution"
+  ]
+}

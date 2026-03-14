@@ -1,0 +1,8 @@
+{
+  "id": "shipment_execution",
+  "title": "Shipment Execution",
+  "app_id": "supply_chain_procurement",
+  "module_id": "logistics_distribution",
+  "type": "submodule",
+  "status": "draft"
+}

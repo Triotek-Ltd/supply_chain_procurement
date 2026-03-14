@@ -1,0 +1,8 @@
+{
+  "docs": [
+    "goods_receipt",
+    "procurement_request",
+    "purchase_order",
+    "purchase_requisition"
+  ]
+}

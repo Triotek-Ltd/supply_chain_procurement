@@ -1,0 +1,26 @@
+{
+  "doc_key": "supplier_profile",
+  "doc_title": "Supplier Profile",
+  "doc_kind": "master",
+  "status": "draft",
+  "module_id": "vendor_management",
+  "submodule_id": "supplier_master",
+  "app_id": "supply_chain_procurement",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "master",
+  "classification": {
+    "archetype": "master",
+    "bundle": "operations"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "operations",
+    "app": "supply_chain_procurement",
+    "module": "vendor_management",
+    "submodule": "supplier_master",
+    "reference_doc_id": "supplier_profile",
+    "evidence_gaps": [
+      "supplier master harmonization with ecosystem records"
+    ]
+  }
+}

@@ -1,0 +1,648 @@
+{
+  "identity": {
+    "doc_id": "supplier_profile",
+    "title": "Supplier Profile",
+    "archetype": "master",
+    "app": "supply_chain_procurement",
+    "module": "vendor_management",
+    "submodule": "supplier_master",
+    "source_kind": "reference_doc_generation_manifest",
+    "bundle_id": "operations",
+    "app_id": "supply_chain_procurement",
+    "module_id": "vendor_management",
+    "submodule_id": "supplier_master",
+    "doc_key": "supplier_profile"
+  },
+  "doc_key": "supplier_profile",
+  "doc_title": "Supplier Profile",
+  "allowed_actions": [
+    "create",
+    "update",
+    "review",
+    "suspend",
+    "archive"
+  ],
+  "actions": {
+    "actions": [
+      "create",
+      "update",
+      "review",
+      "suspend",
+      "archive"
+    ],
+    "families": {
+      "primary": [
+        "create",
+        "update"
+      ]
+    }
+  },
+  "schema": {
+    "field_groups": {
+      "system": [
+        "id",
+        "creation",
+        "modified",
+        "owner",
+        "docstatus",
+        "workflow_state"
+      ],
+      "identity": [
+        "title",
+        "reference_no"
+      ],
+      "content": [
+        "description",
+        "supplier_code",
+        "supplier_identity",
+        "tax_registration_details",
+        "payment_terms",
+        "category",
+        "qualification_state"
+      ],
+      "relations": [],
+      "amounts": [],
+      "dates": [],
+      "parties": [],
+      "status": [
+        "workflow_state"
+      ]
+    },
+    "fields": [
+      {
+        "field_id": "title",
+        "label": "Title",
+        "type": "Data",
+        "required": true,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "reference_no",
+        "label": "Reference No",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "description",
+        "label": "Description",
+        "type": "Text",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "workflow_state",
+        "label": "Workflow State",
+        "type": "Select",
+        "required": true,
+        "read_only": false,
+        "options": {
+          "values": [
+            "active",
+            "suspended",
+            "archived"
+          ]
+        },
+        "default": "active",
+        "unique": false,
+        "linked_doc": null,
+        "purpose": "lifecycle_state",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "supplier_code",
+        "label": "Supplier Code",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "supplier_identity",
+        "label": "Supplier Identity",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "tax_registration_details",
+        "label": "Tax Registration Details",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "payment_terms",
+        "label": "Payment Terms",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "category",
+        "label": "Category",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "qualification_state",
+        "label": "Qualification State",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": true,
+          "sortable": true
+        }
+      }
+    ],
+    "title_field": "title",
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "supplier_code",
+      "supplier_identity",
+      "tax_registration_details"
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "default_view": "List",
+    "status_field": "workflow_state",
+    "system_fields": [
+      "id",
+      "creation",
+      "modified",
+      "owner",
+      "docstatus",
+      "workflow_state"
+    ],
+    "record_contract": {
+      "doc_kind": "master",
+      "supports_attachments": true,
+      "supports_comments": true,
+      "supports_activity_log": true,
+      "supports_assignments": true
+    },
+    "lifecycle": {
+      "initial_state": "active",
+      "states": [
+        "active",
+        "suspended",
+        "archived"
+      ],
+      "terminal_states": [
+        "archived"
+      ]
+    },
+    "action_rules": {
+      "create": {
+        "allowed_in_states": [
+          "active",
+          "suspended"
+        ],
+        "transitions_to": null
+      },
+      "update": {
+        "allowed_in_states": [
+          "active",
+          "suspended"
+        ],
+        "transitions_to": null
+      },
+      "review": {
+        "allowed_in_states": [
+          "active",
+          "suspended"
+        ],
+        "transitions_to": null
+      },
+      "suspend": {
+        "allowed_in_states": [
+          "active",
+          "suspended"
+        ],
+        "transitions_to": null
+      },
+      "archive": {
+        "allowed_in_states": [
+          "active",
+          "suspended"
+        ],
+        "transitions_to": "archived"
+      }
+    },
+    "role_action_matrix": [
+      {
+        "role_id": "System Manager",
+        "actions": [
+          "create",
+          "update",
+          "view",
+          "list",
+          "record",
+          "review",
+          "assign",
+          "track",
+          "monitor",
+          "confirm",
+          "archive"
+        ]
+      }
+    ],
+    "transaction_behavior": {
+      "is_transactional": false,
+      "transaction_kind": null,
+      "posting_behavior": {
+        "requires_posting": false,
+        "posting_action": "post",
+        "reversal_action": "cancel"
+      },
+      "party_model": {
+        "primary_party_field": null,
+        "counterparty_field": null,
+        "party_roles": []
+      },
+      "value_model": {
+        "currency_field": null,
+        "amount_fields": [],
+        "balance_impact": "none"
+      },
+      "reference_model": {
+        "reference_no_field": "reference_no",
+        "upstream_links": [],
+        "downstream_links": []
+      },
+      "line_items": {
+        "enabled": false,
+        "table_field": null,
+        "item_key_field": null,
+        "quantity_field": null,
+        "rate_field": null,
+        "amount_field": null
+      },
+      "fulfilment": {
+        "enabled": false,
+        "dispatch_state_field": null,
+        "delivery_state_field": null,
+        "completion_action": "confirm"
+      },
+      "audit": {
+        "track_state_history": true,
+        "track_action_log": true,
+        "track_external_refs": true
+      }
+    }
+  },
+  "settings": {
+    "display": {
+      "title_template": "{title}",
+      "subtitle_template": "{reference_no}",
+      "list_columns": [
+        "title",
+        "reference_no",
+        "workflow_state",
+        "modified"
+      ],
+      "default_filters": [],
+      "quick_entry": false
+    },
+    "related_docs": [
+      {
+        "doc_id": "supplier_qualification",
+        "relation_type": "related",
+        "show_in_related_panel": true
+      },
+      {
+        "doc_id": "vendor_contract",
+        "relation_type": "related",
+        "show_in_related_panel": true
+      },
+      {
+        "doc_id": "vendor_review",
+        "relation_type": "related",
+        "show_in_related_panel": true
+      },
+      {
+        "doc_id": "purchase_order",
+        "relation_type": "related",
+        "show_in_related_panel": true
+      }
+    ],
+    "lookup_rules": [],
+    "fetch_rules": [],
+    "reference_map": {
+      "primary_reference_field": "reference_no",
+      "reference_labels": []
+    },
+    "relation_rules": {
+      "parent_doc": null,
+      "child_docs": [],
+      "show_related_panel": true
+    },
+    "borrowed_fields": [
+      {
+        "description": "external compliance/capability context from ecosystem supplier docs where linked"
+      }
+    ],
+    "ui_panels": {
+      "show_activity_log": true,
+      "show_comments": true,
+      "show_assignments": true,
+      "show_related_docs": true
+    },
+    "integration": {
+      "external_refs": [],
+      "sync_rules": []
+    },
+    "runtime_hints": {
+      "doc_key": "supplier_profile",
+      "supports_related_lookup": true,
+      "supports_fetch_rules": true,
+      "workflow_hints": {
+        "business_objective": "maintain supplier master quality, review vendor performance, and resolve supplier issues proactively",
+        "actors": [
+          "vendor manager",
+          "reviewer",
+          "legal/procurement owner"
+        ],
+        "start_condition": "a supplier is onboarded or reviewed",
+        "ordered_steps": [
+          "Create or update the supplier profile."
+        ],
+        "primary_actions": [
+          "create",
+          "update",
+          "review"
+        ],
+        "primary_transitions": [
+          "supplier_profile: draft -> active"
+        ],
+        "downstream_effects": [
+          "supports sourcing, purchase control, and risk management"
+        ]
+      }
+    }
+  },
+  "classification": {
+    "category": "source business doc",
+    "bundle": "operations",
+    "archetype": "master",
+    "doc_kind": "master"
+  },
+  "behavior": {
+    "transaction_behavior": {
+      "is_transactional": false,
+      "transaction_kind": null,
+      "posting_behavior": {
+        "requires_posting": false,
+        "posting_action": "post",
+        "reversal_action": "cancel"
+      },
+      "party_model": {
+        "primary_party_field": null,
+        "counterparty_field": null,
+        "party_roles": []
+      },
+      "value_model": {
+        "currency_field": null,
+        "amount_fields": [],
+        "balance_impact": "none"
+      },
+      "reference_model": {
+        "reference_no_field": "reference_no",
+        "upstream_links": [],
+        "downstream_links": []
+      },
+      "line_items": {
+        "enabled": false,
+        "table_field": null,
+        "item_key_field": null,
+        "quantity_field": null,
+        "rate_field": null,
+        "amount_field": null
+      },
+      "fulfilment": {
+        "enabled": false,
+        "dispatch_state_field": null,
+        "delivery_state_field": null,
+        "completion_action": "confirm"
+      },
+      "audit": {
+        "track_state_history": true,
+        "track_action_log": true,
+        "track_external_refs": true
+      }
+    },
+    "report_boundary_classification": "source business doc",
+    "validation_status": "ready",
+    "validation_warnings": []
+  },
+  "business_logic": {
+    "seeded": true,
+    "folders": [
+      "domain",
+      "actions",
+      "workflows",
+      "relations",
+      "reports",
+      "integrations"
+    ],
+    "seed_file": "logic_seed.json",
+    "handler_registry": "actions/registry.py",
+    "service_entrypoints": {
+      "domain": "domain/service.py",
+      "workflow": "workflows/service.py",
+      "relations": "relations/service.py",
+      "reports": "reports/service.py",
+      "integrations": "integrations/service.py"
+    },
+    "action_handlers": {
+      "base_dir": "actions",
+      "registry": "actions/registry.py",
+      "count": 5,
+      "files": [
+        "actions/create.py",
+        "actions/update.py",
+        "actions/review.py",
+        "actions/suspend.py",
+        "actions/archive.py"
+      ]
+    },
+    "classification": {
+      "archetype": "master",
+      "doc_kind": "master"
+    }
+  },
+  "runtime": {
+    "source_of_truth": "doc_folder",
+    "generated_from": [
+      "doc.json",
+      "schema.json",
+      "actions.json",
+      "settings.json",
+      "logic_seed.json"
+    ],
+    "generator": "plug.apps.doc.file_handler"
+  }
+}

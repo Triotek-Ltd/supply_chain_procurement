@@ -1,0 +1,143 @@
+{
+  "doc_id": "delivery_route",
+  "doc_title": "Delivery Route",
+  "archetype": "transaction",
+  "doc_kind": "transaction",
+  "actions": [
+    "create",
+    "assign",
+    "optimize",
+    "dispatch",
+    "close",
+    "archive"
+  ],
+  "lifecycle": {
+    "initial_state": "draft",
+    "states": [
+      "draft",
+      "assigned",
+      "dispatched",
+      "completed",
+      "archived"
+    ],
+    "terminal_states": [
+      "archived"
+    ]
+  },
+  "related_doc_count": 2,
+  "fetch_rule_count": 0,
+  "action_handler_count": 6,
+  "archetype_profile": {
+    "workflow_profile": {
+      "mode": "transaction_flow",
+      "supports_submission": true
+    },
+    "reporting_profile": {
+      "supports_snapshots": true,
+      "supports_outputs": true
+    },
+    "integration_profile": {
+      "external_sync_enabled": true,
+      "tracks_external_refs": true
+    },
+    "lifecycle_states": [
+      "draft",
+      "assigned",
+      "dispatched",
+      "completed",
+      "archived"
+    ],
+    "is_transactional": true
+  },
+  "contract_summary": {
+    "title_field": "title",
+    "status_field": "workflow_state",
+    "reference_field": "reference_no",
+    "required_fields": [
+      "title",
+      "workflow_state",
+      "transaction_date"
+    ],
+    "field_purposes": {
+      "workflow_state": "lifecycle_state",
+      "transaction_date": "transaction_date",
+      "party": "primary_party",
+      "currency": "currency_code",
+      "total_amount": "total_amount",
+      "route_date": "schedule_marker",
+      "route_status": "status_flag"
+    },
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "route_code",
+      "route_date",
+      "assigned_vehicle_or_carrier"
+    ],
+    "list_columns": [
+      "title",
+      "reference_no",
+      "transaction_date",
+      "party",
+      "total_amount",
+      "workflow_state"
+    ],
+    "initial_state": "draft",
+    "lifecycle_states": [
+      "draft",
+      "assigned",
+      "dispatched",
+      "completed",
+      "archived"
+    ],
+    "terminal_states": [
+      "archived"
+    ],
+    "action_targets": {
+      "create": null,
+      "assign": null,
+      "optimize": null,
+      "dispatch": null,
+      "close": null,
+      "archive": "archived"
+    }
+  },
+  "workflow_hints": {
+    "business_objective": "plan, dispatch, track, and confirm outbound delivery execution",
+    "actors": [
+      "logistics coordinator",
+      "warehouse team",
+      "carrier",
+      "dispatcher",
+      "recipient"
+    ],
+    "start_condition": "a delivery request or shipping order is ready for execution",
+    "ordered_steps": [
+      "Assign route and transport method.",
+      "Dispatch the shipment."
+    ],
+    "primary_actions": [
+      "create",
+      "assign",
+      "submit",
+      "confirm",
+      "dispatch"
+    ],
+    "primary_transitions": [
+      "delivery_route: draft -> assigned",
+      "delivery_route: assigned -> dispatched"
+    ],
+    "downstream_effects": [
+      "delivery completion feeds billing, customer service, and performance reporting"
+    ]
+  },
+  "related_docs": [
+    "shipment_record",
+    "delivery_confirmation"
+  ],
+  "borrowed_fields": [
+    "shipment",
+    "destination details from shipment_record"
+  ]
+}

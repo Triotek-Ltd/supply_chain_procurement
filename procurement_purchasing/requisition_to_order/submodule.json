@@ -1,0 +1,8 @@
+{
+  "id": "requisition_to_order",
+  "title": "Requisition To Order",
+  "app_id": "supply_chain_procurement",
+  "module_id": "procurement_purchasing",
+  "type": "submodule",
+  "status": "draft"
+}

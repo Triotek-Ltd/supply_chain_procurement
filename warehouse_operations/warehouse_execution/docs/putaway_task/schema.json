@@ -1,0 +1,426 @@
+{
+  "schema_version": 1,
+  "source": "3plug_newdoc_scaffold",
+  "title_field": "title",
+  "search_fields": [
+    "title",
+    "reference_no",
+    "description",
+    "task_code",
+    "source_receipt",
+    "target_bin"
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "default_view": "List",
+  "status_field": "workflow_state",
+  "fields": [
+    {
+      "field_id": "title",
+      "label": "Title",
+      "type": "Data",
+      "required": true,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": null,
+      "linked_doc": null,
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": true,
+      "ui": {
+        "visible": true,
+        "list_visible": true,
+        "filterable": true,
+        "sortable": true
+      }
+    },
+    {
+      "field_id": "reference_no",
+      "label": "Reference No",
+      "type": "Data",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": null,
+      "linked_doc": null,
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": true,
+      "ui": {
+        "visible": true,
+        "list_visible": true,
+        "filterable": true,
+        "sortable": true
+      }
+    },
+    {
+      "field_id": "description",
+      "label": "Description",
+      "type": "Text",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": null,
+      "linked_doc": null,
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": true,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
+    },
+    {
+      "field_id": "workflow_state",
+      "label": "Workflow State",
+      "type": "Select",
+      "required": true,
+      "read_only": false,
+      "options": {
+        "values": [
+          "open",
+          "assigned",
+          "in_progress",
+          "completed",
+          "closed",
+          "archived"
+        ]
+      },
+      "default": "open",
+      "unique": false,
+      "linked_doc": null,
+      "purpose": "lifecycle_state",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": true,
+      "ui": {
+        "visible": true,
+        "list_visible": true,
+        "filterable": true,
+        "sortable": true
+      }
+    },
+    {
+      "field_id": "task_code",
+      "label": "Task Code",
+      "type": "Data",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": null,
+      "linked_doc": null,
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": true,
+      "ui": {
+        "visible": true,
+        "list_visible": true,
+        "filterable": true,
+        "sortable": true
+      }
+    },
+    {
+      "field_id": "source_receipt",
+      "label": "Source Receipt",
+      "type": "Data",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": null,
+      "linked_doc": null,
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": true,
+        "list_visible": false,
+        "filterable": true,
+        "sortable": true
+      }
+    },
+    {
+      "field_id": "target_bin",
+      "label": "Target Bin",
+      "type": "Data",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": null,
+      "linked_doc": null,
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": true,
+        "list_visible": false,
+        "filterable": true,
+        "sortable": true
+      }
+    },
+    {
+      "field_id": "assigned_operator",
+      "label": "Assigned Operator",
+      "type": "Data",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": null,
+      "linked_doc": null,
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": true,
+        "list_visible": false,
+        "filterable": true,
+        "sortable": true
+      }
+    },
+    {
+      "field_id": "task_state",
+      "label": "Task State",
+      "type": "Data",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": null,
+      "linked_doc": null,
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": true,
+        "list_visible": false,
+        "filterable": true,
+        "sortable": true
+      }
+    }
+  ],
+  "field_groups": {
+    "system": [
+      "id",
+      "creation",
+      "modified",
+      "owner",
+      "docstatus",
+      "workflow_state"
+    ],
+    "identity": [
+      "title",
+      "reference_no"
+    ],
+    "content": [
+      "description",
+      "task_code",
+      "source_receipt",
+      "target_bin",
+      "assigned_operator",
+      "task_state"
+    ],
+    "relations": [],
+    "amounts": [],
+    "dates": [],
+    "parties": [],
+    "status": [
+      "workflow_state"
+    ]
+  },
+  "system_fields": [
+    "id",
+    "creation",
+    "modified",
+    "owner",
+    "docstatus",
+    "workflow_state"
+  ],
+  "child_tables": [],
+  "validation_rules": [],
+  "naming_rule": {
+    "strategy": "custom",
+    "pattern": "putaway_task"
+  },
+  "record_contract": {
+    "doc_kind": "workflow_case",
+    "supports_attachments": true,
+    "supports_comments": true,
+    "supports_activity_log": true,
+    "supports_assignments": true
+  },
+  "lifecycle": {
+    "initial_state": "open",
+    "states": [
+      "open",
+      "assigned",
+      "in_progress",
+      "completed",
+      "closed",
+      "archived"
+    ],
+    "terminal_states": [
+      "closed",
+      "archived"
+    ]
+  },
+  "action_rules": {
+    "create": {
+      "allowed_in_states": [
+        "open",
+        "assigned",
+        "in_progress",
+        "completed"
+      ],
+      "transitions_to": null
+    },
+    "assign": {
+      "allowed_in_states": [
+        "open",
+        "assigned",
+        "in_progress",
+        "completed"
+      ],
+      "transitions_to": "in_progress"
+    },
+    "start": {
+      "allowed_in_states": [
+        "open",
+        "assigned",
+        "in_progress",
+        "completed"
+      ],
+      "transitions_to": null
+    },
+    "complete": {
+      "allowed_in_states": [
+        "open",
+        "assigned",
+        "in_progress",
+        "completed"
+      ],
+      "transitions_to": null
+    },
+    "close": {
+      "allowed_in_states": [
+        "open",
+        "assigned",
+        "in_progress",
+        "completed"
+      ],
+      "transitions_to": "closed"
+    },
+    "archive": {
+      "allowed_in_states": [
+        "open",
+        "assigned",
+        "in_progress",
+        "completed"
+      ],
+      "transitions_to": "archived"
+    }
+  },
+  "role_action_matrix": [
+    {
+      "role_id": "System Manager",
+      "actions": [
+        "create",
+        "update",
+        "view",
+        "list",
+        "record",
+        "review",
+        "assign",
+        "track",
+        "monitor",
+        "confirm",
+        "archive"
+      ]
+    }
+  ],
+  "transaction_behavior": {
+    "is_transactional": false,
+    "transaction_kind": null,
+    "posting_behavior": {
+      "requires_posting": false,
+      "posting_action": "post",
+      "reversal_action": "cancel"
+    },
+    "party_model": {
+      "primary_party_field": null,
+      "counterparty_field": null,
+      "party_roles": []
+    },
+    "value_model": {
+      "currency_field": null,
+      "amount_fields": [],
+      "balance_impact": "none"
+    },
+    "reference_model": {
+      "reference_no_field": "reference_no",
+      "upstream_links": [],
+      "downstream_links": []
+    },
+    "line_items": {
+      "enabled": false,
+      "table_field": null,
+      "item_key_field": null,
+      "quantity_field": null,
+      "rate_field": null,
+      "amount_field": null
+    },
+    "fulfilment": {
+      "enabled": false,
+      "dispatch_state_field": null,
+      "delivery_state_field": null,
+      "completion_action": "confirm"
+    },
+    "audit": {
+      "track_state_history": true,
+      "track_action_log": true,
+      "track_external_refs": true
+    }
+  }
+}

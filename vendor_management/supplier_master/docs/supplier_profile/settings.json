@@ -1,0 +1,90 @@
+{
+  "display": {
+    "title_template": "{title}",
+    "subtitle_template": "{reference_no}",
+    "list_columns": [
+      "title",
+      "reference_no",
+      "workflow_state",
+      "modified"
+    ],
+    "default_filters": [],
+    "quick_entry": false
+  },
+  "related_docs": [
+    {
+      "doc_id": "supplier_qualification",
+      "relation_type": "related",
+      "show_in_related_panel": true
+    },
+    {
+      "doc_id": "vendor_contract",
+      "relation_type": "related",
+      "show_in_related_panel": true
+    },
+    {
+      "doc_id": "vendor_review",
+      "relation_type": "related",
+      "show_in_related_panel": true
+    },
+    {
+      "doc_id": "purchase_order",
+      "relation_type": "related",
+      "show_in_related_panel": true
+    }
+  ],
+  "lookup_rules": [],
+  "fetch_rules": [],
+  "reference_map": {
+    "primary_reference_field": "reference_no",
+    "reference_labels": []
+  },
+  "relation_rules": {
+    "parent_doc": null,
+    "child_docs": [],
+    "show_related_panel": true
+  },
+  "borrowed_fields": [
+    {
+      "description": "external compliance/capability context from ecosystem supplier docs where linked"
+    }
+  ],
+  "ui_panels": {
+    "show_activity_log": true,
+    "show_comments": true,
+    "show_assignments": true,
+    "show_related_docs": true
+  },
+  "integration": {
+    "external_refs": [],
+    "sync_rules": []
+  },
+  "runtime_hints": {
+    "doc_key": "supplier_profile",
+    "supports_related_lookup": true,
+    "supports_fetch_rules": true,
+    "workflow_hints": {
+      "business_objective": "maintain supplier master quality, review vendor performance, and resolve supplier issues proactively",
+      "actors": [
+        "vendor manager",
+        "reviewer",
+        "legal/procurement owner"
+      ],
+      "start_condition": "a supplier is onboarded or reviewed",
+      "ordered_steps": [
+        "Create or update the supplier profile."
+      ],
+      "primary_actions": [
+        "create",
+        "update",
+        "review"
+      ],
+      "primary_transitions": [
+        "supplier_profile: draft -> active"
+      ],
+      "downstream_effects": [
+        "supports sourcing, purchase control, and risk management"
+      ]
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "stock_movements",
+  "title": "Stock Movements",
+  "app_id": "supply_chain_procurement",
+  "module_id": "inventory_management",
+  "type": "submodule",
+  "status": "draft"
+}

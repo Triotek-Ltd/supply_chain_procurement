@@ -1,0 +1,14 @@
+3plug Custom Proprietary License (Placeholder)
+
+License ID: CUSTOM-PROPRIETARY
+Owner: Triotek-Ltd (or the app/bundle publisher stated in app metadata)
+
+This software is proprietary and is not licensed under an open-source license.
+Use, copying, modification, redistribution, sublicensing, and deployment are
+subject to the publisher's commercial terms, platform terms, and any executed
+agreement.
+
+Important:
+- This file is a scaffold placeholder for proprietary terms.
+- Replace/update this file with the final approved legal terms before release.
+- App repositories and bundle manifests may carry their own publisher-specific terms.

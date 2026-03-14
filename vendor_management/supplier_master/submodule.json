@@ -1,0 +1,8 @@
+{
+  "id": "supplier_master",
+  "title": "Supplier Master",
+  "app_id": "supply_chain_procurement",
+  "module_id": "vendor_management",
+  "type": "submodule",
+  "status": "draft"
+}

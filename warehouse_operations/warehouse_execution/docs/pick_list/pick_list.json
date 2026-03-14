@@ -1,0 +1,788 @@
+{
+  "identity": {
+    "doc_id": "pick_list",
+    "title": "Pick List",
+    "archetype": "transaction",
+    "app": "supply_chain_procurement",
+    "module": "warehouse_operations",
+    "submodule": "warehouse_execution",
+    "source_kind": "reference_doc_generation_manifest",
+    "bundle_id": "operations",
+    "app_id": "supply_chain_procurement",
+    "module_id": "warehouse_operations",
+    "submodule_id": "warehouse_execution",
+    "doc_key": "pick_list"
+  },
+  "doc_key": "pick_list",
+  "doc_title": "Pick List",
+  "allowed_actions": [
+    "create",
+    "assign",
+    "start",
+    "complete",
+    "close",
+    "archive"
+  ],
+  "actions": {
+    "actions": [
+      "create",
+      "assign",
+      "start",
+      "complete",
+      "close",
+      "archive"
+    ],
+    "families": {
+      "primary": [
+        "create",
+        "assign"
+      ],
+      "workflow": [
+        "submit",
+        "post",
+        "cancel",
+        "adjust",
+        "refund",
+        "process"
+      ]
+    }
+  },
+  "schema": {
+    "field_groups": {
+      "system": [
+        "id",
+        "creation",
+        "modified",
+        "owner",
+        "docstatus",
+        "workflow_state"
+      ],
+      "identity": [
+        "title",
+        "reference_no"
+      ],
+      "content": [
+        "description",
+        "pick_list_code",
+        "source_order_or_shipment",
+        "warehouse",
+        "assigned_picker"
+      ],
+      "relations": [],
+      "amounts": [
+        "currency",
+        "total_amount"
+      ],
+      "dates": [
+        "transaction_date"
+      ],
+      "parties": [
+        "party"
+      ],
+      "status": [
+        "workflow_state",
+        "pick_status"
+      ]
+    },
+    "fields": [
+      {
+        "field_id": "title",
+        "label": "Title",
+        "type": "Data",
+        "required": true,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "reference_no",
+        "label": "Reference No",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "description",
+        "label": "Description",
+        "type": "Text",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "workflow_state",
+        "label": "Workflow State",
+        "type": "Select",
+        "required": true,
+        "read_only": false,
+        "options": {
+          "values": [
+            "draft",
+            "assigned",
+            "in_progress",
+            "completed",
+            "closed",
+            "archived"
+          ]
+        },
+        "default": "draft",
+        "unique": false,
+        "linked_doc": null,
+        "purpose": "lifecycle_state",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "transaction_date",
+        "label": "Transaction Date",
+        "type": "Date",
+        "required": true,
+        "read_only": false,
+        "default": "Today",
+        "unique": false,
+        "options": null,
+        "purpose": "transaction_date",
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "party",
+        "label": "Party",
+        "type": "Link",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "primary_party",
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "currency",
+        "label": "Currency",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "currency_code",
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "total_amount",
+        "label": "Total Amount",
+        "type": "Currency",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "total_amount",
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": false,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "pick_list_code",
+        "label": "Pick List Code",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "source_order_or_shipment",
+        "label": "Source Order Or Shipment",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "warehouse",
+        "label": "Warehouse",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "assigned_picker",
+        "label": "Assigned Picker",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "pick_status",
+        "label": "Pick Status",
+        "type": "Select",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": {
+          "values": [
+            "draft",
+            "active",
+            "closed",
+            "archived"
+          ]
+        },
+        "purpose": "status_flag",
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      }
+    ],
+    "title_field": "title",
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "pick_list_code",
+      "source_order_or_shipment",
+      "warehouse"
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "default_view": "List",
+    "status_field": "workflow_state",
+    "system_fields": [
+      "id",
+      "creation",
+      "modified",
+      "owner",
+      "docstatus",
+      "workflow_state"
+    ],
+    "record_contract": {
+      "doc_kind": "transaction",
+      "supports_attachments": true,
+      "supports_comments": true,
+      "supports_activity_log": true,
+      "supports_assignments": true
+    },
+    "lifecycle": {
+      "initial_state": "draft",
+      "states": [
+        "draft",
+        "assigned",
+        "in_progress",
+        "completed",
+        "closed",
+        "archived"
+      ],
+      "terminal_states": [
+        "closed",
+        "archived"
+      ]
+    },
+    "action_rules": {
+      "create": {
+        "allowed_in_states": [
+          "draft",
+          "assigned",
+          "in_progress",
+          "completed"
+        ],
+        "transitions_to": null
+      },
+      "assign": {
+        "allowed_in_states": [
+          "draft",
+          "assigned",
+          "in_progress",
+          "completed"
+        ],
+        "transitions_to": "in_progress"
+      },
+      "start": {
+        "allowed_in_states": [
+          "draft",
+          "assigned",
+          "in_progress",
+          "completed"
+        ],
+        "transitions_to": null
+      },
+      "complete": {
+        "allowed_in_states": [
+          "draft",
+          "assigned",
+          "in_progress",
+          "completed"
+        ],
+        "transitions_to": null
+      },
+      "close": {
+        "allowed_in_states": [
+          "draft",
+          "assigned",
+          "in_progress",
+          "completed"
+        ],
+        "transitions_to": "closed"
+      },
+      "archive": {
+        "allowed_in_states": [
+          "draft",
+          "assigned",
+          "in_progress",
+          "completed"
+        ],
+        "transitions_to": "archived"
+      }
+    },
+    "role_action_matrix": [
+      {
+        "role_id": "System Manager",
+        "actions": [
+          "create",
+          "update",
+          "view",
+          "list",
+          "record",
+          "review",
+          "assign",
+          "track",
+          "monitor",
+          "confirm",
+          "archive"
+        ]
+      }
+    ],
+    "transaction_behavior": {
+      "is_transactional": true,
+      "transaction_kind": "business_transaction",
+      "posting_behavior": {
+        "requires_posting": true,
+        "posting_action": "post",
+        "reversal_action": "cancel"
+      },
+      "party_model": {
+        "primary_party_field": "party",
+        "counterparty_field": null,
+        "party_roles": [
+          "primary_party"
+        ]
+      },
+      "value_model": {
+        "currency_field": "currency",
+        "amount_fields": [
+          "total_amount"
+        ],
+        "balance_impact": "none"
+      },
+      "reference_model": {
+        "reference_no_field": "reference_no",
+        "upstream_links": [],
+        "downstream_links": []
+      },
+      "line_items": {
+        "enabled": false,
+        "table_field": null,
+        "item_key_field": null,
+        "quantity_field": null,
+        "rate_field": null,
+        "amount_field": null
+      },
+      "fulfilment": {
+        "enabled": false,
+        "dispatch_state_field": null,
+        "delivery_state_field": null,
+        "completion_action": "confirm"
+      },
+      "audit": {
+        "track_state_history": true,
+        "track_action_log": true,
+        "track_external_refs": true
+      }
+    }
+  },
+  "settings": {
+    "display": {
+      "title_template": "{title}",
+      "subtitle_template": "{reference_no}",
+      "list_columns": [
+        "title",
+        "reference_no",
+        "transaction_date",
+        "party",
+        "total_amount",
+        "workflow_state"
+      ],
+      "default_filters": [],
+      "quick_entry": false
+    },
+    "related_docs": [
+      {
+        "doc_id": "shipment_record",
+        "relation_type": "related",
+        "show_in_related_panel": true
+      },
+      {
+        "doc_id": "storage_bin",
+        "relation_type": "related",
+        "show_in_related_panel": true
+      },
+      {
+        "doc_id": "stock_item",
+        "relation_type": "related",
+        "show_in_related_panel": true
+      },
+      {
+        "doc_id": "putaway_task",
+        "relation_type": "related",
+        "show_in_related_panel": true
+      }
+    ],
+    "lookup_rules": [],
+    "fetch_rules": [],
+    "reference_map": {
+      "primary_reference_field": "reference_no",
+      "reference_labels": []
+    },
+    "relation_rules": {
+      "parent_doc": null,
+      "child_docs": [],
+      "show_related_panel": true
+    },
+    "borrowed_fields": [
+      {
+        "description": "shipment lines from shipment_record"
+      },
+      {
+        "description": "location context from storage_bin"
+      }
+    ],
+    "ui_panels": {
+      "show_activity_log": true,
+      "show_comments": true,
+      "show_assignments": true,
+      "show_related_docs": true
+    },
+    "integration": {
+      "external_refs": [],
+      "sync_rules": []
+    },
+    "runtime_hints": {
+      "doc_key": "pick_list",
+      "supports_related_lookup": true,
+      "supports_fetch_rules": true,
+      "workflow_hints": {
+        "business_objective": "receive goods into warehouse storage, put them away correctly, pick them for orders, and keep warehouse records current",
+        "actors": [
+          "warehouse supervisor",
+          "receiving operator",
+          "picker",
+          "putaway operator"
+        ],
+        "start_condition": "goods are received or outgoing orders require warehouse execution",
+        "ordered_steps": [
+          "Create pick work for outgoing demand.",
+          "Pick and complete warehouse execution."
+        ],
+        "primary_actions": [
+          "create",
+          "assign",
+          "start",
+          "complete",
+          "close"
+        ],
+        "primary_transitions": [
+          "pick_list: draft -> assigned",
+          "pick_list: assigned -> in_progress -> completed -> closed"
+        ],
+        "downstream_effects": [
+          "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
+        ]
+      }
+    }
+  },
+  "classification": {
+    "category": "source business doc",
+    "bundle": "operations",
+    "archetype": "transaction",
+    "doc_kind": "transaction"
+  },
+  "behavior": {
+    "transaction_behavior": {
+      "is_transactional": true,
+      "transaction_kind": "business_transaction",
+      "posting_behavior": {
+        "requires_posting": true,
+        "posting_action": "post",
+        "reversal_action": "cancel"
+      },
+      "party_model": {
+        "primary_party_field": "party",
+        "counterparty_field": null,
+        "party_roles": [
+          "primary_party"
+        ]
+      },
+      "value_model": {
+        "currency_field": "currency",
+        "amount_fields": [
+          "total_amount"
+        ],
+        "balance_impact": "none"
+      },
+      "reference_model": {
+        "reference_no_field": "reference_no",
+        "upstream_links": [],
+        "downstream_links": []
+      },
+      "line_items": {
+        "enabled": false,
+        "table_field": null,
+        "item_key_field": null,
+        "quantity_field": null,
+        "rate_field": null,
+        "amount_field": null
+      },
+      "fulfilment": {
+        "enabled": false,
+        "dispatch_state_field": null,
+        "delivery_state_field": null,
+        "completion_action": "confirm"
+      },
+      "audit": {
+        "track_state_history": true,
+        "track_action_log": true,
+        "track_external_refs": true
+      }
+    },
+    "report_boundary_classification": "source business doc",
+    "validation_status": "ready",
+    "validation_warnings": []
+  },
+  "business_logic": {
+    "seeded": true,
+    "folders": [
+      "domain",
+      "actions",
+      "workflows",
+      "relations",
+      "reports",
+      "integrations"
+    ],
+    "seed_file": "logic_seed.json",
+    "handler_registry": "actions/registry.py",
+    "service_entrypoints": {
+      "domain": "domain/service.py",
+      "workflow": "workflows/service.py",
+      "relations": "relations/service.py",
+      "reports": "reports/service.py",
+      "integrations": "integrations/service.py"
+    },
+    "action_handlers": {
+      "base_dir": "actions",
+      "registry": "actions/registry.py",
+      "count": 6,
+      "files": [
+        "actions/create.py",
+        "actions/assign.py",
+        "actions/start.py",
+        "actions/complete.py",
+        "actions/close.py",
+        "actions/archive.py"
+      ]
+    },
+    "classification": {
+      "archetype": "transaction",
+      "doc_kind": "transaction"
+    }
+  },
+  "runtime": {
+    "source_of_truth": "doc_folder",
+    "generated_from": [
+      "doc.json",
+      "schema.json",
+      "actions.json",
+      "settings.json",
+      "logic_seed.json"
+    ],
+    "generator": "plug.apps.doc.file_handler"
+  }
+}

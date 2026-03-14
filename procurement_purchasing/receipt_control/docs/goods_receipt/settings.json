@@ -1,0 +1,137 @@
+{
+  "display": {
+    "title_template": "{title}",
+    "subtitle_template": "{reference_no}",
+    "list_columns": [
+      "title",
+      "reference_no",
+      "transaction_date",
+      "party",
+      "total_amount",
+      "workflow_state"
+    ],
+    "default_filters": [],
+    "quick_entry": false
+  },
+  "related_docs": [
+    {
+      "doc_id": "purchase_order",
+      "relation_type": "related",
+      "show_in_related_panel": true
+    },
+    {
+      "doc_id": "supplier_invoice",
+      "relation_type": "related",
+      "show_in_related_panel": true
+    },
+    {
+      "doc_id": "warehouse_record",
+      "relation_type": "related",
+      "show_in_related_panel": true
+    },
+    {
+      "doc_id": "stock_item",
+      "relation_type": "related",
+      "show_in_related_panel": true
+    }
+  ],
+  "lookup_rules": [
+    {
+      "field_id": "supplier",
+      "doc_id": "supplier_invoice",
+      "lookup_mode": "single",
+      "purpose": "party_reference"
+    },
+    {
+      "field_id": "warehouse",
+      "doc_id": "warehouse_record",
+      "lookup_mode": "single",
+      "purpose": "relation_reference"
+    }
+  ],
+  "fetch_rules": [
+    {
+      "field_id": "supplier",
+      "source_doc_id": "supplier_invoice",
+      "fetch_profile": "supplier_profile",
+      "fetch_fields": [
+        "title",
+        "reference_no",
+        "supplier_code",
+        "email",
+        "phone",
+        "contact_email",
+        "contact_phone"
+      ],
+      "purpose": "party_reference"
+    },
+    {
+      "field_id": "warehouse",
+      "source_doc_id": "warehouse_record",
+      "fetch_profile": "supplier_profile",
+      "fetch_fields": [
+        "title",
+        "reference_no",
+        "supplier_code",
+        "email",
+        "phone",
+        "contact_email",
+        "contact_phone"
+      ],
+      "purpose": "relation_reference"
+    }
+  ],
+  "reference_map": {
+    "primary_reference_field": "reference_no",
+    "reference_labels": []
+  },
+  "relation_rules": {
+    "parent_doc": null,
+    "child_docs": [],
+    "show_related_panel": true
+  },
+  "borrowed_fields": [
+    {
+      "description": "order lines"
+    },
+    {
+      "description": "supplier from purchase_order"
+    }
+  ],
+  "ui_panels": {
+    "show_activity_log": true,
+    "show_comments": true,
+    "show_assignments": true,
+    "show_related_docs": true
+  },
+  "integration": {
+    "external_refs": [],
+    "sync_rules": []
+  },
+  "runtime_hints": {
+    "doc_key": "goods_receipt",
+    "supports_related_lookup": true,
+    "supports_fetch_rules": true,
+    "workflow_hints": {
+      "business_objective": "receive goods into warehouse storage, put them away correctly, pick them for orders, and keep warehouse records current",
+      "actors": [
+        "warehouse supervisor",
+        "receiving operator",
+        "picker",
+        "putaway operator"
+      ],
+      "start_condition": "goods are received or outgoing orders require warehouse execution",
+      "ordered_steps": [
+        "Receive goods into the warehouse and assign a storage destination."
+      ],
+      "primary_actions": [
+        "create",
+        "assign"
+      ],
+      "primary_transitions": [],
+      "downstream_effects": [
+        "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
+      ]
+    }
+  }
+}

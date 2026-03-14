@@ -1,0 +1,147 @@
+{
+  "doc_id": "inventory_movement",
+  "doc_title": "Inventory Movement",
+  "archetype": "transaction",
+  "doc_kind": "transaction",
+  "actions": [
+    "create",
+    "review",
+    "approve",
+    "post",
+    "reverse",
+    "archive"
+  ],
+  "lifecycle": {
+    "initial_state": "draft",
+    "states": [
+      "draft",
+      "approved",
+      "posted",
+      "reversed",
+      "archived"
+    ],
+    "terminal_states": [
+      "reversed",
+      "archived"
+    ]
+  },
+  "related_doc_count": 5,
+  "fetch_rule_count": 0,
+  "action_handler_count": 6,
+  "archetype_profile": {
+    "workflow_profile": {
+      "mode": "transaction_flow",
+      "supports_submission": true
+    },
+    "reporting_profile": {
+      "supports_snapshots": true,
+      "supports_outputs": true
+    },
+    "integration_profile": {
+      "external_sync_enabled": true,
+      "tracks_external_refs": true
+    },
+    "lifecycle_states": [
+      "draft",
+      "approved",
+      "posted",
+      "reversed",
+      "archived"
+    ],
+    "is_transactional": true
+  },
+  "contract_summary": {
+    "title_field": "title",
+    "status_field": "workflow_state",
+    "reference_field": "reference_no",
+    "required_fields": [
+      "title",
+      "workflow_state",
+      "transaction_date"
+    ],
+    "field_purposes": {
+      "workflow_state": "lifecycle_state",
+      "transaction_date": "transaction_date",
+      "party": "primary_party",
+      "currency": "currency_code",
+      "total_amount": "total_amount",
+      "posting_date": "posting_date",
+      "item_lines": "structured_payload"
+    },
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "movement_code",
+      "movement_type",
+      "source_location"
+    ],
+    "list_columns": [
+      "title",
+      "reference_no",
+      "transaction_date",
+      "party",
+      "total_amount",
+      "workflow_state"
+    ],
+    "initial_state": "draft",
+    "lifecycle_states": [
+      "draft",
+      "approved",
+      "posted",
+      "reversed",
+      "archived"
+    ],
+    "terminal_states": [
+      "reversed",
+      "archived"
+    ],
+    "action_targets": {
+      "create": null,
+      "review": null,
+      "approve": "approved",
+      "post": null,
+      "reverse": "reversed",
+      "archive": "archived"
+    }
+  },
+  "workflow_hints": {
+    "business_objective": "receive, verify, store, monitor, count, reconcile, and replenish inventory accurately",
+    "actors": [
+      "storekeeper",
+      "warehouse operator",
+      "inventory controller",
+      "reviewer"
+    ],
+    "start_condition": "stock is received, moved, counted, or adjusted",
+    "ordered_steps": [
+      "Record inventory movement into storage.",
+      "Reconcile physical count variances and apply adjustments."
+    ],
+    "primary_actions": [
+      "create",
+      "review",
+      "approve",
+      "post",
+      "apply",
+      "close"
+    ],
+    "primary_transitions": [
+      "inventory_movement: draft -> approved -> posted"
+    ],
+    "downstream_effects": [
+      "inventory availability feeds purchasing, warehouse execution, logistics, and production planning"
+    ]
+  },
+  "related_docs": [
+    "stock_item",
+    "warehouse_record",
+    "goods_receipt",
+    "shipment_record",
+    "stock_adjustment"
+  ],
+  "borrowed_fields": [
+    "item",
+    "location context from linked masters"
+  ]
+}

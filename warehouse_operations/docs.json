@@ -1,0 +1,8 @@
+{
+  "docs": [
+    "storage_bin",
+    "warehouse_record",
+    "pick_list",
+    "putaway_task"
+  ]
+}

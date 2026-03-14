@@ -1,0 +1,6 @@
+{
+  "submodules": [
+    "supplier_evaluation",
+    "supplier_master"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "doc_key": "delivery_confirmation",
+  "doc_title": "Delivery Confirmation",
+  "doc_kind": "ledger",
+  "status": "draft",
+  "module_id": "logistics_distribution",
+  "submodule_id": "delivery_control",
+  "app_id": "supply_chain_procurement",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "ledger",
+  "classification": {
+    "archetype": "ledger",
+    "bundle": "operations"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "operations",
+    "app": "supply_chain_procurement",
+    "module": "logistics_distribution",
+    "submodule": "delivery_control",
+    "reference_doc_id": "delivery_confirmation",
+    "evidence_gaps": [
+      "proof-of-delivery artifact handling",
+      "recipient-signature model"
+    ]
+  }
+}

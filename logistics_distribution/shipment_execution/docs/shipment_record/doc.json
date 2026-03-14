@@ -1,0 +1,27 @@
+{
+  "doc_key": "shipment_record",
+  "doc_title": "Shipment Record",
+  "doc_kind": "transaction",
+  "status": "draft",
+  "module_id": "logistics_distribution",
+  "submodule_id": "shipment_execution",
+  "app_id": "supply_chain_procurement",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "transaction",
+  "classification": {
+    "archetype": "transaction",
+    "bundle": "operations"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "operations",
+    "app": "supply_chain_procurement",
+    "module": "logistics_distribution",
+    "submodule": "shipment_execution",
+    "reference_doc_id": "shipment_record",
+    "evidence_gaps": [
+      "package-line model",
+      "multi-leg shipment rules"
+    ]
+  }
+}

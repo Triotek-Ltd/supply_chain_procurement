@@ -1,0 +1,9 @@
+{
+  "modules": [
+    "inventory_management",
+    "logistics_distribution",
+    "procurement_purchasing",
+    "vendor_management",
+    "warehouse_operations"
+  ]
+}

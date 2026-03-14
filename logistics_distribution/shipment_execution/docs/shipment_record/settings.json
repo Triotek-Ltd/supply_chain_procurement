@@ -1,0 +1,101 @@
+{
+  "display": {
+    "title_template": "{title}",
+    "subtitle_template": "{reference_no}",
+    "list_columns": [
+      "title",
+      "reference_no",
+      "transaction_date",
+      "party",
+      "total_amount",
+      "workflow_state"
+    ],
+    "default_filters": [],
+    "quick_entry": false
+  },
+  "related_docs": [
+    {
+      "doc_id": "delivery_route",
+      "relation_type": "related",
+      "show_in_related_panel": true
+    },
+    {
+      "doc_id": "transport_booking",
+      "relation_type": "related",
+      "show_in_related_panel": true
+    },
+    {
+      "doc_id": "delivery_confirmation",
+      "relation_type": "related",
+      "show_in_related_panel": true
+    },
+    {
+      "doc_id": "sales_order",
+      "relation_type": "related",
+      "show_in_related_panel": true
+    },
+    {
+      "doc_id": "courier_shipment_request",
+      "relation_type": "related",
+      "show_in_related_panel": true
+    }
+  ],
+  "lookup_rules": [],
+  "fetch_rules": [],
+  "reference_map": {
+    "primary_reference_field": "reference_no",
+    "reference_labels": []
+  },
+  "relation_rules": {
+    "parent_doc": null,
+    "child_docs": [],
+    "show_related_panel": true
+  },
+  "borrowed_fields": [
+    {
+      "description": "order"
+    },
+    {
+      "description": "customer context from sales docs"
+    },
+    {
+      "description": "courier refs from integration docs"
+    }
+  ],
+  "ui_panels": {
+    "show_activity_log": true,
+    "show_comments": true,
+    "show_assignments": true,
+    "show_related_docs": true
+  },
+  "integration": {
+    "external_refs": [],
+    "sync_rules": []
+  },
+  "runtime_hints": {
+    "doc_key": "shipment_record",
+    "supports_related_lookup": true,
+    "supports_fetch_rules": true,
+    "workflow_hints": {
+      "business_objective": "receive goods into warehouse storage, put them away correctly, pick them for orders, and keep warehouse records current",
+      "actors": [
+        "warehouse supervisor",
+        "receiving operator",
+        "picker",
+        "putaway operator"
+      ],
+      "start_condition": "goods are received or outgoing orders require warehouse execution",
+      "ordered_steps": [
+        "Create pick work for outgoing demand."
+      ],
+      "primary_actions": [
+        "create",
+        "assign"
+      ],
+      "primary_transitions": [],
+      "downstream_effects": [
+        "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
+      ]
+    }
+  }
+}

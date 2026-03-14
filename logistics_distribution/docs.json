@@ -1,0 +1,8 @@
+{
+  "docs": [
+    "delivery_confirmation",
+    "delivery_route",
+    "shipment_record",
+    "transport_booking"
+  ]
+}

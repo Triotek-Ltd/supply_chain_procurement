@@ -1,0 +1,28 @@
+{
+  "doc_key": "inventory_movement",
+  "doc_title": "Inventory Movement",
+  "doc_kind": "transaction",
+  "status": "draft",
+  "module_id": "inventory_management",
+  "submodule_id": "stock_movements",
+  "app_id": "supply_chain_procurement",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "transaction",
+  "classification": {
+    "archetype": "transaction",
+    "bundle": "operations"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "operations",
+    "app": "supply_chain_procurement",
+    "module": "inventory_management",
+    "submodule": "stock_movements",
+    "reference_doc_id": "inventory_movement",
+    "evidence_gaps": [
+      "line schema",
+      "serial/batch tracking",
+      "valuation impact"
+    ]
+  }
+}

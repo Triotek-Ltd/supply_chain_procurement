@@ -1,0 +1,8 @@
+{
+  "id": "delivery_control",
+  "title": "Delivery Control",
+  "app_id": "supply_chain_procurement",
+  "module_id": "logistics_distribution",
+  "type": "submodule",
+  "status": "draft"
+}

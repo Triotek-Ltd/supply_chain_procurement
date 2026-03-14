@@ -1,0 +1,27 @@
+{
+  "doc_key": "vendor_review",
+  "doc_title": "Vendor Review",
+  "doc_kind": "ledger",
+  "status": "draft",
+  "module_id": "vendor_management",
+  "submodule_id": "supplier_evaluation",
+  "app_id": "supply_chain_procurement",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "ledger",
+  "classification": {
+    "archetype": "ledger",
+    "bundle": "operations"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "operations",
+    "app": "supply_chain_procurement",
+    "module": "vendor_management",
+    "submodule": "supplier_evaluation",
+    "reference_doc_id": "vendor_review",
+    "evidence_gaps": [
+      "review scorecard",
+      "consequence model"
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "inherits": [
+    "base_record_actions"
+  ],
+  "profiles": {
+    "base_record_actions": [
+      "create",
+      "update",
+      "view",
+      "list",
+      "record",
+      "review",
+      "assign",
+      "track",
+      "monitor",
+      "confirm",
+      "archive"
+    ],
+    "workflow_actions": [
+      "submit",
+      "approve",
+      "return_for_revision",
+      "close",
+      "publish",
+      "issue",
+      "notify",
+      "process",
+      "verify",
+      "reconcile",
+      "post",
+      "escalate",
+      "block",
+      "cancel",
+      "adjust",
+      "refund"
+    ]
+  },
+  "actions": [
+    "create",
+    "assign",
+    "optimize",
+    "dispatch",
+    "close",
+    "archive"
+  ],
+  "available_optional_actions": [
+    "submit",
+    "approve",
+    "return_for_revision",
+    "close",
+    "publish",
+    "issue",
+    "notify",
+    "process",
+    "verify",
+    "reconcile",
+    "post",
+    "escalate",
+    "block",
+    "cancel",
+    "adjust",
+    "refund"
+  ],
+  "ui": {
+    "primary_actions": [
+      "create",
+      "assign"
+    ],
+    "record_actions": [
+      "view",
+      "archive"
+    ],
+    "workflow_actions": [
+      "submit",
+      "post",
+      "cancel",
+      "adjust",
+      "refund",
+      "process"
+    ]
+  },
+  "routing": {
+    "action_endpoint": "docs/delivery_route/<id>/actions/<action_id>"
+  }
+}

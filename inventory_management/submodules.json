@@ -1,0 +1,6 @@
+{
+  "submodules": [
+    "stock_master",
+    "stock_movements"
+  ]
+}

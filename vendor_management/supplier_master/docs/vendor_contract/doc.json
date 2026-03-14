@@ -1,0 +1,27 @@
+{
+  "doc_key": "vendor_contract",
+  "doc_title": "Vendor Contract",
+  "doc_kind": "transaction",
+  "status": "draft",
+  "module_id": "vendor_management",
+  "submodule_id": "supplier_master",
+  "app_id": "supply_chain_procurement",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "transaction",
+  "classification": {
+    "archetype": "transaction",
+    "bundle": "operations"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "operations",
+    "app": "supply_chain_procurement",
+    "module": "vendor_management",
+    "submodule": "supplier_master",
+    "reference_doc_id": "vendor_contract",
+    "evidence_gaps": [
+      "contract-obligation extraction",
+      "amendment handling"
+    ]
+  }
+}

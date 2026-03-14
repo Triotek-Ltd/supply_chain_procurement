@@ -1,0 +1,120 @@
+{
+  "doc_id": "supplier_profile",
+  "doc_title": "Supplier Profile",
+  "archetype": "master",
+  "doc_kind": "master",
+  "actions": [
+    "create",
+    "update",
+    "review",
+    "suspend",
+    "archive"
+  ],
+  "lifecycle": {
+    "initial_state": "active",
+    "states": [
+      "active",
+      "suspended",
+      "archived"
+    ],
+    "terminal_states": [
+      "archived"
+    ]
+  },
+  "related_doc_count": 4,
+  "fetch_rule_count": 0,
+  "action_handler_count": 5,
+  "archetype_profile": {
+    "workflow_profile": {
+      "mode": "entity_lifecycle",
+      "case_management": false
+    },
+    "reporting_profile": {
+      "supports_snapshots": false,
+      "supports_outputs": false
+    },
+    "integration_profile": {
+      "external_sync_enabled": false
+    },
+    "lifecycle_states": [
+      "active",
+      "suspended",
+      "archived"
+    ],
+    "is_transactional": false
+  },
+  "contract_summary": {
+    "title_field": "title",
+    "status_field": "workflow_state",
+    "reference_field": "reference_no",
+    "required_fields": [
+      "title",
+      "workflow_state"
+    ],
+    "field_purposes": {
+      "workflow_state": "lifecycle_state"
+    },
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "supplier_code",
+      "supplier_identity",
+      "tax_registration_details"
+    ],
+    "list_columns": [
+      "title",
+      "reference_no",
+      "workflow_state",
+      "modified"
+    ],
+    "initial_state": "active",
+    "lifecycle_states": [
+      "active",
+      "suspended",
+      "archived"
+    ],
+    "terminal_states": [
+      "archived"
+    ],
+    "action_targets": {
+      "create": null,
+      "update": null,
+      "review": null,
+      "suspend": null,
+      "archive": "archived"
+    }
+  },
+  "workflow_hints": {
+    "business_objective": "maintain supplier master quality, review vendor performance, and resolve supplier issues proactively",
+    "actors": [
+      "vendor manager",
+      "reviewer",
+      "legal/procurement owner"
+    ],
+    "start_condition": "a supplier is onboarded or reviewed",
+    "ordered_steps": [
+      "Create or update the supplier profile."
+    ],
+    "primary_actions": [
+      "create",
+      "update",
+      "review"
+    ],
+    "primary_transitions": [
+      "supplier_profile: draft -> active"
+    ],
+    "downstream_effects": [
+      "supports sourcing, purchase control, and risk management"
+    ]
+  },
+  "related_docs": [
+    "supplier_qualification",
+    "vendor_contract",
+    "vendor_review",
+    "purchase_order"
+  ],
+  "borrowed_fields": [
+    "external compliance/capability context from ecosystem supplier docs where linked"
+  ]
+}

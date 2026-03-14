@@ -1,0 +1,112 @@
+{
+  "doc_id": "supplier_qualification",
+  "doc_title": "Supplier Qualification",
+  "archetype": "workflow_case",
+  "doc_kind": "workflow_case",
+  "actions": [
+    "create",
+    "review",
+    "approve",
+    "reject",
+    "close",
+    "archive"
+  ],
+  "lifecycle": {
+    "initial_state": "opened",
+    "states": [
+      "opened",
+      "in_review",
+      "qualified",
+      "rejected",
+      "closed",
+      "archived"
+    ],
+    "terminal_states": [
+      "closed",
+      "archived"
+    ]
+  },
+  "related_doc_count": 3,
+  "fetch_rule_count": 1,
+  "action_handler_count": 6,
+  "archetype_profile": {
+    "workflow_profile": {
+      "mode": "case_flow",
+      "supports_assignment": true,
+      "supports_escalation": true
+    },
+    "reporting_profile": {
+      "supports_snapshots": true,
+      "supports_outputs": false
+    },
+    "integration_profile": {
+      "external_sync_enabled": false
+    },
+    "lifecycle_states": [
+      "opened",
+      "in_review",
+      "qualified",
+      "rejected",
+      "closed",
+      "archived"
+    ],
+    "is_transactional": false
+  },
+  "contract_summary": {
+    "title_field": "title",
+    "status_field": "workflow_state",
+    "reference_field": "reference_no",
+    "required_fields": [
+      "title",
+      "workflow_state"
+    ],
+    "field_purposes": {
+      "workflow_state": "lifecycle_state",
+      "supplier": "party_reference"
+    },
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "qualification_code",
+      "supplier",
+      "checklist"
+    ],
+    "list_columns": [
+      "title",
+      "reference_no",
+      "workflow_state",
+      "modified"
+    ],
+    "initial_state": "opened",
+    "lifecycle_states": [
+      "opened",
+      "in_review",
+      "qualified",
+      "rejected",
+      "closed",
+      "archived"
+    ],
+    "terminal_states": [
+      "closed",
+      "archived"
+    ],
+    "action_targets": {
+      "create": null,
+      "review": "in_review",
+      "approve": null,
+      "reject": "rejected",
+      "close": "closed",
+      "archive": "archived"
+    }
+  },
+  "workflow_hints": {},
+  "related_docs": [
+    "supplier_profile",
+    "vendor_review",
+    "vendor_contract"
+  ],
+  "borrowed_fields": [
+    "supplier identity from supplier_profile"
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "doc_id": "vendor_review",
+  "doc_title": "Vendor Review",
+  "archetype": "ledger",
+  "doc_kind": "ledger",
+  "actions": [
+    "create",
+    "review",
+    "archive"
+  ],
+  "lifecycle": {
+    "initial_state": "draft",
+    "states": [
+      "draft",
+      "reviewed",
+      "archived"
+    ],
+    "terminal_states": [
+      "archived"
+    ]
+  },
+  "related_doc_count": 3,
+  "fetch_rule_count": 1,
+  "action_handler_count": 3,
+  "archetype_profile": {
+    "workflow_profile": {
+      "mode": "posting_flow",
+      "supports_reconciliation": true
+    },
+    "reporting_profile": {
+      "supports_snapshots": true,
+      "supports_outputs": true
+    },
+    "integration_profile": {
+      "external_sync_enabled": true,
+      "tracks_external_refs": true
+    },
+    "lifecycle_states": [
+      "draft",
+      "reviewed",
+      "archived"
+    ],
+    "is_transactional": true
+  },
+  "contract_summary": {
+    "title_field": "title",
+    "status_field": "workflow_state",
+    "reference_field": "reference_no",
+    "required_fields": [
+      "title",
+      "workflow_state",
+      "posting_date"
+    ],
+    "field_purposes": {
+      "workflow_state": "lifecycle_state",
+      "posting_date": "posting_date",
+      "supplier": "party_reference"
+    },
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "review_code",
+      "supplier",
+      "review_period"
+    ],
+    "list_columns": [
+      "title",
+      "reference_no",
+      "posting_date",
+      "workflow_state"
+    ],
+    "initial_state": "draft",
+    "lifecycle_states": [
+      "draft",
+      "reviewed",
+      "archived"
+    ],
+    "terminal_states": [
+      "archived"
+    ],
+    "action_targets": {
+      "create": null,
+      "review": "reviewed",
+      "archive": "archived"
+    }
+  },
+  "workflow_hints": {
+    "business_objective": "maintain supplier master quality, review vendor performance, and resolve supplier issues proactively",
+    "actors": [
+      "vendor manager",
+      "reviewer",
+      "legal/procurement owner"
+    ],
+    "start_condition": "a supplier is onboarded or reviewed",
+    "ordered_steps": [
+      "Review supplier performance and compliance status."
+    ],
+    "primary_actions": [
+      "create",
+      "review",
+      "close"
+    ],
+    "primary_transitions": [
+      "vendor_review: opened -> reviewed -> closed"
+    ],
+    "downstream_effects": [
+      "supports sourcing, purchase control, and risk management"
+    ]
+  },
+  "related_docs": [
+    "supplier_profile",
+    "supplier_qualification",
+    "vendor_contract"
+  ],
+  "borrowed_fields": [
+    "supplier identity",
+    "contract/SLA context from linked docs"
+  ]
+}

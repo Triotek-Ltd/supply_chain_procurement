@@ -1,0 +1,86 @@
+{
+  "inherits": [
+    "base_record_actions"
+  ],
+  "profiles": {
+    "base_record_actions": [
+      "create",
+      "update",
+      "view",
+      "list",
+      "record",
+      "review",
+      "assign",
+      "track",
+      "monitor",
+      "confirm",
+      "archive"
+    ],
+    "workflow_actions": [
+      "submit",
+      "approve",
+      "return_for_revision",
+      "close",
+      "publish",
+      "issue",
+      "notify",
+      "process",
+      "verify",
+      "reconcile",
+      "post",
+      "escalate",
+      "block",
+      "cancel",
+      "adjust",
+      "refund"
+    ]
+  },
+  "actions": [
+    "create",
+    "submit",
+    "review",
+    "approve",
+    "convert",
+    "cancel",
+    "archive"
+  ],
+  "available_optional_actions": [
+    "submit",
+    "approve",
+    "return_for_revision",
+    "close",
+    "publish",
+    "issue",
+    "notify",
+    "process",
+    "verify",
+    "reconcile",
+    "post",
+    "escalate",
+    "block",
+    "cancel",
+    "adjust",
+    "refund"
+  ],
+  "ui": {
+    "primary_actions": [
+      "create",
+      "submit"
+    ],
+    "record_actions": [
+      "view",
+      "archive"
+    ],
+    "workflow_actions": [
+      "submit",
+      "approve",
+      "return_for_revision",
+      "escalate",
+      "close",
+      "notify"
+    ]
+  },
+  "routing": {
+    "action_endpoint": "docs/purchase_requisition/<id>/actions/<action_id>"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "display": {
+    "title_template": "{title}",
+    "subtitle_template": "{reference_no}",
+    "list_columns": [
+      "title",
+      "reference_no",
+      "transaction_date",
+      "party",
+      "total_amount",
+      "workflow_state"
+    ],
+    "default_filters": [],
+    "quick_entry": false
+  },
+  "related_docs": [
+    {
+      "doc_id": "shipment_record",
+      "relation_type": "related",
+      "show_in_related_panel": true
+    },
+    {
+      "doc_id": "freight_booking",
+      "relation_type": "related",
+      "show_in_related_panel": true
+    },
+    {
+      "doc_id": "courier_shipment_request",
+      "relation_type": "related",
+      "show_in_related_panel": true
+    }
+  ],
+  "lookup_rules": [],
+  "fetch_rules": [],
+  "reference_map": {
+    "primary_reference_field": "reference_no",
+    "reference_labels": []
+  },
+  "relation_rules": {
+    "parent_doc": null,
+    "child_docs": [],
+    "show_related_panel": true
+  },
+  "borrowed_fields": [
+    {
+      "description": "shipment dimensions"
+    },
+    {
+      "description": "routing context from shipment_record"
+    }
+  ],
+  "ui_panels": {
+    "show_activity_log": true,
+    "show_comments": true,
+    "show_assignments": true,
+    "show_related_docs": true
+  },
+  "integration": {
+    "external_refs": [],
+    "sync_rules": []
+  },
+  "runtime_hints": {
+    "doc_key": "transport_booking",
+    "supports_related_lookup": true,
+    "supports_fetch_rules": true,
+    "workflow_hints": {
+      "business_objective": "plan, dispatch, track, and confirm outbound delivery execution",
+      "actors": [
+        "logistics coordinator",
+        "warehouse team",
+        "carrier",
+        "dispatcher",
+        "recipient"
+      ],
+      "start_condition": "a delivery request or shipping order is ready for execution",
+      "ordered_steps": [
+        "Assign route and transport method."
+      ],
+      "primary_actions": [
+        "create",
+        "assign",
+        "submit",
+        "confirm"
+      ],
+      "primary_transitions": [
+        "transport_booking: draft -> submitted -> confirmed"
+      ],
+      "downstream_effects": [
+        "delivery completion feeds billing, customer service, and performance reporting"
+      ]
+    }
+  }
+}

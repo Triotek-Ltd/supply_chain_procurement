@@ -1,0 +1,119 @@
+{
+  "doc_id": "inventory_balance",
+  "doc_title": "Inventory Balance",
+  "archetype": "ledger",
+  "doc_kind": "ledger",
+  "actions": [
+    "create",
+    "review",
+    "archive"
+  ],
+  "lifecycle": {
+    "initial_state": "active",
+    "states": [
+      "active",
+      "archived"
+    ],
+    "terminal_states": [
+      "archived"
+    ]
+  },
+  "related_doc_count": 3,
+  "fetch_rule_count": 1,
+  "action_handler_count": 3,
+  "archetype_profile": {
+    "workflow_profile": {
+      "mode": "posting_flow",
+      "supports_reconciliation": true
+    },
+    "reporting_profile": {
+      "supports_snapshots": true,
+      "supports_outputs": true
+    },
+    "integration_profile": {
+      "external_sync_enabled": true,
+      "tracks_external_refs": true
+    },
+    "lifecycle_states": [
+      "active",
+      "archived"
+    ],
+    "is_transactional": true
+  },
+  "contract_summary": {
+    "title_field": "title",
+    "status_field": "workflow_state",
+    "reference_field": "reference_no",
+    "required_fields": [
+      "title",
+      "workflow_state",
+      "posting_date"
+    ],
+    "field_purposes": {
+      "workflow_state": "lifecycle_state",
+      "posting_date": "posting_date",
+      "warehouse": "relation_reference",
+      "as_of_date": "schedule_marker"
+    },
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "balance_code",
+      "item",
+      "warehouse"
+    ],
+    "list_columns": [
+      "title",
+      "reference_no",
+      "posting_date",
+      "workflow_state"
+    ],
+    "initial_state": "active",
+    "lifecycle_states": [
+      "active",
+      "archived"
+    ],
+    "terminal_states": [
+      "archived"
+    ],
+    "action_targets": {
+      "create": null,
+      "review": null,
+      "archive": "archived"
+    }
+  },
+  "workflow_hints": {
+    "business_objective": "receive, verify, store, monitor, count, reconcile, and replenish inventory accurately",
+    "actors": [
+      "storekeeper",
+      "warehouse operator",
+      "inventory controller",
+      "reviewer"
+    ],
+    "start_condition": "stock is received, moved, counted, or adjusted",
+    "ordered_steps": [
+      "Update the inventory balance position.",
+      "Monitor stock levels and trigger recount or replenishment as needed."
+    ],
+    "primary_actions": [
+      "create",
+      "review"
+    ],
+    "primary_transitions": [
+      "inventory_balance: active"
+    ],
+    "downstream_effects": [
+      "inventory availability feeds purchasing, warehouse execution, logistics, and production planning"
+    ]
+  },
+  "related_docs": [
+    "stock_item",
+    "warehouse_record",
+    "inventory_movement"
+  ],
+  "borrowed_fields": [
+    "item identity from stock_item",
+    "warehouse identity from warehouse_record"
+  ]
+}

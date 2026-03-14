@@ -1,0 +1,663 @@
+{
+  "identity": {
+    "doc_id": "putaway_task",
+    "title": "Putaway Task",
+    "archetype": "workflow_case",
+    "app": "supply_chain_procurement",
+    "module": "warehouse_operations",
+    "submodule": "warehouse_execution",
+    "source_kind": "reference_doc_generation_manifest",
+    "bundle_id": "operations",
+    "app_id": "supply_chain_procurement",
+    "module_id": "warehouse_operations",
+    "submodule_id": "warehouse_execution",
+    "doc_key": "putaway_task"
+  },
+  "doc_key": "putaway_task",
+  "doc_title": "Putaway Task",
+  "allowed_actions": [
+    "create",
+    "assign",
+    "start",
+    "complete",
+    "close",
+    "archive"
+  ],
+  "actions": {
+    "actions": [
+      "create",
+      "assign",
+      "start",
+      "complete",
+      "close",
+      "archive"
+    ],
+    "families": {
+      "primary": [
+        "create",
+        "assign"
+      ],
+      "workflow": [
+        "submit",
+        "approve",
+        "return_for_revision",
+        "escalate",
+        "close",
+        "notify"
+      ]
+    }
+  },
+  "schema": {
+    "field_groups": {
+      "system": [
+        "id",
+        "creation",
+        "modified",
+        "owner",
+        "docstatus",
+        "workflow_state"
+      ],
+      "identity": [
+        "title",
+        "reference_no"
+      ],
+      "content": [
+        "description",
+        "task_code",
+        "source_receipt",
+        "target_bin",
+        "assigned_operator",
+        "task_state"
+      ],
+      "relations": [],
+      "amounts": [],
+      "dates": [],
+      "parties": [],
+      "status": [
+        "workflow_state"
+      ]
+    },
+    "fields": [
+      {
+        "field_id": "title",
+        "label": "Title",
+        "type": "Data",
+        "required": true,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "reference_no",
+        "label": "Reference No",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "description",
+        "label": "Description",
+        "type": "Text",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "workflow_state",
+        "label": "Workflow State",
+        "type": "Select",
+        "required": true,
+        "read_only": false,
+        "options": {
+          "values": [
+            "open",
+            "assigned",
+            "in_progress",
+            "completed",
+            "closed",
+            "archived"
+          ]
+        },
+        "default": "open",
+        "unique": false,
+        "linked_doc": null,
+        "purpose": "lifecycle_state",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "task_code",
+        "label": "Task Code",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": true,
+        "ui": {
+          "visible": true,
+          "list_visible": true,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "source_receipt",
+        "label": "Source Receipt",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "target_bin",
+        "label": "Target Bin",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "assigned_operator",
+        "label": "Assigned Operator",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "task_state",
+        "label": "Task State",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": true,
+          "sortable": true
+        }
+      }
+    ],
+    "title_field": "title",
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "task_code",
+      "source_receipt",
+      "target_bin"
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "default_view": "List",
+    "status_field": "workflow_state",
+    "system_fields": [
+      "id",
+      "creation",
+      "modified",
+      "owner",
+      "docstatus",
+      "workflow_state"
+    ],
+    "record_contract": {
+      "doc_kind": "workflow_case",
+      "supports_attachments": true,
+      "supports_comments": true,
+      "supports_activity_log": true,
+      "supports_assignments": true
+    },
+    "lifecycle": {
+      "initial_state": "open",
+      "states": [
+        "open",
+        "assigned",
+        "in_progress",
+        "completed",
+        "closed",
+        "archived"
+      ],
+      "terminal_states": [
+        "closed",
+        "archived"
+      ]
+    },
+    "action_rules": {
+      "create": {
+        "allowed_in_states": [
+          "open",
+          "assigned",
+          "in_progress",
+          "completed"
+        ],
+        "transitions_to": null
+      },
+      "assign": {
+        "allowed_in_states": [
+          "open",
+          "assigned",
+          "in_progress",
+          "completed"
+        ],
+        "transitions_to": "in_progress"
+      },
+      "start": {
+        "allowed_in_states": [
+          "open",
+          "assigned",
+          "in_progress",
+          "completed"
+        ],
+        "transitions_to": null
+      },
+      "complete": {
+        "allowed_in_states": [
+          "open",
+          "assigned",
+          "in_progress",
+          "completed"
+        ],
+        "transitions_to": null
+      },
+      "close": {
+        "allowed_in_states": [
+          "open",
+          "assigned",
+          "in_progress",
+          "completed"
+        ],
+        "transitions_to": "closed"
+      },
+      "archive": {
+        "allowed_in_states": [
+          "open",
+          "assigned",
+          "in_progress",
+          "completed"
+        ],
+        "transitions_to": "archived"
+      }
+    },
+    "role_action_matrix": [
+      {
+        "role_id": "System Manager",
+        "actions": [
+          "create",
+          "update",
+          "view",
+          "list",
+          "record",
+          "review",
+          "assign",
+          "track",
+          "monitor",
+          "confirm",
+          "archive"
+        ]
+      }
+    ],
+    "transaction_behavior": {
+      "is_transactional": false,
+      "transaction_kind": null,
+      "posting_behavior": {
+        "requires_posting": false,
+        "posting_action": "post",
+        "reversal_action": "cancel"
+      },
+      "party_model": {
+        "primary_party_field": null,
+        "counterparty_field": null,
+        "party_roles": []
+      },
+      "value_model": {
+        "currency_field": null,
+        "amount_fields": [],
+        "balance_impact": "none"
+      },
+      "reference_model": {
+        "reference_no_field": "reference_no",
+        "upstream_links": [],
+        "downstream_links": []
+      },
+      "line_items": {
+        "enabled": false,
+        "table_field": null,
+        "item_key_field": null,
+        "quantity_field": null,
+        "rate_field": null,
+        "amount_field": null
+      },
+      "fulfilment": {
+        "enabled": false,
+        "dispatch_state_field": null,
+        "delivery_state_field": null,
+        "completion_action": "confirm"
+      },
+      "audit": {
+        "track_state_history": true,
+        "track_action_log": true,
+        "track_external_refs": true
+      }
+    }
+  },
+  "settings": {
+    "display": {
+      "title_template": "{title}",
+      "subtitle_template": "{reference_no}",
+      "list_columns": [
+        "title",
+        "reference_no",
+        "workflow_state",
+        "modified"
+      ],
+      "default_filters": [],
+      "quick_entry": false
+    },
+    "related_docs": [
+      {
+        "doc_id": "goods_receipt",
+        "relation_type": "related",
+        "show_in_related_panel": true
+      },
+      {
+        "doc_id": "storage_bin",
+        "relation_type": "related",
+        "show_in_related_panel": true
+      },
+      {
+        "doc_id": "warehouse_record",
+        "relation_type": "related",
+        "show_in_related_panel": true
+      }
+    ],
+    "lookup_rules": [],
+    "fetch_rules": [],
+    "reference_map": {
+      "primary_reference_field": "reference_no",
+      "reference_labels": []
+    },
+    "relation_rules": {
+      "parent_doc": null,
+      "child_docs": [],
+      "show_related_panel": true
+    },
+    "borrowed_fields": [
+      {
+        "description": "receipt"
+      },
+      {
+        "description": "location context from linked docs"
+      }
+    ],
+    "ui_panels": {
+      "show_activity_log": true,
+      "show_comments": true,
+      "show_assignments": true,
+      "show_related_docs": true
+    },
+    "integration": {
+      "external_refs": [],
+      "sync_rules": []
+    },
+    "runtime_hints": {
+      "doc_key": "putaway_task",
+      "supports_related_lookup": true,
+      "supports_fetch_rules": true,
+      "workflow_hints": {
+        "business_objective": "receive goods into warehouse storage, put them away correctly, pick them for orders, and keep warehouse records current",
+        "actors": [
+          "warehouse supervisor",
+          "receiving operator",
+          "picker",
+          "putaway operator"
+        ],
+        "start_condition": "goods are received or outgoing orders require warehouse execution",
+        "ordered_steps": [
+          "Receive goods into the warehouse and assign a storage destination.",
+          "Execute putaway and confirm storage completion."
+        ],
+        "primary_actions": [
+          "create",
+          "assign",
+          "start",
+          "complete",
+          "close"
+        ],
+        "primary_transitions": [
+          "putaway_task: opened -> assigned",
+          "putaway_task: assigned -> in_progress -> completed -> closed"
+        ],
+        "downstream_effects": [
+          "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
+        ]
+      }
+    }
+  },
+  "classification": {
+    "category": "workflow/support doc",
+    "bundle": "operations",
+    "archetype": "workflow_case",
+    "doc_kind": "workflow_case"
+  },
+  "behavior": {
+    "transaction_behavior": {
+      "is_transactional": false,
+      "transaction_kind": null,
+      "posting_behavior": {
+        "requires_posting": false,
+        "posting_action": "post",
+        "reversal_action": "cancel"
+      },
+      "party_model": {
+        "primary_party_field": null,
+        "counterparty_field": null,
+        "party_roles": []
+      },
+      "value_model": {
+        "currency_field": null,
+        "amount_fields": [],
+        "balance_impact": "none"
+      },
+      "reference_model": {
+        "reference_no_field": "reference_no",
+        "upstream_links": [],
+        "downstream_links": []
+      },
+      "line_items": {
+        "enabled": false,
+        "table_field": null,
+        "item_key_field": null,
+        "quantity_field": null,
+        "rate_field": null,
+        "amount_field": null
+      },
+      "fulfilment": {
+        "enabled": false,
+        "dispatch_state_field": null,
+        "delivery_state_field": null,
+        "completion_action": "confirm"
+      },
+      "audit": {
+        "track_state_history": true,
+        "track_action_log": true,
+        "track_external_refs": true
+      }
+    },
+    "report_boundary_classification": "workflow/support doc",
+    "validation_status": "ready",
+    "validation_warnings": []
+  },
+  "business_logic": {
+    "seeded": true,
+    "folders": [
+      "domain",
+      "actions",
+      "workflows",
+      "relations",
+      "reports",
+      "integrations"
+    ],
+    "seed_file": "logic_seed.json",
+    "handler_registry": "actions/registry.py",
+    "service_entrypoints": {
+      "domain": "domain/service.py",
+      "workflow": "workflows/service.py",
+      "relations": "relations/service.py",
+      "reports": "reports/service.py",
+      "integrations": "integrations/service.py"
+    },
+    "action_handlers": {
+      "base_dir": "actions",
+      "registry": "actions/registry.py",
+      "count": 6,
+      "files": [
+        "actions/create.py",
+        "actions/assign.py",
+        "actions/start.py",
+        "actions/complete.py",
+        "actions/close.py",
+        "actions/archive.py"
+      ]
+    },
+    "classification": {
+      "archetype": "workflow_case",
+      "doc_kind": "workflow_case"
+    }
+  },
+  "runtime": {
+    "source_of_truth": "doc_folder",
+    "generated_from": [
+      "doc.json",
+      "schema.json",
+      "actions.json",
+      "settings.json",
+      "logic_seed.json"
+    ],
+    "generator": "plug.apps.doc.file_handler"
+  }
+}

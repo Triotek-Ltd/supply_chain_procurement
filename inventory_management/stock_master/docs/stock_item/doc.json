@@ -1,0 +1,27 @@
+{
+  "doc_key": "stock_item",
+  "doc_title": "Stock Item",
+  "doc_kind": "master",
+  "status": "draft",
+  "module_id": "inventory_management",
+  "submodule_id": "stock_master",
+  "app_id": "supply_chain_procurement",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "master",
+  "classification": {
+    "archetype": "master",
+    "bundle": "operations"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "operations",
+    "app": "supply_chain_procurement",
+    "module": "inventory_management",
+    "submodule": "stock_master",
+    "reference_doc_id": "stock_item",
+    "evidence_gaps": [
+      "variant/item hierarchy",
+      "valuation-policy rules"
+    ]
+  }
+}

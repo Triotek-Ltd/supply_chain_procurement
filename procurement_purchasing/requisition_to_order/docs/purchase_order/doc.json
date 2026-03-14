@@ -1,0 +1,28 @@
+{
+  "doc_key": "purchase_order",
+  "doc_title": "Purchase Order",
+  "doc_kind": "transaction",
+  "status": "draft",
+  "module_id": "procurement_purchasing",
+  "submodule_id": "requisition_to_order",
+  "app_id": "supply_chain_procurement",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "transaction",
+  "classification": {
+    "archetype": "transaction",
+    "bundle": "operations"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "operations",
+    "app": "supply_chain_procurement",
+    "module": "procurement_purchasing",
+    "submodule": "requisition_to_order",
+    "reference_doc_id": "purchase_order",
+    "evidence_gaps": [
+      "PO-line structure",
+      "taxes/charges",
+      "blanket-order rules"
+    ]
+  }
+}
