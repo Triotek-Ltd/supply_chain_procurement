@@ -67,7 +67,11 @@
       "party": "primary_party",
       "currency": "currency_code",
       "total_amount": "total_amount",
-      "pick_status": "status_flag"
+      "pick_status": "status_flag",
+      "related_shipment_record": "relation_collection",
+      "related_storage_bin": "relation_collection",
+      "related_stock_item": "relation_collection",
+      "related_putaway_task": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -133,8 +137,26 @@
     ],
     "downstream_effects": [
       "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
-    ]
+    ],
+    "action_actors": {
+      "create": [
+        "warehouse supervisor"
+      ],
+      "assign": [
+        "warehouse supervisor"
+      ],
+      "close": [
+        "warehouse supervisor"
+      ],
+      "archive": [
+        "warehouse supervisor"
+      ]
+    }
   },
+  "downstream_effects": [
+    "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
+  ],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "shipment_record",
     "storage_bin",

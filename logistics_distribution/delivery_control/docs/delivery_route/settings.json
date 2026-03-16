@@ -25,7 +25,20 @@
       "show_in_related_panel": true
     }
   ],
-  "lookup_rules": [],
+  "lookup_rules": [
+    {
+      "field_id": "related_shipment_record",
+      "doc_id": "shipment_record",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_delivery_confirmation",
+      "doc_id": "delivery_confirmation",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    }
+  ],
   "fetch_rules": [],
   "reference_map": {
     "primary_reference_field": "reference_no",
@@ -33,7 +46,10 @@
   },
   "relation_rules": {
     "parent_doc": null,
-    "child_docs": [],
+    "child_docs": [
+      "shipment_record",
+      "delivery_confirmation"
+    ],
     "show_related_panel": true
   },
   "borrowed_fields": [
@@ -85,7 +101,25 @@
       ],
       "downstream_effects": [
         "delivery completion feeds billing, customer service, and performance reporting"
-      ]
-    }
+      ],
+      "action_actors": {
+        "create": [
+          "logistics coordinator"
+        ],
+        "assign": [
+          "logistics coordinator"
+        ],
+        "dispatch": [
+          "recipient"
+        ],
+        "close": [
+          "logistics coordinator"
+        ],
+        "archive": [
+          "logistics coordinator"
+        ]
+      }
+    },
+    "action_side_effects_file": "side_effects.json"
   }
 }

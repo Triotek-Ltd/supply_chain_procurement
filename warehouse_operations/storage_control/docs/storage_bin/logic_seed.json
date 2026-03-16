@@ -50,7 +50,10 @@
     ],
     "field_purposes": {
       "workflow_state": "lifecycle_state",
-      "warehouse": "relation_reference"
+      "warehouse": "relation_reference",
+      "related_inventory_balance": "relation_collection",
+      "related_pick_list": "relation_collection",
+      "related_putaway_task": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -103,8 +106,26 @@
     "primary_transitions": [],
     "downstream_effects": [
       "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
-    ]
+    ],
+    "action_actors": {
+      "create": [
+        "warehouse supervisor"
+      ],
+      "update": [
+        "warehouse supervisor"
+      ],
+      "review": [
+        "receiving operator"
+      ],
+      "archive": [
+        "warehouse supervisor"
+      ]
+    }
   },
+  "downstream_effects": [
+    "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
+  ],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "warehouse_record",
     "inventory_balance",

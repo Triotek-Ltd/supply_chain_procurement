@@ -62,7 +62,9 @@
     ],
     "field_purposes": {
       "workflow_state": "lifecycle_state",
-      "supplier": "party_reference"
+      "supplier": "party_reference",
+      "related_vendor_review": "relation_collection",
+      "related_vendor_contract": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -100,7 +102,48 @@
       "archive": "archived"
     }
   },
-  "workflow_hints": {},
+  "workflow_hints": {
+    "relation_context": {
+      "related_docs": [
+        "supplier_profile",
+        "vendor_review",
+        "vendor_contract"
+      ],
+      "borrowed_fields": [
+        "supplier identity from supplier_profile"
+      ],
+      "inferred_roles": [
+        "compliance officer",
+        "procurement officer"
+      ]
+    },
+    "actors": [
+      "compliance officer",
+      "procurement officer"
+    ],
+    "action_actors": {
+      "create": [
+        "compliance officer"
+      ],
+      "review": [
+        "procurement officer"
+      ],
+      "approve": [
+        "compliance officer"
+      ],
+      "reject": [
+        "compliance officer"
+      ],
+      "close": [
+        "compliance officer"
+      ],
+      "archive": [
+        "compliance officer"
+      ]
+    }
+  },
+  "downstream_effects": [],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "supplier_profile",
     "vendor_review",

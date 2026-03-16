@@ -70,7 +70,9 @@
       ],
       "relations": [
         "supplier",
-        "warehouse"
+        "warehouse",
+        "related_purchase_order",
+        "related_stock_item"
       ],
       "amounts": [
         "currency",
@@ -438,6 +440,54 @@
           "filterable": true,
           "sortable": true
         }
+      },
+      {
+        "field_id": "related_purchase_order",
+        "label": "Related Purchase Order",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "purchase_order",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "related_stock_item",
+        "label": "Related Stock Item",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "stock_item",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
       }
     ],
     "title_field": "title",
@@ -542,17 +592,49 @@
       {
         "role_id": "System Manager",
         "actions": [
-          "create",
-          "update",
           "view",
           "list",
-          "record",
+          "create",
           "review",
-          "assign",
-          "track",
-          "monitor",
-          "confirm",
+          "submit",
+          "accept",
+          "reject",
+          "close",
           "archive"
+        ]
+      },
+      {
+        "role_id": "warehouse supervisor",
+        "actions": [
+          "view",
+          "list",
+          "create",
+          "submit",
+          "reject",
+          "close",
+          "archive"
+        ]
+      },
+      {
+        "role_id": "receiving operator",
+        "actions": [
+          "view",
+          "list",
+          "review"
+        ]
+      },
+      {
+        "role_id": "picker",
+        "actions": [
+          "view",
+          "list"
+        ]
+      },
+      {
+        "role_id": "putaway operator",
+        "actions": [
+          "view",
+          "list"
         ]
       }
     ],
@@ -653,6 +735,18 @@
         "doc_id": "warehouse_record",
         "lookup_mode": "single",
         "purpose": "relation_reference"
+      },
+      {
+        "field_id": "related_purchase_order",
+        "doc_id": "purchase_order",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      },
+      {
+        "field_id": "related_stock_item",
+        "doc_id": "stock_item",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
       }
     ],
     "fetch_rules": [
@@ -693,7 +787,10 @@
     },
     "relation_rules": {
       "parent_doc": null,
-      "child_docs": [],
+      "child_docs": [
+        "purchase_order",
+        "stock_item"
+      ],
       "show_related_panel": true
     },
     "borrowed_fields": [
@@ -737,8 +834,29 @@
         "primary_transitions": [],
         "downstream_effects": [
           "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
-        ]
-      }
+        ],
+        "action_actors": {
+          "create": [
+            "warehouse supervisor"
+          ],
+          "review": [
+            "receiving operator"
+          ],
+          "submit": [
+            "warehouse supervisor"
+          ],
+          "reject": [
+            "warehouse supervisor"
+          ],
+          "close": [
+            "warehouse supervisor"
+          ],
+          "archive": [
+            "warehouse supervisor"
+          ]
+        }
+      },
+      "action_side_effects_file": "side_effects.json"
     }
   },
   "classification": {
@@ -818,6 +936,9 @@
       "reports": "reports/service.py",
       "integrations": "integrations/service.py"
     },
+    "runtime_contract": {
+      "side_effects_file": "side_effects.json"
+    },
     "action_handlers": {
       "base_dir": "actions",
       "registry": "actions/registry.py",
@@ -837,6 +958,41 @@
       "doc_kind": "transaction"
     }
   },
+  "testing": {
+    "seeded": true,
+    "api_base_path": "/apis/supply_chain_procurement/procurement_purchasing/receipt_control/goods_receipt/",
+    "status_field": "workflow_state",
+    "initial_state": "draft",
+    "required_fields": [
+      "title",
+      "workflow_state",
+      "transaction_date"
+    ],
+    "transition_scenarios": [
+      {
+        "action_id": "submit",
+        "source_state": "draft",
+        "target_state": "submitted",
+        "disallowed_state": "archived"
+      },
+      {
+        "action_id": "archive",
+        "source_state": "draft",
+        "target_state": "archived",
+        "disallowed_state": "archived"
+      }
+    ],
+    "related_docs": [
+      "purchase_order",
+      "supplier_invoice",
+      "warehouse_record",
+      "stock_item"
+    ],
+    "downstream_effects": [
+      "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
+    ],
+    "action_side_effects_file": "side_effects.json"
+  },
   "runtime": {
     "source_of_truth": "doc_folder",
     "generated_from": [
@@ -844,7 +1000,8 @@
       "schema.json",
       "actions.json",
       "settings.json",
-      "logic_seed.json"
+      "logic_seed.json",
+      "side_effects.json"
     ],
     "generator": "plug.apps.doc.file_handler"
   }

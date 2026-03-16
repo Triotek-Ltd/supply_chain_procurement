@@ -260,6 +260,102 @@
         "filterable": true,
         "sortable": true
       }
+    },
+    {
+      "field_id": "related_supplier_qualification",
+      "label": "Related Supplier Qualification",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "supplier_qualification",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
+    },
+    {
+      "field_id": "related_vendor_contract",
+      "label": "Related Vendor Contract",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "vendor_contract",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
+    },
+    {
+      "field_id": "related_vendor_review",
+      "label": "Related Vendor Review",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "vendor_review",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
+    },
+    {
+      "field_id": "related_purchase_order",
+      "label": "Related Purchase Order",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "purchase_order",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
     }
   ],
   "field_groups": {
@@ -284,7 +380,12 @@
       "category",
       "qualification_state"
     ],
-    "relations": [],
+    "relations": [
+      "related_supplier_qualification",
+      "related_vendor_contract",
+      "related_vendor_review",
+      "related_purchase_order"
+    ],
     "amounts": [],
     "dates": [],
     "parties": [],
@@ -365,16 +466,37 @@
     {
       "role_id": "System Manager",
       "actions": [
-        "create",
-        "update",
         "view",
         "list",
-        "record",
+        "create",
+        "update",
         "review",
-        "assign",
-        "track",
-        "monitor",
-        "confirm",
+        "suspend",
+        "archive"
+      ]
+    },
+    {
+      "role_id": "vendor manager",
+      "actions": [
+        "view",
+        "list",
+        "create",
+        "update"
+      ]
+    },
+    {
+      "role_id": "reviewer",
+      "actions": [
+        "view",
+        "list",
+        "review"
+      ]
+    },
+    {
+      "role_id": "legal/procurement owner",
+      "actions": [
+        "view",
+        "list",
         "archive"
       ]
     }

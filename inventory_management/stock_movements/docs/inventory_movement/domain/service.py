@@ -5,9 +5,11 @@ from __future__ import annotations
 
 ARCHETYPE_PROFILE = {'workflow_profile': {'mode': 'transaction_flow', 'supports_submission': True}, 'reporting_profile': {'supports_snapshots': True, 'supports_outputs': True}, 'integration_profile': {'external_sync_enabled': True, 'tracks_external_refs': True}, 'lifecycle_states': ['draft', 'approved', 'posted', 'reversed', 'archived'], 'is_transactional': True}
 
-CONTRACT = {'title_field': 'title', 'status_field': 'workflow_state', 'reference_field': 'reference_no', 'required_fields': ['title', 'workflow_state', 'transaction_date'], 'field_purposes': {'workflow_state': 'lifecycle_state', 'transaction_date': 'transaction_date', 'party': 'primary_party', 'currency': 'currency_code', 'total_amount': 'total_amount', 'posting_date': 'posting_date', 'item_lines': 'structured_payload'}, 'search_fields': ['title', 'reference_no', 'description', 'movement_code', 'movement_type', 'source_location'], 'list_columns': ['title', 'reference_no', 'transaction_date', 'party', 'total_amount', 'workflow_state'], 'initial_state': 'draft', 'lifecycle_states': ['draft', 'approved', 'posted', 'reversed', 'archived'], 'terminal_states': ['reversed', 'archived'], 'action_targets': {'create': None, 'review': None, 'approve': 'approved', 'post': None, 'reverse': 'reversed', 'archive': 'archived'}}
+CONTRACT = {'title_field': 'title', 'status_field': 'workflow_state', 'reference_field': 'reference_no', 'required_fields': ['title', 'workflow_state', 'transaction_date'], 'field_purposes': {'workflow_state': 'lifecycle_state', 'transaction_date': 'transaction_date', 'party': 'primary_party', 'currency': 'currency_code', 'total_amount': 'total_amount', 'posting_date': 'posting_date', 'item_lines': 'structured_payload', 'related_stock_item': 'relation_collection', 'related_warehouse_record': 'relation_collection', 'related_goods_receipt': 'relation_collection', 'related_shipment_record': 'relation_collection', 'related_stock_adjustment': 'relation_collection'}, 'search_fields': ['title', 'reference_no', 'description', 'movement_code', 'movement_type', 'source_location'], 'list_columns': ['title', 'reference_no', 'transaction_date', 'party', 'total_amount', 'workflow_state'], 'initial_state': 'draft', 'lifecycle_states': ['draft', 'approved', 'posted', 'reversed', 'archived'], 'terminal_states': ['reversed', 'archived'], 'action_targets': {'create': None, 'review': None, 'approve': 'approved', 'post': None, 'reverse': 'reversed', 'archive': 'archived'}}
 
-WORKFLOW_HINTS = {'business_objective': 'receive, verify, store, monitor, count, reconcile, and replenish inventory accurately', 'actors': ['storekeeper', 'warehouse operator', 'inventory controller', 'reviewer'], 'start_condition': 'stock is received, moved, counted, or adjusted', 'ordered_steps': ['Record inventory movement into storage.', 'Reconcile physical count variances and apply adjustments.'], 'primary_actions': ['create', 'review', 'approve', 'post', 'apply', 'close'], 'primary_transitions': ['inventory_movement: draft -> approved -> posted'], 'downstream_effects': ['inventory availability feeds purchasing, warehouse execution, logistics, and production planning']}
+WORKFLOW_HINTS = {'business_objective': 'receive, verify, store, monitor, count, reconcile, and replenish inventory accurately', 'actors': ['storekeeper', 'warehouse operator', 'inventory controller', 'reviewer'], 'start_condition': 'stock is received, moved, counted, or adjusted', 'ordered_steps': ['Record inventory movement into storage.', 'Reconcile physical count variances and apply adjustments.'], 'primary_actions': ['create', 'review', 'approve', 'post', 'apply', 'close'], 'primary_transitions': ['inventory_movement: draft -> approved -> posted'], 'downstream_effects': ['inventory availability feeds purchasing, warehouse execution, logistics, and production planning'], 'action_actors': {'create': ['storekeeper'], 'review': ['reviewer'], 'approve': ['reviewer'], 'post': ['reviewer'], 'reverse': ['storekeeper'], 'archive': ['storekeeper']}}
+
+SIDE_EFFECT_HINTS = {'downstream_effects': ['inventory availability feeds purchasing, warehouse execution, logistics, and production planning'], 'related_docs': ['stock_item', 'warehouse_record', 'goods_receipt', 'shipment_record', 'stock_adjustment'], 'action_targets': {'create': None, 'review': None, 'approve': 'approved', 'post': None, 'reverse': 'reversed', 'archive': 'archived'}, 'action_side_effects_file': 'side_effects.json'}
 
 class DomainService:
     doc_id = "inventory_movement"
@@ -63,12 +65,28 @@ class DomainService:
     def after_update(self, instance, serialized_data: dict, context: dict | None = None) -> dict:
         return serialized_data
 
+    def after_action(
+        self,
+        instance,
+        action_id: str,
+        payload: dict,
+        action_result: dict,
+        context: dict | None = None,
+    ) -> dict:
+        return {
+            "updates": {},
+            "side_effects": [],
+        }
+
     def shape_retrieve_data(self, instance, serialized_data: dict, context: dict | None = None) -> dict:
         serialized_data.setdefault("_business_capabilities", self.business_capabilities())
         return serialized_data
 
     def workflow_objective(self) -> str | None:
         return WORKFLOW_HINTS.get("business_objective")
+
+    def side_effect_hints(self) -> dict:
+        return SIDE_EFFECT_HINTS
 
     def business_capabilities(self) -> dict:
         return {

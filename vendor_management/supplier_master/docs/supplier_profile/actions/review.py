@@ -8,7 +8,7 @@ ACTION_ID = "review"
 ACTION_RULE = {'allowed_in_states': ['active', 'suspended'], 'transitions_to': None}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {'business_objective': 'maintain supplier master quality, review vendor performance, and resolve supplier issues proactively', 'actors': ['vendor manager', 'reviewer', 'legal/procurement owner'], 'start_condition': 'a supplier is onboarded or reviewed', 'ordered_steps': ['Create or update the supplier profile.'], 'primary_actions': ['create', 'update', 'review'], 'primary_transitions': ['supplier_profile: draft -> active'], 'downstream_effects': ['supports sourcing, purchase control, and risk management']}
+WORKFLOW_HINTS = {'business_objective': 'maintain supplier master quality, review vendor performance, and resolve supplier issues proactively', 'actors': ['vendor manager', 'reviewer', 'legal/procurement owner'], 'start_condition': 'a supplier is onboarded or reviewed', 'ordered_steps': ['Create or update the supplier profile.'], 'primary_actions': ['create', 'update', 'review'], 'primary_transitions': ['supplier_profile: draft -> active'], 'downstream_effects': ['supports sourcing, purchase control, and risk management'], 'action_actors': {'create': ['vendor manager'], 'update': ['vendor manager'], 'review': ['reviewer'], 'archive': ['legal/procurement owner']}}
 
 def handle_review(payload: dict, context: dict | None = None) -> dict:
     context = context or {}

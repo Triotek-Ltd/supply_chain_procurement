@@ -40,7 +40,38 @@
       "show_in_related_panel": true
     }
   ],
-  "lookup_rules": [],
+  "lookup_rules": [
+    {
+      "field_id": "related_stock_item",
+      "doc_id": "stock_item",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_warehouse_record",
+      "doc_id": "warehouse_record",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_goods_receipt",
+      "doc_id": "goods_receipt",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_shipment_record",
+      "doc_id": "shipment_record",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_stock_adjustment",
+      "doc_id": "stock_adjustment",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    }
+  ],
   "fetch_rules": [],
   "reference_map": {
     "primary_reference_field": "reference_no",
@@ -48,7 +79,13 @@
   },
   "relation_rules": {
     "parent_doc": null,
-    "child_docs": [],
+    "child_docs": [
+      "stock_item",
+      "warehouse_record",
+      "goods_receipt",
+      "shipment_record",
+      "stock_adjustment"
+    ],
     "show_related_panel": true
   },
   "borrowed_fields": [
@@ -99,7 +136,28 @@
       ],
       "downstream_effects": [
         "inventory availability feeds purchasing, warehouse execution, logistics, and production planning"
-      ]
-    }
+      ],
+      "action_actors": {
+        "create": [
+          "storekeeper"
+        ],
+        "review": [
+          "reviewer"
+        ],
+        "approve": [
+          "reviewer"
+        ],
+        "post": [
+          "reviewer"
+        ],
+        "reverse": [
+          "storekeeper"
+        ],
+        "archive": [
+          "storekeeper"
+        ]
+      }
+    },
+    "action_side_effects_file": "side_effects.json"
   }
 }

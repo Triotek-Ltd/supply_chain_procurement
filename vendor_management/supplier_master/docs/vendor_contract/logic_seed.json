@@ -66,7 +66,9 @@
       "party": "primary_party",
       "currency": "currency_code",
       "total_amount": "total_amount",
-      "supplier": "party_reference"
+      "supplier": "party_reference",
+      "related_vendor_review": "relation_collection",
+      "related_purchase_order": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -105,7 +107,50 @@
       "archive": "archived"
     }
   },
-  "workflow_hints": {},
+  "workflow_hints": {
+    "relation_context": {
+      "related_docs": [
+        "supplier_profile",
+        "vendor_review",
+        "purchase_order"
+      ],
+      "borrowed_fields": [
+        "supplier identity",
+        "payment terms from supplier_profile"
+      ],
+      "inferred_roles": [
+        "compliance officer",
+        "procurement officer",
+        "account owner",
+        "finance officer"
+      ]
+    },
+    "actors": [
+      "compliance officer",
+      "procurement officer",
+      "account owner",
+      "finance officer"
+    ],
+    "action_actors": {
+      "create": [
+        "compliance officer"
+      ],
+      "review": [
+        "procurement officer"
+      ],
+      "approve": [
+        "compliance officer"
+      ],
+      "activate": [
+        "account owner"
+      ],
+      "archive": [
+        "account owner"
+      ]
+    }
+  },
+  "downstream_effects": [],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "supplier_profile",
     "vendor_review",

@@ -34,6 +34,18 @@
       "doc_id": "supplier_profile",
       "lookup_mode": "single",
       "purpose": "party_reference"
+    },
+    {
+      "field_id": "related_supplier_qualification",
+      "doc_id": "supplier_qualification",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_vendor_contract",
+      "doc_id": "vendor_contract",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
     }
   ],
   "fetch_rules": [
@@ -59,7 +71,10 @@
   },
   "relation_rules": {
     "parent_doc": null,
-    "child_docs": [],
+    "child_docs": [
+      "supplier_qualification",
+      "vendor_contract"
+    ],
     "show_related_panel": true
   },
   "borrowed_fields": [
@@ -105,7 +120,19 @@
       ],
       "downstream_effects": [
         "supports sourcing, purchase control, and risk management"
-      ]
-    }
+      ],
+      "action_actors": {
+        "create": [
+          "vendor manager"
+        ],
+        "review": [
+          "reviewer"
+        ],
+        "archive": [
+          "legal/procurement owner"
+        ]
+      }
+    },
+    "action_side_effects_file": "side_effects.json"
   }
 }

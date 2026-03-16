@@ -52,7 +52,11 @@
       "workflow_state"
     ],
     "field_purposes": {
-      "workflow_state": "lifecycle_state"
+      "workflow_state": "lifecycle_state",
+      "related_supplier_qualification": "relation_collection",
+      "related_vendor_contract": "relation_collection",
+      "related_vendor_review": "relation_collection",
+      "related_purchase_order": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -106,8 +110,26 @@
     ],
     "downstream_effects": [
       "supports sourcing, purchase control, and risk management"
-    ]
+    ],
+    "action_actors": {
+      "create": [
+        "vendor manager"
+      ],
+      "update": [
+        "vendor manager"
+      ],
+      "review": [
+        "reviewer"
+      ],
+      "archive": [
+        "legal/procurement owner"
+      ]
+    }
   },
+  "downstream_effects": [
+    "supports sourcing, purchase control, and risk management"
+  ],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "supplier_qualification",
     "vendor_contract",

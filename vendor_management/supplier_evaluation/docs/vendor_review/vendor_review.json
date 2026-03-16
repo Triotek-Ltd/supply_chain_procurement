@@ -56,7 +56,9 @@
         "review_outcome"
       ],
       "relations": [
-        "supplier"
+        "supplier",
+        "related_supplier_qualification",
+        "related_vendor_contract"
       ],
       "amounts": [],
       "dates": [
@@ -337,6 +339,54 @@
           "filterable": true,
           "sortable": true
         }
+      },
+      {
+        "field_id": "related_supplier_qualification",
+        "label": "Related Supplier Qualification",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "supplier_qualification",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "related_vendor_contract",
+        "label": "Related Vendor Contract",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "vendor_contract",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
       }
     ],
     "title_field": "title",
@@ -405,16 +455,34 @@
       {
         "role_id": "System Manager",
         "actions": [
-          "create",
-          "update",
           "view",
           "list",
-          "record",
+          "create",
           "review",
-          "assign",
-          "track",
-          "monitor",
-          "confirm",
+          "archive"
+        ]
+      },
+      {
+        "role_id": "vendor manager",
+        "actions": [
+          "view",
+          "list",
+          "create"
+        ]
+      },
+      {
+        "role_id": "reviewer",
+        "actions": [
+          "view",
+          "list",
+          "review"
+        ]
+      },
+      {
+        "role_id": "legal/procurement owner",
+        "actions": [
+          "view",
+          "list",
           "archive"
         ]
       }
@@ -499,6 +567,18 @@
         "doc_id": "supplier_profile",
         "lookup_mode": "single",
         "purpose": "party_reference"
+      },
+      {
+        "field_id": "related_supplier_qualification",
+        "doc_id": "supplier_qualification",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      },
+      {
+        "field_id": "related_vendor_contract",
+        "doc_id": "vendor_contract",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
       }
     ],
     "fetch_rules": [
@@ -524,7 +604,10 @@
     },
     "relation_rules": {
       "parent_doc": null,
-      "child_docs": [],
+      "child_docs": [
+        "supplier_qualification",
+        "vendor_contract"
+      ],
       "show_related_panel": true
     },
     "borrowed_fields": [
@@ -570,8 +653,20 @@
         ],
         "downstream_effects": [
           "supports sourcing, purchase control, and risk management"
-        ]
-      }
+        ],
+        "action_actors": {
+          "create": [
+            "vendor manager"
+          ],
+          "review": [
+            "reviewer"
+          ],
+          "archive": [
+            "legal/procurement owner"
+          ]
+        }
+      },
+      "action_side_effects_file": "side_effects.json"
     }
   },
   "classification": {
@@ -647,6 +742,9 @@
       "reports": "reports/service.py",
       "integrations": "integrations/service.py"
     },
+    "runtime_contract": {
+      "side_effects_file": "side_effects.json"
+    },
     "action_handlers": {
       "base_dir": "actions",
       "registry": "actions/registry.py",
@@ -662,6 +760,40 @@
       "doc_kind": "ledger"
     }
   },
+  "testing": {
+    "seeded": true,
+    "api_base_path": "/apis/supply_chain_procurement/vendor_management/supplier_evaluation/vendor_review/",
+    "status_field": "workflow_state",
+    "initial_state": "draft",
+    "required_fields": [
+      "title",
+      "workflow_state",
+      "posting_date"
+    ],
+    "transition_scenarios": [
+      {
+        "action_id": "review",
+        "source_state": "draft",
+        "target_state": "reviewed",
+        "disallowed_state": "archived"
+      },
+      {
+        "action_id": "archive",
+        "source_state": "draft",
+        "target_state": "archived",
+        "disallowed_state": "archived"
+      }
+    ],
+    "related_docs": [
+      "supplier_profile",
+      "supplier_qualification",
+      "vendor_contract"
+    ],
+    "downstream_effects": [
+      "supports sourcing, purchase control, and risk management"
+    ],
+    "action_side_effects_file": "side_effects.json"
+  },
   "runtime": {
     "source_of_truth": "doc_folder",
     "generated_from": [
@@ -669,7 +801,8 @@
       "schema.json",
       "actions.json",
       "settings.json",
-      "logic_seed.json"
+      "logic_seed.json",
+      "side_effects.json"
     ],
     "generator": "plug.apps.doc.file_handler"
   }

@@ -360,6 +360,78 @@
         "filterable": true,
         "sortable": true
       }
+    },
+    {
+      "field_id": "related_purchase_requisition",
+      "label": "Related Purchase Requisition",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "purchase_requisition",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
+    },
+    {
+      "field_id": "related_goods_receipt",
+      "label": "Related Goods Receipt",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "goods_receipt",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
+    },
+    {
+      "field_id": "related_supplier_invoice",
+      "label": "Related Supplier Invoice",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "supplier_invoice",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
     }
   ],
   "field_groups": {
@@ -382,7 +454,10 @@
       "status"
     ],
     "relations": [
-      "supplier"
+      "supplier",
+      "related_purchase_requisition",
+      "related_goods_receipt",
+      "related_supplier_invoice"
     ],
     "amounts": [
       "currency",
@@ -523,17 +598,57 @@
     {
       "role_id": "System Manager",
       "actions": [
-        "create",
-        "update",
         "view",
         "list",
-        "record",
+        "create",
         "review",
-        "assign",
-        "track",
-        "monitor",
-        "confirm",
+        "approve",
+        "issue",
+        "receive",
+        "bill",
+        "close",
         "archive"
+      ]
+    },
+    {
+      "role_id": "requesting department",
+      "actions": [
+        "view",
+        "list",
+        "create",
+        "issue",
+        "close",
+        "archive"
+      ]
+    },
+    {
+      "role_id": "procurement officer",
+      "actions": [
+        "view",
+        "list"
+      ]
+    },
+    {
+      "role_id": "reviewer",
+      "actions": [
+        "view",
+        "list",
+        "review"
+      ]
+    },
+    {
+      "role_id": "approver",
+      "actions": [
+        "view",
+        "list",
+        "approve"
+      ]
+    },
+    {
+      "role_id": "supplier",
+      "actions": [
+        "view",
+        "list"
       ]
     }
   ],

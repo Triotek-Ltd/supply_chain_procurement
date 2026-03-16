@@ -74,7 +74,10 @@
       "supplier": "party_reference",
       "order_date": "schedule_marker",
       "schedule_date": "schedule_marker",
-      "totals": "structured_payload"
+      "totals": "structured_payload",
+      "related_purchase_requisition": "relation_collection",
+      "related_goods_receipt": "relation_collection",
+      "related_supplier_invoice": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -142,8 +145,32 @@
     ],
     "downstream_effects": [
       "purchase orders feed goods receipt, supplier invoice matching, and vendor performance tracking"
-    ]
+    ],
+    "action_actors": {
+      "create": [
+        "requesting department"
+      ],
+      "review": [
+        "reviewer"
+      ],
+      "approve": [
+        "approver"
+      ],
+      "issue": [
+        "requesting department"
+      ],
+      "close": [
+        "requesting department"
+      ],
+      "archive": [
+        "requesting department"
+      ]
+    }
   },
+  "downstream_effects": [
+    "purchase orders feed goods receipt, supplier invoice matching, and vendor performance tracking"
+  ],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "purchase_requisition",
     "goods_receipt",

@@ -1,8 +1,8 @@
 {
   "docs": [
-    "supplier_qualification",
-    "vendor_review",
     "supplier_profile",
-    "vendor_contract"
+    "supplier_qualification",
+    "vendor_contract",
+    "vendor_review"
   ]
 }

@@ -1,0 +1,18 @@
+{
+  "close": [
+    {
+      "type": "update_current",
+      "fields": {
+        "workflow_state": "closed"
+      }
+    }
+  ],
+  "archive": [
+    {
+      "type": "update_current",
+      "fields": {
+        "workflow_state": "archived"
+      }
+    }
+  ]
+}

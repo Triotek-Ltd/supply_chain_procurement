@@ -65,7 +65,9 @@
       "count_date": "schedule_marker",
       "warehouse": "relation_reference",
       "approver": "actor_reference",
-      "adjustment_status": "status_flag"
+      "adjustment_status": "status_flag",
+      "related_inventory_balance": "relation_collection",
+      "related_inventory_movement": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -129,8 +131,29 @@
     ],
     "downstream_effects": [
       "inventory availability feeds purchasing, warehouse execution, logistics, and production planning"
-    ]
+    ],
+    "action_actors": {
+      "create": [
+        "storekeeper"
+      ],
+      "review": [
+        "reviewer"
+      ],
+      "approve": [
+        "reviewer"
+      ],
+      "close": [
+        "storekeeper"
+      ],
+      "archive": [
+        "storekeeper"
+      ]
+    }
   },
+  "downstream_effects": [
+    "inventory availability feeds purchasing, warehouse execution, logistics, and production planning"
+  ],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "inventory_balance",
     "inventory_movement",

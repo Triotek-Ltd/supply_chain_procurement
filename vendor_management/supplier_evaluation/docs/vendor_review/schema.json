@@ -284,6 +284,54 @@
         "filterable": true,
         "sortable": true
       }
+    },
+    {
+      "field_id": "related_supplier_qualification",
+      "label": "Related Supplier Qualification",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "supplier_qualification",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
+    },
+    {
+      "field_id": "related_vendor_contract",
+      "label": "Related Vendor Contract",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "vendor_contract",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
     }
   ],
   "field_groups": {
@@ -308,7 +356,9 @@
       "review_outcome"
     ],
     "relations": [
-      "supplier"
+      "supplier",
+      "related_supplier_qualification",
+      "related_vendor_contract"
     ],
     "amounts": [],
     "dates": [
@@ -378,16 +428,34 @@
     {
       "role_id": "System Manager",
       "actions": [
-        "create",
-        "update",
         "view",
         "list",
-        "record",
+        "create",
         "review",
-        "assign",
-        "track",
-        "monitor",
-        "confirm",
+        "archive"
+      ]
+    },
+    {
+      "role_id": "vendor manager",
+      "actions": [
+        "view",
+        "list",
+        "create"
+      ]
+    },
+    {
+      "role_id": "reviewer",
+      "actions": [
+        "view",
+        "list",
+        "review"
+      ]
+    },
+    {
+      "role_id": "legal/procurement owner",
+      "actions": [
+        "view",
+        "list",
         "archive"
       ]
     }

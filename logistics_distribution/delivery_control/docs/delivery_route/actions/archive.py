@@ -8,7 +8,7 @@ ACTION_ID = "archive"
 ACTION_RULE = {'allowed_in_states': ['draft', 'assigned', 'dispatched', 'completed'], 'transitions_to': 'archived'}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {'business_objective': 'plan, dispatch, track, and confirm outbound delivery execution', 'actors': ['logistics coordinator', 'warehouse team', 'carrier', 'dispatcher', 'recipient'], 'start_condition': 'a delivery request or shipping order is ready for execution', 'ordered_steps': ['Assign route and transport method.', 'Dispatch the shipment.'], 'primary_actions': ['create', 'assign', 'submit', 'confirm', 'dispatch'], 'primary_transitions': ['delivery_route: draft -> assigned', 'delivery_route: assigned -> dispatched'], 'downstream_effects': ['delivery completion feeds billing, customer service, and performance reporting']}
+WORKFLOW_HINTS = {'business_objective': 'plan, dispatch, track, and confirm outbound delivery execution', 'actors': ['logistics coordinator', 'warehouse team', 'carrier', 'dispatcher', 'recipient'], 'start_condition': 'a delivery request or shipping order is ready for execution', 'ordered_steps': ['Assign route and transport method.', 'Dispatch the shipment.'], 'primary_actions': ['create', 'assign', 'submit', 'confirm', 'dispatch'], 'primary_transitions': ['delivery_route: draft -> assigned', 'delivery_route: assigned -> dispatched'], 'downstream_effects': ['delivery completion feeds billing, customer service, and performance reporting'], 'action_actors': {'create': ['logistics coordinator'], 'assign': ['logistics coordinator'], 'dispatch': ['recipient'], 'close': ['logistics coordinator'], 'archive': ['logistics coordinator']}}
 
 def handle_archive(payload: dict, context: dict | None = None) -> dict:
     context = context or {}

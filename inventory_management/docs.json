@@ -1,8 +1,8 @@
 {
   "docs": [
     "inventory_balance",
-    "stock_item",
     "inventory_movement",
-    "stock_adjustment"
+    "stock_adjustment",
+    "stock_item"
   ]
 }

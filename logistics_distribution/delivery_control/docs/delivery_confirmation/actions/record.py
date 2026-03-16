@@ -8,7 +8,7 @@ ACTION_ID = "record"
 ACTION_RULE = {'allowed_in_states': ['active'], 'transitions_to': None}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {'business_objective': 'plan, dispatch, track, and confirm outbound delivery execution', 'actors': ['logistics coordinator', 'warehouse team', 'carrier', 'dispatcher', 'recipient'], 'start_condition': 'a delivery request or shipping order is ready for execution', 'ordered_steps': ['Record delivery confirmation.'], 'primary_actions': ['record', 'review', 'archive'], 'primary_transitions': ['delivery_confirmation: active'], 'downstream_effects': ['delivery completion feeds billing, customer service, and performance reporting']}
+WORKFLOW_HINTS = {'business_objective': 'plan, dispatch, track, and confirm outbound delivery execution', 'actors': ['logistics coordinator', 'warehouse team', 'carrier', 'dispatcher', 'recipient'], 'start_condition': 'a delivery request or shipping order is ready for execution', 'ordered_steps': ['Record delivery confirmation.'], 'primary_actions': ['record', 'review', 'archive'], 'primary_transitions': ['delivery_confirmation: active'], 'downstream_effects': ['delivery completion feeds billing, customer service, and performance reporting'], 'action_actors': {'record': ['logistics coordinator'], 'review': ['logistics coordinator'], 'archive': ['logistics coordinator']}}
 
 def handle_record(payload: dict, context: dict | None = None) -> dict:
     context = context or {}

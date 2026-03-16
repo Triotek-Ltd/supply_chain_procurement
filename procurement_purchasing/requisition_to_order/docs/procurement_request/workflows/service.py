@@ -11,7 +11,7 @@ TERMINAL_STATES = ['closed', 'archived']
 ACTION_RULES = {'create': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': None}, 'review': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'reviewed'}, 'issue': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'active'}, 'close': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['purchase_requisition', 'purchase_order', 'supplier_profile'], 'borrowed_fields': ['demand details from purchase_requisition'], 'inferred_roles': ['procurement officer', 'account owner']}, 'actors': ['procurement officer', 'account owner'], 'action_actors': {'create': ['procurement officer'], 'review': ['account owner'], 'issue': ['account owner'], 'close': ['account owner'], 'archive': ['account owner']}}
 
 class WorkflowService:
     def allowed_actions_for_state(self, state: str | None) -> list[str]:

@@ -53,7 +53,8 @@
       "workflow_state": "lifecycle_state",
       "posting_date": "posting_date",
       "warehouse": "relation_reference",
-      "as_of_date": "schedule_marker"
+      "as_of_date": "schedule_marker",
+      "related_inventory_movement": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -105,8 +106,23 @@
     ],
     "downstream_effects": [
       "inventory availability feeds purchasing, warehouse execution, logistics, and production planning"
-    ]
+    ],
+    "action_actors": {
+      "create": [
+        "storekeeper"
+      ],
+      "review": [
+        "reviewer"
+      ],
+      "archive": [
+        "storekeeper"
+      ]
+    }
   },
+  "downstream_effects": [
+    "inventory availability feeds purchasing, warehouse execution, logistics, and production planning"
+  ],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "stock_item",
     "warehouse_record",

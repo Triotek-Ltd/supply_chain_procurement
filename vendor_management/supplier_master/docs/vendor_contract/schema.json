@@ -359,6 +359,54 @@
         "filterable": true,
         "sortable": true
       }
+    },
+    {
+      "field_id": "related_vendor_review",
+      "label": "Related Vendor Review",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "vendor_review",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
+    },
+    {
+      "field_id": "related_purchase_order",
+      "label": "Related Purchase Order",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "purchase_order",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
     }
   ],
   "field_groups": {
@@ -383,7 +431,9 @@
       "renewal_state"
     ],
     "relations": [
-      "supplier"
+      "supplier",
+      "related_vendor_review",
+      "related_purchase_order"
     ],
     "amounts": [
       "currency",
@@ -496,17 +546,47 @@
     {
       "role_id": "System Manager",
       "actions": [
-        "create",
-        "update",
         "view",
         "list",
-        "record",
+        "create",
         "review",
-        "assign",
-        "track",
-        "monitor",
-        "confirm",
+        "approve",
+        "activate",
+        "renew",
         "archive"
+      ]
+    },
+    {
+      "role_id": "compliance officer",
+      "actions": [
+        "view",
+        "list",
+        "create",
+        "approve"
+      ]
+    },
+    {
+      "role_id": "procurement officer",
+      "actions": [
+        "view",
+        "list",
+        "review"
+      ]
+    },
+    {
+      "role_id": "account owner",
+      "actions": [
+        "view",
+        "list",
+        "activate",
+        "archive"
+      ]
+    },
+    {
+      "role_id": "finance officer",
+      "actions": [
+        "view",
+        "list"
       ]
     }
   ],

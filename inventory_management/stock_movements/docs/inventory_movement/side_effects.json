@@ -1,0 +1,50 @@
+{
+  "create": [
+    {
+      "type": "update_current",
+      "fields": {
+        "workflow_state": "draft"
+      }
+    }
+  ],
+  "review": [
+    {
+      "type": "update_current",
+      "fields": {
+        "workflow_state": "draft"
+      }
+    }
+  ],
+  "approve": [
+    {
+      "type": "update_current",
+      "fields": {
+        "workflow_state": "approved"
+      }
+    }
+  ],
+  "post": [
+    {
+      "type": "update_current",
+      "fields": {
+        "workflow_state": "posted"
+      }
+    }
+  ],
+  "reverse": [
+    {
+      "type": "update_current",
+      "fields": {
+        "workflow_state": "reversed"
+      }
+    }
+  ],
+  "archive": [
+    {
+      "type": "update_current",
+      "fields": {
+        "workflow_state": "archived"
+      }
+    }
+  ]
+}

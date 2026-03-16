@@ -8,7 +8,7 @@ ACTION_ID = "create"
 ACTION_RULE = {'allowed_in_states': ['active'], 'transitions_to': None}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {'business_objective': 'receive, verify, store, monitor, count, reconcile, and replenish inventory accurately', 'actors': ['storekeeper', 'warehouse operator', 'inventory controller', 'reviewer'], 'start_condition': 'stock is received, moved, counted, or adjusted', 'ordered_steps': ['Update the inventory balance position.', 'Monitor stock levels and trigger recount or replenishment as needed.'], 'primary_actions': ['create', 'review'], 'primary_transitions': ['inventory_balance: active'], 'downstream_effects': ['inventory availability feeds purchasing, warehouse execution, logistics, and production planning']}
+WORKFLOW_HINTS = {'business_objective': 'receive, verify, store, monitor, count, reconcile, and replenish inventory accurately', 'actors': ['storekeeper', 'warehouse operator', 'inventory controller', 'reviewer'], 'start_condition': 'stock is received, moved, counted, or adjusted', 'ordered_steps': ['Update the inventory balance position.', 'Monitor stock levels and trigger recount or replenishment as needed.'], 'primary_actions': ['create', 'review'], 'primary_transitions': ['inventory_balance: active'], 'downstream_effects': ['inventory availability feeds purchasing, warehouse execution, logistics, and production planning'], 'action_actors': {'create': ['storekeeper'], 'review': ['reviewer'], 'archive': ['storekeeper']}}
 
 def handle_create(payload: dict, context: dict | None = None) -> dict:
     context = context or {}

@@ -8,7 +8,7 @@ ACTION_ID = "create"
 ACTION_RULE = {'allowed_in_states': ['draft', 'submitted', 'confirmed', 'cancelled'], 'transitions_to': None}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {'business_objective': 'plan, dispatch, track, and confirm outbound delivery execution', 'actors': ['logistics coordinator', 'warehouse team', 'carrier', 'dispatcher', 'recipient'], 'start_condition': 'a delivery request or shipping order is ready for execution', 'ordered_steps': ['Assign route and transport method.'], 'primary_actions': ['create', 'assign', 'submit', 'confirm'], 'primary_transitions': ['transport_booking: draft -> submitted -> confirmed'], 'downstream_effects': ['delivery completion feeds billing, customer service, and performance reporting']}
+WORKFLOW_HINTS = {'business_objective': 'plan, dispatch, track, and confirm outbound delivery execution', 'actors': ['logistics coordinator', 'warehouse team', 'carrier', 'dispatcher', 'recipient'], 'start_condition': 'a delivery request or shipping order is ready for execution', 'ordered_steps': ['Assign route and transport method.'], 'primary_actions': ['create', 'assign', 'submit', 'confirm'], 'primary_transitions': ['transport_booking: draft -> submitted -> confirmed'], 'downstream_effects': ['delivery completion feeds billing, customer service, and performance reporting'], 'action_actors': {'create': ['logistics coordinator'], 'submit': ['logistics coordinator'], 'confirm': ['warehouse team'], 'cancel': ['logistics coordinator'], 'archive': ['logistics coordinator']}}
 
 def handle_create(payload: dict, context: dict | None = None) -> dict:
     context = context or {}

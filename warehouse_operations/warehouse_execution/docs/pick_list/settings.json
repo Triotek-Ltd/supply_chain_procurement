@@ -35,7 +35,32 @@
       "show_in_related_panel": true
     }
   ],
-  "lookup_rules": [],
+  "lookup_rules": [
+    {
+      "field_id": "related_shipment_record",
+      "doc_id": "shipment_record",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_storage_bin",
+      "doc_id": "storage_bin",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_stock_item",
+      "doc_id": "stock_item",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_putaway_task",
+      "doc_id": "putaway_task",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    }
+  ],
   "fetch_rules": [],
   "reference_map": {
     "primary_reference_field": "reference_no",
@@ -43,7 +68,12 @@
   },
   "relation_rules": {
     "parent_doc": null,
-    "child_docs": [],
+    "child_docs": [
+      "shipment_record",
+      "storage_bin",
+      "stock_item",
+      "putaway_task"
+    ],
     "show_related_panel": true
   },
   "borrowed_fields": [
@@ -94,7 +124,22 @@
       ],
       "downstream_effects": [
         "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
-      ]
-    }
+      ],
+      "action_actors": {
+        "create": [
+          "warehouse supervisor"
+        ],
+        "assign": [
+          "warehouse supervisor"
+        ],
+        "close": [
+          "warehouse supervisor"
+        ],
+        "archive": [
+          "warehouse supervisor"
+        ]
+      }
+    },
+    "action_side_effects_file": "side_effects.json"
   }
 }

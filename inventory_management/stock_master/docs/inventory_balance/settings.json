@@ -34,6 +34,12 @@
       "doc_id": "warehouse_record",
       "lookup_mode": "single",
       "purpose": "relation_reference"
+    },
+    {
+      "field_id": "related_inventory_movement",
+      "doc_id": "inventory_movement",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
     }
   ],
   "fetch_rules": [
@@ -54,7 +60,9 @@
   },
   "relation_rules": {
     "parent_doc": null,
-    "child_docs": [],
+    "child_docs": [
+      "inventory_movement"
+    ],
     "show_related_panel": true
   },
   "borrowed_fields": [
@@ -101,7 +109,19 @@
       ],
       "downstream_effects": [
         "inventory availability feeds purchasing, warehouse execution, logistics, and production planning"
-      ]
-    }
+      ],
+      "action_actors": {
+        "create": [
+          "storekeeper"
+        ],
+        "review": [
+          "reviewer"
+        ],
+        "archive": [
+          "storekeeper"
+        ]
+      }
+    },
+    "action_side_effects_file": "side_effects.json"
   }
 }

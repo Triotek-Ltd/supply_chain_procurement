@@ -1,0 +1,42 @@
+{
+  "create": [
+    {
+      "type": "update_current",
+      "fields": {
+        "workflow_state": "draft"
+      }
+    }
+  ],
+  "submit": [
+    {
+      "type": "update_current",
+      "fields": {
+        "workflow_state": "submitted"
+      }
+    }
+  ],
+  "confirm": [
+    {
+      "type": "update_current",
+      "fields": {
+        "workflow_state": "confirmed"
+      }
+    }
+  ],
+  "cancel": [
+    {
+      "type": "update_current",
+      "fields": {
+        "workflow_state": "cancelled"
+      }
+    }
+  ],
+  "archive": [
+    {
+      "type": "update_current",
+      "fields": {
+        "workflow_state": "archived"
+      }
+    }
+  ]
+}

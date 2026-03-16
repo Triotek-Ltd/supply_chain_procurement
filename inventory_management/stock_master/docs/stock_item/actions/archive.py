@@ -8,7 +8,7 @@ ACTION_ID = "archive"
 ACTION_RULE = {'allowed_in_states': ['active'], 'transitions_to': 'archived'}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {'business_objective': 'receive, verify, store, monitor, count, reconcile, and replenish inventory accurately', 'actors': ['storekeeper', 'warehouse operator', 'inventory controller', 'reviewer'], 'start_condition': 'stock is received, moved, counted, or adjusted', 'ordered_steps': ['Receive goods and verify quantity and condition.'], 'primary_actions': ['create', 'review', 'accept'], 'primary_transitions': [], 'downstream_effects': ['inventory availability feeds purchasing, warehouse execution, logistics, and production planning']}
+WORKFLOW_HINTS = {'business_objective': 'receive, verify, store, monitor, count, reconcile, and replenish inventory accurately', 'actors': ['storekeeper', 'warehouse operator', 'inventory controller', 'reviewer'], 'start_condition': 'stock is received, moved, counted, or adjusted', 'ordered_steps': ['Receive goods and verify quantity and condition.'], 'primary_actions': ['create', 'review', 'accept'], 'primary_transitions': [], 'downstream_effects': ['inventory availability feeds purchasing, warehouse execution, logistics, and production planning'], 'action_actors': {'create': ['storekeeper'], 'update': ['storekeeper'], 'review': ['reviewer'], 'archive': ['storekeeper']}}
 
 def handle_archive(payload: dict, context: dict | None = None) -> dict:
     context = context or {}

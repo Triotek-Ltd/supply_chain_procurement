@@ -70,7 +70,11 @@
         "justification",
         "approval_state"
       ],
-      "relations": [],
+      "relations": [
+        "related_purchase_order",
+        "related_procurement_request",
+        "related_supplier_profile"
+      ],
       "amounts": [],
       "dates": [
         "need_by_date"
@@ -331,6 +335,78 @@
           "filterable": true,
           "sortable": true
         }
+      },
+      {
+        "field_id": "related_purchase_order",
+        "label": "Related Purchase Order",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "purchase_order",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "related_procurement_request",
+        "label": "Related Procurement Request",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "procurement_request",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "related_supplier_profile",
+        "label": "Related Supplier Profile",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "supplier_profile",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
       }
     ],
     "title_field": "title",
@@ -451,17 +527,56 @@
       {
         "role_id": "System Manager",
         "actions": [
-          "create",
-          "update",
           "view",
           "list",
-          "record",
+          "create",
+          "submit",
           "review",
-          "assign",
-          "track",
-          "monitor",
-          "confirm",
+          "approve",
+          "convert",
+          "cancel",
           "archive"
+        ]
+      },
+      {
+        "role_id": "requesting department",
+        "actions": [
+          "view",
+          "list",
+          "create",
+          "submit",
+          "cancel",
+          "archive"
+        ]
+      },
+      {
+        "role_id": "procurement officer",
+        "actions": [
+          "view",
+          "list"
+        ]
+      },
+      {
+        "role_id": "reviewer",
+        "actions": [
+          "view",
+          "list",
+          "review"
+        ]
+      },
+      {
+        "role_id": "approver",
+        "actions": [
+          "view",
+          "list",
+          "approve"
+        ]
+      },
+      {
+        "role_id": "supplier",
+        "actions": [
+          "view",
+          "list"
         ]
       }
     ],
@@ -539,7 +654,26 @@
         "show_in_related_panel": true
       }
     ],
-    "lookup_rules": [],
+    "lookup_rules": [
+      {
+        "field_id": "related_purchase_order",
+        "doc_id": "purchase_order",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      },
+      {
+        "field_id": "related_procurement_request",
+        "doc_id": "procurement_request",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      },
+      {
+        "field_id": "related_supplier_profile",
+        "doc_id": "supplier_profile",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      }
+    ],
     "fetch_rules": [],
     "reference_map": {
       "primary_reference_field": "reference_no",
@@ -547,7 +681,11 @@
     },
     "relation_rules": {
       "parent_doc": null,
-      "child_docs": [],
+      "child_docs": [
+        "purchase_order",
+        "procurement_request",
+        "supplier_profile"
+      ],
       "show_related_panel": true
     },
     "borrowed_fields": [
@@ -597,8 +735,29 @@
         ],
         "downstream_effects": [
           "purchase orders feed goods receipt, supplier invoice matching, and vendor performance tracking"
-        ]
-      }
+        ],
+        "action_actors": {
+          "create": [
+            "requesting department"
+          ],
+          "submit": [
+            "requesting department"
+          ],
+          "review": [
+            "reviewer"
+          ],
+          "approve": [
+            "approver"
+          ],
+          "cancel": [
+            "requesting department"
+          ],
+          "archive": [
+            "requesting department"
+          ]
+        }
+      },
+      "action_side_effects_file": "side_effects.json"
     }
   },
   "classification": {
@@ -674,6 +833,9 @@
       "reports": "reports/service.py",
       "integrations": "integrations/service.py"
     },
+    "runtime_contract": {
+      "side_effects_file": "side_effects.json"
+    },
     "action_handlers": {
       "base_dir": "actions",
       "registry": "actions/registry.py",
@@ -693,6 +855,45 @@
       "doc_kind": "workflow_case"
     }
   },
+  "testing": {
+    "seeded": true,
+    "api_base_path": "/apis/supply_chain_procurement/procurement_purchasing/requisition_to_order/purchase_requisition/",
+    "status_field": "workflow_state",
+    "initial_state": "draft",
+    "required_fields": [
+      "title",
+      "workflow_state"
+    ],
+    "transition_scenarios": [
+      {
+        "action_id": "submit",
+        "source_state": "draft",
+        "target_state": "submitted",
+        "disallowed_state": "archived"
+      },
+      {
+        "action_id": "approve",
+        "source_state": "draft",
+        "target_state": "approved",
+        "disallowed_state": "archived"
+      },
+      {
+        "action_id": "archive",
+        "source_state": "draft",
+        "target_state": "archived",
+        "disallowed_state": "archived"
+      }
+    ],
+    "related_docs": [
+      "purchase_order",
+      "procurement_request",
+      "supplier_profile"
+    ],
+    "downstream_effects": [
+      "purchase orders feed goods receipt, supplier invoice matching, and vendor performance tracking"
+    ],
+    "action_side_effects_file": "side_effects.json"
+  },
   "runtime": {
     "source_of_truth": "doc_folder",
     "generated_from": [
@@ -700,7 +901,8 @@
       "schema.json",
       "actions.json",
       "settings.json",
-      "logic_seed.json"
+      "logic_seed.json",
+      "side_effects.json"
     ],
     "generator": "plug.apps.doc.file_handler"
   }

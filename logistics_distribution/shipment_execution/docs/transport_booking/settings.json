@@ -30,7 +30,26 @@
       "show_in_related_panel": true
     }
   ],
-  "lookup_rules": [],
+  "lookup_rules": [
+    {
+      "field_id": "related_shipment_record",
+      "doc_id": "shipment_record",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_freight_booking",
+      "doc_id": "freight_booking",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_courier_shipment_request",
+      "doc_id": "courier_shipment_request",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    }
+  ],
   "fetch_rules": [],
   "reference_map": {
     "primary_reference_field": "reference_no",
@@ -38,7 +57,11 @@
   },
   "relation_rules": {
     "parent_doc": null,
-    "child_docs": [],
+    "child_docs": [
+      "shipment_record",
+      "freight_booking",
+      "courier_shipment_request"
+    ],
     "show_related_panel": true
   },
   "borrowed_fields": [
@@ -87,7 +110,25 @@
       ],
       "downstream_effects": [
         "delivery completion feeds billing, customer service, and performance reporting"
-      ]
-    }
+      ],
+      "action_actors": {
+        "create": [
+          "logistics coordinator"
+        ],
+        "submit": [
+          "logistics coordinator"
+        ],
+        "confirm": [
+          "warehouse team"
+        ],
+        "cancel": [
+          "logistics coordinator"
+        ],
+        "archive": [
+          "logistics coordinator"
+        ]
+      }
+    },
+    "action_side_effects_file": "side_effects.json"
   }
 }

@@ -63,7 +63,10 @@
     "field_purposes": {
       "workflow_state": "lifecycle_state",
       "requester": "actor_reference",
-      "need_by_date": "schedule_marker"
+      "need_by_date": "schedule_marker",
+      "related_purchase_order": "relation_collection",
+      "related_procurement_request": "relation_collection",
+      "related_supplier_profile": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -129,8 +132,32 @@
     ],
     "downstream_effects": [
       "purchase orders feed goods receipt, supplier invoice matching, and vendor performance tracking"
-    ]
+    ],
+    "action_actors": {
+      "create": [
+        "requesting department"
+      ],
+      "submit": [
+        "requesting department"
+      ],
+      "review": [
+        "reviewer"
+      ],
+      "approve": [
+        "approver"
+      ],
+      "cancel": [
+        "requesting department"
+      ],
+      "archive": [
+        "requesting department"
+      ]
+    }
   },
+  "downstream_effects": [
+    "purchase orders feed goods receipt, supplier invoice matching, and vendor performance tracking"
+  ],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "purchase_order",
     "procurement_request",

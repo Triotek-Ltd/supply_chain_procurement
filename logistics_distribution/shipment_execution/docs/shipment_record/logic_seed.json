@@ -70,7 +70,12 @@
       "currency": "currency_code",
       "total_amount": "total_amount",
       "ship_date": "schedule_marker",
-      "shipment_status": "status_flag"
+      "shipment_status": "status_flag",
+      "related_delivery_route": "relation_collection",
+      "related_transport_booking": "relation_collection",
+      "related_delivery_confirmation": "relation_collection",
+      "related_sales_order": "relation_collection",
+      "related_courier_shipment_request": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -130,8 +135,26 @@
     "primary_transitions": [],
     "downstream_effects": [
       "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
-    ]
+    ],
+    "action_actors": {
+      "create": [
+        "warehouse supervisor"
+      ],
+      "dispatch": [
+        "putaway operator"
+      ],
+      "close": [
+        "warehouse supervisor"
+      ],
+      "archive": [
+        "warehouse supervisor"
+      ]
+    }
   },
+  "downstream_effects": [
+    "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
+  ],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "delivery_route",
     "transport_booking",

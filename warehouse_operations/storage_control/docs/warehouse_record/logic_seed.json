@@ -50,7 +50,12 @@
     ],
     "field_purposes": {
       "workflow_state": "lifecycle_state",
-      "active_status": "status_flag"
+      "active_status": "status_flag",
+      "related_storage_bin": "relation_collection",
+      "related_goods_receipt": "relation_collection",
+      "related_inventory_balance": "relation_collection",
+      "related_pick_list": "relation_collection",
+      "related_putaway_task": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -100,8 +105,26 @@
     "primary_transitions": [],
     "downstream_effects": [
       "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
-    ]
+    ],
+    "action_actors": {
+      "create": [
+        "warehouse supervisor"
+      ],
+      "update": [
+        "warehouse supervisor"
+      ],
+      "review": [
+        "receiving operator"
+      ],
+      "archive": [
+        "warehouse supervisor"
+      ]
+    }
   },
+  "downstream_effects": [
+    "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
+  ],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "storage_bin",
     "goods_receipt",

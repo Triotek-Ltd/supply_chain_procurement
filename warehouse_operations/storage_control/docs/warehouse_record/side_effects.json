@@ -1,0 +1,34 @@
+{
+  "create": [
+    {
+      "type": "update_current",
+      "fields": {
+        "workflow_state": "active"
+      }
+    }
+  ],
+  "update": [
+    {
+      "type": "update_current",
+      "fields": {
+        "workflow_state": "active"
+      }
+    }
+  ],
+  "review": [
+    {
+      "type": "update_current",
+      "fields": {
+        "workflow_state": "active"
+      }
+    }
+  ],
+  "archive": [
+    {
+      "type": "update_current",
+      "fields": {
+        "workflow_state": "archived"
+      }
+    }
+  ]
+}

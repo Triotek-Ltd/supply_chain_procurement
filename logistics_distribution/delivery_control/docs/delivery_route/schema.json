@@ -341,6 +341,54 @@
         "filterable": true,
         "sortable": true
       }
+    },
+    {
+      "field_id": "related_shipment_record",
+      "label": "Related Shipment Record",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "shipment_record",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
+    },
+    {
+      "field_id": "related_delivery_confirmation",
+      "label": "Related Delivery Confirmation",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "delivery_confirmation",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
     }
   ],
   "field_groups": {
@@ -362,7 +410,10 @@
       "assigned_vehicle_or_carrier",
       "stop_sequence"
     ],
-    "relations": [],
+    "relations": [
+      "related_shipment_record",
+      "related_delivery_confirmation"
+    ],
     "amounts": [
       "currency",
       "total_amount"
@@ -473,17 +524,54 @@
     {
       "role_id": "System Manager",
       "actions": [
-        "create",
-        "update",
         "view",
         "list",
-        "record",
-        "review",
+        "create",
         "assign",
-        "track",
-        "monitor",
-        "confirm",
+        "optimize",
+        "dispatch",
+        "close",
         "archive"
+      ]
+    },
+    {
+      "role_id": "logistics coordinator",
+      "actions": [
+        "view",
+        "list",
+        "create",
+        "assign",
+        "close",
+        "archive"
+      ]
+    },
+    {
+      "role_id": "warehouse team",
+      "actions": [
+        "view",
+        "list"
+      ]
+    },
+    {
+      "role_id": "carrier",
+      "actions": [
+        "view",
+        "list"
+      ]
+    },
+    {
+      "role_id": "dispatcher",
+      "actions": [
+        "view",
+        "list"
+      ]
+    },
+    {
+      "role_id": "recipient",
+      "actions": [
+        "view",
+        "list",
+        "dispatch"
       ]
     }
   ],

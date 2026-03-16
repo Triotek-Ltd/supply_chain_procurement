@@ -66,7 +66,12 @@
       "currency": "currency_code",
       "total_amount": "total_amount",
       "posting_date": "posting_date",
-      "item_lines": "structured_payload"
+      "item_lines": "structured_payload",
+      "related_stock_item": "relation_collection",
+      "related_warehouse_record": "relation_collection",
+      "related_goods_receipt": "relation_collection",
+      "related_shipment_record": "relation_collection",
+      "related_stock_adjustment": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -131,8 +136,32 @@
     ],
     "downstream_effects": [
       "inventory availability feeds purchasing, warehouse execution, logistics, and production planning"
-    ]
+    ],
+    "action_actors": {
+      "create": [
+        "storekeeper"
+      ],
+      "review": [
+        "reviewer"
+      ],
+      "approve": [
+        "reviewer"
+      ],
+      "post": [
+        "reviewer"
+      ],
+      "reverse": [
+        "storekeeper"
+      ],
+      "archive": [
+        "storekeeper"
+      ]
+    }
   },
+  "downstream_effects": [
+    "inventory availability feeds purchasing, warehouse execution, logistics, and production planning"
+  ],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "stock_item",
     "warehouse_record",

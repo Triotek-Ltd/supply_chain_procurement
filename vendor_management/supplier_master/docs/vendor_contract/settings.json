@@ -36,6 +36,18 @@
       "doc_id": "supplier_profile",
       "lookup_mode": "single",
       "purpose": "party_reference"
+    },
+    {
+      "field_id": "related_vendor_review",
+      "doc_id": "vendor_review",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_purchase_order",
+      "doc_id": "purchase_order",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
     }
   ],
   "fetch_rules": [
@@ -61,7 +73,10 @@
   },
   "relation_rules": {
     "parent_doc": null,
-    "child_docs": [],
+    "child_docs": [
+      "vendor_review",
+      "purchase_order"
+    ],
     "show_related_panel": true
   },
   "borrowed_fields": [
@@ -85,6 +100,49 @@
   "runtime_hints": {
     "doc_key": "vendor_contract",
     "supports_related_lookup": true,
-    "supports_fetch_rules": true
+    "supports_fetch_rules": true,
+    "workflow_hints": {
+      "relation_context": {
+        "related_docs": [
+          "supplier_profile",
+          "vendor_review",
+          "purchase_order"
+        ],
+        "borrowed_fields": [
+          "supplier identity",
+          "payment terms from supplier_profile"
+        ],
+        "inferred_roles": [
+          "compliance officer",
+          "procurement officer",
+          "account owner",
+          "finance officer"
+        ]
+      },
+      "actors": [
+        "compliance officer",
+        "procurement officer",
+        "account owner",
+        "finance officer"
+      ],
+      "action_actors": {
+        "create": [
+          "compliance officer"
+        ],
+        "review": [
+          "procurement officer"
+        ],
+        "approve": [
+          "compliance officer"
+        ],
+        "activate": [
+          "account owner"
+        ],
+        "archive": [
+          "account owner"
+        ]
+      }
+    },
+    "action_side_effects_file": "side_effects.json"
   }
 }

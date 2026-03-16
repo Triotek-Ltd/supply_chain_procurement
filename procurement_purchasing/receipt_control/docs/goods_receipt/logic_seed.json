@@ -66,7 +66,9 @@
       "supplier": "party_reference",
       "receipt_date": "schedule_marker",
       "warehouse": "relation_reference",
-      "receipt_status": "status_flag"
+      "receipt_status": "status_flag",
+      "related_purchase_order": "relation_collection",
+      "related_stock_item": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -123,8 +125,32 @@
     "primary_transitions": [],
     "downstream_effects": [
       "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
-    ]
+    ],
+    "action_actors": {
+      "create": [
+        "warehouse supervisor"
+      ],
+      "review": [
+        "receiving operator"
+      ],
+      "submit": [
+        "warehouse supervisor"
+      ],
+      "reject": [
+        "warehouse supervisor"
+      ],
+      "close": [
+        "warehouse supervisor"
+      ],
+      "archive": [
+        "warehouse supervisor"
+      ]
+    }
   },
+  "downstream_effects": [
+    "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
+  ],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "purchase_order",
     "supplier_invoice",

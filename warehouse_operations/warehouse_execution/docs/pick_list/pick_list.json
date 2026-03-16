@@ -68,7 +68,12 @@
         "warehouse",
         "assigned_picker"
       ],
-      "relations": [],
+      "relations": [
+        "related_shipment_record",
+        "related_storage_bin",
+        "related_stock_item",
+        "related_putaway_task"
+      ],
       "amounts": [
         "currency",
         "total_amount"
@@ -412,6 +417,102 @@
           "filterable": true,
           "sortable": true
         }
+      },
+      {
+        "field_id": "related_shipment_record",
+        "label": "Related Shipment Record",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "shipment_record",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "related_storage_bin",
+        "label": "Related Storage Bin",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "storage_bin",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "related_stock_item",
+        "label": "Related Stock Item",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "stock_item",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "related_putaway_task",
+        "label": "Related Putaway Task",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "putaway_task",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
       }
     ],
     "title_field": "title",
@@ -517,17 +618,46 @@
       {
         "role_id": "System Manager",
         "actions": [
-          "create",
-          "update",
           "view",
           "list",
-          "record",
-          "review",
+          "create",
           "assign",
-          "track",
-          "monitor",
-          "confirm",
+          "start",
+          "complete",
+          "close",
           "archive"
+        ]
+      },
+      {
+        "role_id": "warehouse supervisor",
+        "actions": [
+          "view",
+          "list",
+          "create",
+          "assign",
+          "close",
+          "archive"
+        ]
+      },
+      {
+        "role_id": "receiving operator",
+        "actions": [
+          "view",
+          "list"
+        ]
+      },
+      {
+        "role_id": "picker",
+        "actions": [
+          "view",
+          "list"
+        ]
+      },
+      {
+        "role_id": "putaway operator",
+        "actions": [
+          "view",
+          "list"
         ]
       }
     ],
@@ -616,7 +746,32 @@
         "show_in_related_panel": true
       }
     ],
-    "lookup_rules": [],
+    "lookup_rules": [
+      {
+        "field_id": "related_shipment_record",
+        "doc_id": "shipment_record",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      },
+      {
+        "field_id": "related_storage_bin",
+        "doc_id": "storage_bin",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      },
+      {
+        "field_id": "related_stock_item",
+        "doc_id": "stock_item",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      },
+      {
+        "field_id": "related_putaway_task",
+        "doc_id": "putaway_task",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      }
+    ],
     "fetch_rules": [],
     "reference_map": {
       "primary_reference_field": "reference_no",
@@ -624,7 +779,12 @@
     },
     "relation_rules": {
       "parent_doc": null,
-      "child_docs": [],
+      "child_docs": [
+        "shipment_record",
+        "storage_bin",
+        "stock_item",
+        "putaway_task"
+      ],
       "show_related_panel": true
     },
     "borrowed_fields": [
@@ -675,8 +835,23 @@
         ],
         "downstream_effects": [
           "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
-        ]
-      }
+        ],
+        "action_actors": {
+          "create": [
+            "warehouse supervisor"
+          ],
+          "assign": [
+            "warehouse supervisor"
+          ],
+          "close": [
+            "warehouse supervisor"
+          ],
+          "archive": [
+            "warehouse supervisor"
+          ]
+        }
+      },
+      "action_side_effects_file": "side_effects.json"
     }
   },
   "classification": {
@@ -756,6 +931,9 @@
       "reports": "reports/service.py",
       "integrations": "integrations/service.py"
     },
+    "runtime_contract": {
+      "side_effects_file": "side_effects.json"
+    },
     "action_handlers": {
       "base_dir": "actions",
       "registry": "actions/registry.py",
@@ -774,6 +952,47 @@
       "doc_kind": "transaction"
     }
   },
+  "testing": {
+    "seeded": true,
+    "api_base_path": "/apis/supply_chain_procurement/warehouse_operations/warehouse_execution/pick_list/",
+    "status_field": "workflow_state",
+    "initial_state": "draft",
+    "required_fields": [
+      "title",
+      "workflow_state",
+      "transaction_date"
+    ],
+    "transition_scenarios": [
+      {
+        "action_id": "assign",
+        "source_state": "draft",
+        "target_state": "in_progress",
+        "disallowed_state": "closed"
+      },
+      {
+        "action_id": "close",
+        "source_state": "draft",
+        "target_state": "closed",
+        "disallowed_state": "closed"
+      },
+      {
+        "action_id": "archive",
+        "source_state": "draft",
+        "target_state": "archived",
+        "disallowed_state": "closed"
+      }
+    ],
+    "related_docs": [
+      "shipment_record",
+      "storage_bin",
+      "stock_item",
+      "putaway_task"
+    ],
+    "downstream_effects": [
+      "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
+    ],
+    "action_side_effects_file": "side_effects.json"
+  },
   "runtime": {
     "source_of_truth": "doc_folder",
     "generated_from": [
@@ -781,7 +1000,8 @@
       "schema.json",
       "actions.json",
       "settings.json",
-      "logic_seed.json"
+      "logic_seed.json",
+      "side_effects.json"
     ],
     "generator": "plug.apps.doc.file_handler"
   }

@@ -11,7 +11,7 @@ TERMINAL_STATES = ['archived']
 ACTION_RULES = {'create': {'allowed_in_states': ['draft', 'approved', 'active', 'expired', 'renewed'], 'transitions_to': None}, 'review': {'allowed_in_states': ['draft', 'approved', 'active', 'expired', 'renewed'], 'transitions_to': None}, 'approve': {'allowed_in_states': ['draft', 'approved', 'active', 'expired', 'renewed'], 'transitions_to': 'approved'}, 'activate': {'allowed_in_states': ['draft'], 'transitions_to': 'active'}, 'renew': {'allowed_in_states': ['draft', 'approved', 'active', 'expired', 'renewed'], 'transitions_to': 'renewed'}, 'archive': {'allowed_in_states': ['draft', 'approved', 'active', 'expired', 'renewed'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['supplier_profile', 'vendor_review', 'purchase_order'], 'borrowed_fields': ['supplier identity', 'payment terms from supplier_profile'], 'inferred_roles': ['compliance officer', 'procurement officer', 'account owner', 'finance officer']}, 'actors': ['compliance officer', 'procurement officer', 'account owner', 'finance officer'], 'action_actors': {'create': ['compliance officer'], 'review': ['procurement officer'], 'approve': ['compliance officer'], 'activate': ['account owner'], 'archive': ['account owner']}}
 
 class WorkflowService:
     def allowed_actions_for_state(self, state: str | None) -> list[str]:

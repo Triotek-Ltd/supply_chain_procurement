@@ -28,7 +28,20 @@
       "show_in_related_panel": true
     }
   ],
-  "lookup_rules": [],
+  "lookup_rules": [
+    {
+      "field_id": "related_delivery_route",
+      "doc_id": "delivery_route",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_courier_tracking_event",
+      "doc_id": "courier_tracking_event",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    }
+  ],
   "fetch_rules": [],
   "reference_map": {
     "primary_reference_field": "reference_no",
@@ -36,7 +49,10 @@
   },
   "relation_rules": {
     "parent_doc": null,
-    "child_docs": [],
+    "child_docs": [
+      "delivery_route",
+      "courier_tracking_event"
+    ],
     "show_related_panel": true
   },
   "borrowed_fields": [
@@ -84,7 +100,19 @@
       ],
       "downstream_effects": [
         "delivery completion feeds billing, customer service, and performance reporting"
-      ]
-    }
+      ],
+      "action_actors": {
+        "record": [
+          "logistics coordinator"
+        ],
+        "review": [
+          "logistics coordinator"
+        ],
+        "archive": [
+          "logistics coordinator"
+        ]
+      }
+    },
+    "action_side_effects_file": "side_effects.json"
   }
 }

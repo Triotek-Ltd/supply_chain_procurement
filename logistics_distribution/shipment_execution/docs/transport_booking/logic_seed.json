@@ -64,7 +64,10 @@
       "currency": "currency_code",
       "total_amount": "total_amount",
       "booking_date": "schedule_marker",
-      "booking_status": "status_flag"
+      "booking_status": "status_flag",
+      "related_shipment_record": "relation_collection",
+      "related_freight_booking": "relation_collection",
+      "related_courier_shipment_request": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -125,8 +128,29 @@
     ],
     "downstream_effects": [
       "delivery completion feeds billing, customer service, and performance reporting"
-    ]
+    ],
+    "action_actors": {
+      "create": [
+        "logistics coordinator"
+      ],
+      "submit": [
+        "logistics coordinator"
+      ],
+      "confirm": [
+        "warehouse team"
+      ],
+      "cancel": [
+        "logistics coordinator"
+      ],
+      "archive": [
+        "logistics coordinator"
+      ]
+    }
   },
+  "downstream_effects": [
+    "delivery completion feeds billing, customer service, and performance reporting"
+  ],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "shipment_record",
     "freight_booking",

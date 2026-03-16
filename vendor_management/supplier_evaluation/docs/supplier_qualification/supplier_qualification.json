@@ -70,7 +70,9 @@
         "qualification_state"
       ],
       "relations": [
-        "supplier"
+        "supplier",
+        "related_vendor_review",
+        "related_vendor_contract"
       ],
       "amounts": [],
       "dates": [],
@@ -328,6 +330,54 @@
           "filterable": true,
           "sortable": true
         }
+      },
+      {
+        "field_id": "related_vendor_review",
+        "label": "Related Vendor Review",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "vendor_review",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "related_vendor_contract",
+        "label": "Related Vendor Contract",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "vendor_contract",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
       }
     ],
     "title_field": "title",
@@ -433,17 +483,34 @@
       {
         "role_id": "System Manager",
         "actions": [
-          "create",
-          "update",
           "view",
           "list",
-          "record",
+          "create",
           "review",
-          "assign",
-          "track",
-          "monitor",
-          "confirm",
+          "approve",
+          "reject",
+          "close",
           "archive"
+        ]
+      },
+      {
+        "role_id": "compliance officer",
+        "actions": [
+          "view",
+          "list",
+          "create",
+          "approve",
+          "reject",
+          "close",
+          "archive"
+        ]
+      },
+      {
+        "role_id": "procurement officer",
+        "actions": [
+          "view",
+          "list",
+          "review"
         ]
       }
     ],
@@ -527,6 +594,18 @@
         "doc_id": "supplier_profile",
         "lookup_mode": "single",
         "purpose": "party_reference"
+      },
+      {
+        "field_id": "related_vendor_review",
+        "doc_id": "vendor_review",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      },
+      {
+        "field_id": "related_vendor_contract",
+        "doc_id": "vendor_contract",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
       }
     ],
     "fetch_rules": [
@@ -552,7 +631,10 @@
     },
     "relation_rules": {
       "parent_doc": null,
-      "child_docs": [],
+      "child_docs": [
+        "vendor_review",
+        "vendor_contract"
+      ],
       "show_related_panel": true
     },
     "borrowed_fields": [
@@ -573,7 +655,48 @@
     "runtime_hints": {
       "doc_key": "supplier_qualification",
       "supports_related_lookup": true,
-      "supports_fetch_rules": true
+      "supports_fetch_rules": true,
+      "workflow_hints": {
+        "relation_context": {
+          "related_docs": [
+            "supplier_profile",
+            "vendor_review",
+            "vendor_contract"
+          ],
+          "borrowed_fields": [
+            "supplier identity from supplier_profile"
+          ],
+          "inferred_roles": [
+            "compliance officer",
+            "procurement officer"
+          ]
+        },
+        "actors": [
+          "compliance officer",
+          "procurement officer"
+        ],
+        "action_actors": {
+          "create": [
+            "compliance officer"
+          ],
+          "review": [
+            "procurement officer"
+          ],
+          "approve": [
+            "compliance officer"
+          ],
+          "reject": [
+            "compliance officer"
+          ],
+          "close": [
+            "compliance officer"
+          ],
+          "archive": [
+            "compliance officer"
+          ]
+        }
+      },
+      "action_side_effects_file": "side_effects.json"
     }
   },
   "classification": {
@@ -649,6 +772,9 @@
       "reports": "reports/service.py",
       "integrations": "integrations/service.py"
     },
+    "runtime_contract": {
+      "side_effects_file": "side_effects.json"
+    },
     "action_handlers": {
       "base_dir": "actions",
       "registry": "actions/registry.py",
@@ -667,6 +793,49 @@
       "doc_kind": "workflow_case"
     }
   },
+  "testing": {
+    "seeded": true,
+    "api_base_path": "/apis/supply_chain_procurement/vendor_management/supplier_evaluation/supplier_qualification/",
+    "status_field": "workflow_state",
+    "initial_state": "opened",
+    "required_fields": [
+      "title",
+      "workflow_state"
+    ],
+    "transition_scenarios": [
+      {
+        "action_id": "review",
+        "source_state": "opened",
+        "target_state": "in_review",
+        "disallowed_state": "closed"
+      },
+      {
+        "action_id": "reject",
+        "source_state": "opened",
+        "target_state": "rejected",
+        "disallowed_state": "closed"
+      },
+      {
+        "action_id": "close",
+        "source_state": "opened",
+        "target_state": "closed",
+        "disallowed_state": "closed"
+      },
+      {
+        "action_id": "archive",
+        "source_state": "opened",
+        "target_state": "archived",
+        "disallowed_state": "closed"
+      }
+    ],
+    "related_docs": [
+      "supplier_profile",
+      "vendor_review",
+      "vendor_contract"
+    ],
+    "downstream_effects": [],
+    "action_side_effects_file": "side_effects.json"
+  },
   "runtime": {
     "source_of_truth": "doc_folder",
     "generated_from": [
@@ -674,7 +843,8 @@
       "schema.json",
       "actions.json",
       "settings.json",
-      "logic_seed.json"
+      "logic_seed.json",
+      "side_effects.json"
     ],
     "generator": "plug.apps.doc.file_handler"
   }
