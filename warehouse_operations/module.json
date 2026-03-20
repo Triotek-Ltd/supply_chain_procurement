@@ -4,5 +4,706 @@
   "app_id": "supply_chain_procurement",
   "type": "module",
   "status": "draft",
-  "supports_submodules": true
+  "supports_submodules": true,
+  "ui": {
+    "icon_key": "apps",
+    "accent": "#246f89",
+    "logo_image": null,
+    "cover_image": null
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "module",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "docs",
+      "flatten_submodules_in_ui": true
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Warehouse Operations KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "warehouse_operations",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Warehouse Operations summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "warehouse_operations",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Warehouse Operations charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "warehouse_operations",
+          "metric_family": "trend"
+        },
+        "chart_specs": [
+          {
+            "id": "warehouse_operations_trend_line",
+            "label": "Warehouse Operations trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "warehouse_operations_volume_column",
+            "label": "Warehouse Operations volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "warehouse_operations_distribution_donut",
+            "label": "Warehouse Operations distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "storage_bin_trend_line",
+            "label": "Storage Bin trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "storage_bin_volume_column",
+            "label": "Storage Bin volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "storage_bin_distribution_donut",
+            "label": "Storage Bin distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "warehouse_record_trend_line",
+            "label": "Warehouse Record trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "warehouse_record_volume_column",
+            "label": "Warehouse Record volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "warehouse_record_distribution_donut",
+            "label": "Warehouse Record distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "pick_list_trend_line",
+            "label": "Pick List trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "pick_list_volume_column",
+            "label": "Pick List volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "pick_list_distribution_donut",
+            "label": "Pick List distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "putaway_task_trend_line",
+            "label": "Putaway Task trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "putaway_task_volume_column",
+            "label": "Putaway Task volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "putaway_task_distribution_donut",
+            "label": "Putaway Task distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          }
+        ]
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Warehouse Operations reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "warehouse_operations",
+          "metric_family": "reporting"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "warehouse_operations",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "warehouse_operations",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "warehouse_operations",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "warehouse_operations",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Warehouse Operations Overview",
+        "report_type": "dashboard_summary",
+        "surface": "module"
+      },
+      {
+        "id": "trend_report",
+        "label": "Warehouse Operations Trends",
+        "report_type": "trend_analysis",
+        "surface": "module"
+      },
+      {
+        "id": "summary_report",
+        "label": "Storage Bin Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Storage Bin Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "warehouse_operations_trend_line",
+        "label": "Warehouse Operations trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "warehouse_operations_volume_column",
+        "label": "Warehouse Operations volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "warehouse_operations_distribution_donut",
+        "label": "Warehouse Operations distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "storage_bin_trend_line",
+        "label": "Storage Bin trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "storage_bin_volume_column",
+        "label": "Storage Bin volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "storage_bin_distribution_donut",
+        "label": "Storage Bin distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "warehouse_record_trend_line",
+        "label": "Warehouse Record trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "warehouse_record_volume_column",
+        "label": "Warehouse Record volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "warehouse_record_distribution_donut",
+        "label": "Warehouse Record distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "pick_list_trend_line",
+        "label": "Pick List trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "pick_list_volume_column",
+        "label": "Pick List volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "pick_list_distribution_donut",
+        "label": "Pick List distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "putaway_task_trend_line",
+        "label": "Putaway Task trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "putaway_task_volume_column",
+        "label": "Putaway Task volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "putaway_task_distribution_donut",
+        "label": "Putaway Task distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ],
+    "source_docs": [],
+    "source_fields": [],
+    "child_sources": [
+      {
+        "id": "storage_bin",
+        "title": "Storage Bin",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "warehouse_record",
+        "title": "Warehouse Record",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "pick_list",
+        "title": "Pick List",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "putaway_task",
+        "title": "Putaway Task",
+        "surface": null,
+        "source_docs": []
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "warehouse_record",
+      "inventory_balance",
+      "pick_list",
+      "putaway_task",
+      "storage_bin",
+      "goods_receipt",
+      "shipment_record",
+      "stock_item"
+    ],
+    "upstream_docs": [
+      "warehouse_record",
+      "inventory_balance",
+      "pick_list",
+      "putaway_task",
+      "storage_bin",
+      "goods_receipt",
+      "shipment_record",
+      "stock_item"
+    ],
+    "downstream_docs": [
+      "putaway_task"
+    ],
+    "actors": [
+      "warehouse supervisor",
+      "receiving operator",
+      "picker",
+      "putaway operator"
+    ],
+    "downstream_effects": [
+      "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
+    ],
+    "emits_records": [
+      {
+        "action_id": "assign",
+        "target_doc": "putaway_task",
+        "effect_type": "create_record"
+      }
+    ],
+    "handoff_targets": [
+      "warehouse_record",
+      "inventory_balance",
+      "pick_list",
+      "putaway_task",
+      "storage_bin",
+      "goods_receipt",
+      "shipment_record",
+      "stock_item"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "storage_bin",
+        "target_doc": "warehouse_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "storage_bin",
+        "target_doc": "inventory_balance",
+        "relation": "references"
+      },
+      {
+        "source_doc": "storage_bin",
+        "target_doc": "pick_list",
+        "relation": "references"
+      },
+      {
+        "source_doc": "storage_bin",
+        "target_doc": "putaway_task",
+        "relation": "references"
+      },
+      {
+        "source_doc": "warehouse_record",
+        "target_doc": "storage_bin",
+        "relation": "references"
+      },
+      {
+        "source_doc": "warehouse_record",
+        "target_doc": "goods_receipt",
+        "relation": "references"
+      },
+      {
+        "source_doc": "warehouse_record",
+        "target_doc": "inventory_balance",
+        "relation": "references"
+      },
+      {
+        "source_doc": "warehouse_record",
+        "target_doc": "pick_list",
+        "relation": "references"
+      },
+      {
+        "source_doc": "warehouse_record",
+        "target_doc": "putaway_task",
+        "relation": "references"
+      },
+      {
+        "source_doc": "pick_list",
+        "target_doc": "shipment_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "pick_list",
+        "target_doc": "storage_bin",
+        "relation": "references"
+      },
+      {
+        "source_doc": "pick_list",
+        "target_doc": "stock_item",
+        "relation": "references"
+      },
+      {
+        "source_doc": "pick_list",
+        "target_doc": "putaway_task",
+        "relation": "references"
+      },
+      {
+        "source_doc": "pick_list",
+        "target_doc": "putaway_task",
+        "relation": "create_record",
+        "action_id": "assign"
+      },
+      {
+        "source_doc": "putaway_task",
+        "target_doc": "goods_receipt",
+        "relation": "references"
+      },
+      {
+        "source_doc": "putaway_task",
+        "target_doc": "storage_bin",
+        "relation": "references"
+      },
+      {
+        "source_doc": "putaway_task",
+        "target_doc": "warehouse_record",
+        "relation": "references"
+      }
+    ],
+    "operating_graph": {
+      "nodes": [
+        {
+          "id": "warehouse_record",
+          "kind": "doc"
+        },
+        {
+          "id": "inventory_balance",
+          "kind": "doc"
+        },
+        {
+          "id": "pick_list",
+          "kind": "doc"
+        },
+        {
+          "id": "putaway_task",
+          "kind": "doc"
+        },
+        {
+          "id": "storage_bin",
+          "kind": "doc"
+        },
+        {
+          "id": "goods_receipt",
+          "kind": "doc"
+        },
+        {
+          "id": "shipment_record",
+          "kind": "doc"
+        },
+        {
+          "id": "stock_item",
+          "kind": "doc"
+        }
+      ],
+      "edges": [
+        {
+          "source_doc": "storage_bin",
+          "target_doc": "warehouse_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "storage_bin",
+          "target_doc": "inventory_balance",
+          "relation": "references"
+        },
+        {
+          "source_doc": "storage_bin",
+          "target_doc": "pick_list",
+          "relation": "references"
+        },
+        {
+          "source_doc": "storage_bin",
+          "target_doc": "putaway_task",
+          "relation": "references"
+        },
+        {
+          "source_doc": "warehouse_record",
+          "target_doc": "storage_bin",
+          "relation": "references"
+        },
+        {
+          "source_doc": "warehouse_record",
+          "target_doc": "goods_receipt",
+          "relation": "references"
+        },
+        {
+          "source_doc": "warehouse_record",
+          "target_doc": "inventory_balance",
+          "relation": "references"
+        },
+        {
+          "source_doc": "warehouse_record",
+          "target_doc": "pick_list",
+          "relation": "references"
+        },
+        {
+          "source_doc": "warehouse_record",
+          "target_doc": "putaway_task",
+          "relation": "references"
+        },
+        {
+          "source_doc": "pick_list",
+          "target_doc": "shipment_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "pick_list",
+          "target_doc": "storage_bin",
+          "relation": "references"
+        },
+        {
+          "source_doc": "pick_list",
+          "target_doc": "stock_item",
+          "relation": "references"
+        },
+        {
+          "source_doc": "pick_list",
+          "target_doc": "putaway_task",
+          "relation": "references"
+        },
+        {
+          "source_doc": "pick_list",
+          "target_doc": "putaway_task",
+          "relation": "create_record",
+          "action_id": "assign"
+        },
+        {
+          "source_doc": "putaway_task",
+          "target_doc": "goods_receipt",
+          "relation": "references"
+        },
+        {
+          "source_doc": "putaway_task",
+          "target_doc": "storage_bin",
+          "relation": "references"
+        },
+        {
+          "source_doc": "putaway_task",
+          "target_doc": "warehouse_record",
+          "relation": "references"
+        }
+      ]
+    }
+  },
+  "contract_version": 1
 }

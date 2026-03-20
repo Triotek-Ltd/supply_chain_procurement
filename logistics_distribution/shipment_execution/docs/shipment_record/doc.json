@@ -10,7 +10,8 @@
   "doc_archetype": "transaction",
   "classification": {
     "archetype": "transaction",
-    "bundle": "operations"
+    "bundle": "operations",
+    "doc_kind": "transaction"
   },
   "planning_source": {
     "type": "reference_doc_generation_manifest",
@@ -23,5 +24,281 @@
       "package-line model",
       "multi-leg shipment rules"
     ]
-  }
+  },
+  "ui": {
+    "icon_key": "receipt",
+    "accent": "#1f7a8c",
+    "logo_image": null,
+    "cover_image": null,
+    "preferred_views": [
+      "list",
+      "table",
+      "detail",
+      "report"
+    ],
+    "default_density": "comfortable"
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "doc",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "records",
+      "flatten_submodules_in_ui": false,
+      "views": [
+        "list",
+        "table",
+        "detail",
+        "report"
+      ]
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Shipment Record KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "shipment_record",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Shipment Record summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "shipment_record",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Shipment Record charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "shipment_record",
+          "metric_family": "trend"
+        }
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Shipment Record reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "shipment_record",
+          "metric_family": "reporting"
+        }
+      },
+      {
+        "id": "records",
+        "type": "record_table",
+        "title": "Shipment Record records",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "shipment_record",
+          "metric_family": "records"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "shipment_record",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "shipment_record",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "shipment_record",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "shipment_record",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Shipment Record Overview",
+        "report_type": "dashboard_summary",
+        "surface": "doc"
+      },
+      {
+        "id": "trend_report",
+        "label": "Shipment Record Trends",
+        "report_type": "trend_analysis",
+        "surface": "doc"
+      },
+      {
+        "id": "summary_report",
+        "label": "Shipment Record Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Shipment Record Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "supports_outputs": true,
+    "supports_print_formats": true,
+    "default_views": [
+      "summary",
+      "trend",
+      "report_table"
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "shipment_record_trend_line",
+        "label": "Shipment Record trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "shipment_record_volume_column",
+        "label": "Shipment Record volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "shipment_record_distribution_donut",
+        "label": "Shipment Record distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "delivery_route",
+      "transport_booking",
+      "delivery_confirmation",
+      "sales_order",
+      "courier_shipment_request"
+    ],
+    "upstream_docs": [
+      "delivery_route",
+      "transport_booking",
+      "delivery_confirmation",
+      "sales_order",
+      "courier_shipment_request"
+    ],
+    "downstream_docs": [
+      "courier_shipment_request"
+    ],
+    "borrowed_fields": [
+      "order",
+      "customer context from sales docs",
+      "courier refs from integration docs"
+    ],
+    "emits_records": [
+      {
+        "action_id": "dispatch",
+        "target_doc": "courier_shipment_request",
+        "effect_type": "create_record"
+      }
+    ],
+    "downstream_effects": [
+      "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
+    ],
+    "actors": [
+      "warehouse supervisor",
+      "receiving operator",
+      "picker",
+      "putaway operator"
+    ],
+    "handoff_targets": [
+      "delivery_route",
+      "transport_booking",
+      "delivery_confirmation",
+      "sales_order",
+      "courier_shipment_request"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "shipment_record",
+        "target_doc": "delivery_route",
+        "relation": "references"
+      },
+      {
+        "source_doc": "shipment_record",
+        "target_doc": "transport_booking",
+        "relation": "references"
+      },
+      {
+        "source_doc": "shipment_record",
+        "target_doc": "delivery_confirmation",
+        "relation": "references"
+      },
+      {
+        "source_doc": "shipment_record",
+        "target_doc": "sales_order",
+        "relation": "references"
+      },
+      {
+        "source_doc": "shipment_record",
+        "target_doc": "courier_shipment_request",
+        "relation": "references"
+      },
+      {
+        "source_doc": "shipment_record",
+        "target_doc": "courier_shipment_request",
+        "relation": "create_record",
+        "action_id": "dispatch"
+      }
+    ]
+  },
+  "contract_version": 1
 }

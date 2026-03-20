@@ -4,5 +4,98 @@
   "app_id": "supply_chain_procurement",
   "module_id": "logistics_distribution",
   "type": "submodule",
-  "status": "draft"
+  "status": "draft",
+  "contract_version": 1,
+  "ui": {
+    "icon_key": "apps",
+    "accent": "#246f89",
+    "logo_image": null,
+    "cover_image": null
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "submodule",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "docs",
+      "flatten_submodules_in_ui": false
+    },
+    "blocks": [
+      {
+        "id": "records",
+        "type": "record_table",
+        "title": "Shipment Execution records",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "submodule",
+          "entity_id": "shipment_execution",
+          "metric_family": "records"
+        }
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Shipment Execution reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "submodule",
+          "entity_id": "shipment_execution",
+          "metric_family": "reporting"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "submodule",
+        "entity_id": "shipment_execution",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "submodule",
+        "entity_id": "shipment_execution",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "submodule",
+        "entity_id": "shipment_execution",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "submodule",
+        "entity_id": "shipment_execution",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [],
+    "chart_registry": []
+  },
+  "flow": {
+    "related_docs": [],
+    "upstream_docs": [],
+    "downstream_docs": [],
+    "actors": [],
+    "handoff_targets": [],
+    "graph_edges": []
+  }
 }

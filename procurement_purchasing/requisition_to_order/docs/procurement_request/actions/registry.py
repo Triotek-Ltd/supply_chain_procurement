@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 
 DOC_ID = "procurement_request"
 ALLOWED_ACTIONS = ['create', 'review', 'issue', 'close', 'archive']
-ACTION_RULES = {'create': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': None}, 'review': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'reviewed'}, 'issue': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'active'}, 'close': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'archived'}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': None}, 'review': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'reviewed'}, 'issue': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'active'}, 'close': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
 

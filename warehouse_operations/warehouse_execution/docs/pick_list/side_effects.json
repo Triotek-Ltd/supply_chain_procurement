@@ -22,5 +22,19 @@
         "workflow_state": "archived"
       }
     }
+  ],
+  "assign": [
+    {
+      "type": "create_record",
+      "target_doc": "putaway_task",
+      "values": {
+        "title": {
+          "$template": "Putaway Task for {title|reference_no|id}"
+        },
+        "reference_no": {
+          "$template": "PUTAWAY_TASK-{reference_no|id}"
+        }
+      }
+    }
   ]
 }

@@ -21,6 +21,18 @@
       "fields": {
         "workflow_state": "confirmed"
       }
+    },
+    {
+      "type": "create_record",
+      "target_doc": "shipment_record",
+      "values": {
+        "title": {
+          "$template": "Shipment Record for {title|reference_no|id}"
+        },
+        "reference_no": {
+          "$template": "SHIPMENT_RECORD-{reference_no|id}"
+        }
+      }
     }
   ],
   "cancel": [

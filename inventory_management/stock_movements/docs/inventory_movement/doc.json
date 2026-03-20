@@ -10,7 +10,8 @@
   "doc_archetype": "transaction",
   "classification": {
     "archetype": "transaction",
-    "bundle": "operations"
+    "bundle": "operations",
+    "doc_kind": "transaction"
   },
   "planning_source": {
     "type": "reference_doc_generation_manifest",
@@ -24,5 +25,280 @@
       "serial/batch tracking",
       "valuation impact"
     ]
-  }
+  },
+  "ui": {
+    "icon_key": "receipt",
+    "accent": "#1f7a8c",
+    "logo_image": null,
+    "cover_image": null,
+    "preferred_views": [
+      "list",
+      "table",
+      "detail",
+      "report"
+    ],
+    "default_density": "comfortable"
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "doc",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "records",
+      "flatten_submodules_in_ui": false,
+      "views": [
+        "list",
+        "table",
+        "detail",
+        "report"
+      ]
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Inventory Movement KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "inventory_movement",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Inventory Movement summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "inventory_movement",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Inventory Movement charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "inventory_movement",
+          "metric_family": "trend"
+        }
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Inventory Movement reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "inventory_movement",
+          "metric_family": "reporting"
+        }
+      },
+      {
+        "id": "records",
+        "type": "record_table",
+        "title": "Inventory Movement records",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "inventory_movement",
+          "metric_family": "records"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "inventory_movement",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "inventory_movement",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "inventory_movement",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "inventory_movement",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Inventory Movement Overview",
+        "report_type": "dashboard_summary",
+        "surface": "doc"
+      },
+      {
+        "id": "trend_report",
+        "label": "Inventory Movement Trends",
+        "report_type": "trend_analysis",
+        "surface": "doc"
+      },
+      {
+        "id": "summary_report",
+        "label": "Inventory Movement Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Inventory Movement Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "supports_outputs": true,
+    "supports_print_formats": true,
+    "default_views": [
+      "summary",
+      "trend",
+      "report_table"
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "inventory_movement_trend_line",
+        "label": "Inventory Movement trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "inventory_movement_volume_column",
+        "label": "Inventory Movement volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "inventory_movement_distribution_donut",
+        "label": "Inventory Movement distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "stock_item",
+      "warehouse_record",
+      "goods_receipt",
+      "shipment_record",
+      "stock_adjustment"
+    ],
+    "upstream_docs": [
+      "stock_item",
+      "warehouse_record",
+      "goods_receipt",
+      "shipment_record",
+      "stock_adjustment"
+    ],
+    "downstream_docs": [
+      "warehouse_record"
+    ],
+    "borrowed_fields": [
+      "item",
+      "location context from linked masters"
+    ],
+    "emits_records": [
+      {
+        "action_id": "approve",
+        "target_doc": "warehouse_record",
+        "effect_type": "create_record"
+      }
+    ],
+    "downstream_effects": [
+      "inventory availability feeds purchasing, warehouse execution, logistics, and production planning"
+    ],
+    "actors": [
+      "storekeeper",
+      "warehouse operator",
+      "inventory controller",
+      "reviewer"
+    ],
+    "handoff_targets": [
+      "stock_item",
+      "warehouse_record",
+      "goods_receipt",
+      "shipment_record",
+      "stock_adjustment"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "inventory_movement",
+        "target_doc": "stock_item",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_movement",
+        "target_doc": "warehouse_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_movement",
+        "target_doc": "goods_receipt",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_movement",
+        "target_doc": "shipment_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_movement",
+        "target_doc": "stock_adjustment",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_movement",
+        "target_doc": "warehouse_record",
+        "relation": "create_record",
+        "action_id": "approve"
+      }
+    ]
+  },
+  "contract_version": 1
 }

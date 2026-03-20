@@ -4,5 +4,638 @@
   "app_id": "supply_chain_procurement",
   "type": "module",
   "status": "draft",
-  "supports_submodules": true
+  "supports_submodules": true,
+  "ui": {
+    "icon_key": "apps",
+    "accent": "#246f89",
+    "logo_image": null,
+    "cover_image": null
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "module",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "docs",
+      "flatten_submodules_in_ui": true
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Vendor Management KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "vendor_management",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Vendor Management summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "vendor_management",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Vendor Management charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "vendor_management",
+          "metric_family": "trend"
+        },
+        "chart_specs": [
+          {
+            "id": "vendor_management_trend_line",
+            "label": "Vendor Management trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "vendor_management_volume_column",
+            "label": "Vendor Management volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "vendor_management_distribution_donut",
+            "label": "Vendor Management distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "supplier_qualification_trend_line",
+            "label": "Supplier Qualification trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "supplier_qualification_volume_column",
+            "label": "Supplier Qualification volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "supplier_qualification_distribution_donut",
+            "label": "Supplier Qualification distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "vendor_review_trend_line",
+            "label": "Vendor Review trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "vendor_review_volume_column",
+            "label": "Vendor Review volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "vendor_review_distribution_donut",
+            "label": "Vendor Review distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "supplier_profile_trend_line",
+            "label": "Supplier Profile trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "supplier_profile_volume_column",
+            "label": "Supplier Profile volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "supplier_profile_distribution_donut",
+            "label": "Supplier Profile distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "vendor_contract_trend_line",
+            "label": "Vendor Contract trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "vendor_contract_volume_column",
+            "label": "Vendor Contract volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "vendor_contract_distribution_donut",
+            "label": "Vendor Contract distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          }
+        ]
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Vendor Management reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "vendor_management",
+          "metric_family": "reporting"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "vendor_management",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "vendor_management",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "vendor_management",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "vendor_management",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Vendor Management Overview",
+        "report_type": "dashboard_summary",
+        "surface": "module"
+      },
+      {
+        "id": "trend_report",
+        "label": "Vendor Management Trends",
+        "report_type": "trend_analysis",
+        "surface": "module"
+      },
+      {
+        "id": "summary_report",
+        "label": "Supplier Qualification Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Supplier Qualification Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "vendor_management_trend_line",
+        "label": "Vendor Management trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "vendor_management_volume_column",
+        "label": "Vendor Management volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "vendor_management_distribution_donut",
+        "label": "Vendor Management distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "supplier_qualification_trend_line",
+        "label": "Supplier Qualification trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "supplier_qualification_volume_column",
+        "label": "Supplier Qualification volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "supplier_qualification_distribution_donut",
+        "label": "Supplier Qualification distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "vendor_review_trend_line",
+        "label": "Vendor Review trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "vendor_review_volume_column",
+        "label": "Vendor Review volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "vendor_review_distribution_donut",
+        "label": "Vendor Review distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "supplier_profile_trend_line",
+        "label": "Supplier Profile trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "supplier_profile_volume_column",
+        "label": "Supplier Profile volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "supplier_profile_distribution_donut",
+        "label": "Supplier Profile distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "vendor_contract_trend_line",
+        "label": "Vendor Contract trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "vendor_contract_volume_column",
+        "label": "Vendor Contract volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "vendor_contract_distribution_donut",
+        "label": "Vendor Contract distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ],
+    "source_docs": [],
+    "source_fields": [],
+    "child_sources": [
+      {
+        "id": "supplier_qualification",
+        "title": "Supplier Qualification",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "vendor_review",
+        "title": "Vendor Review",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "supplier_profile",
+        "title": "Supplier Profile",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "vendor_contract",
+        "title": "Vendor Contract",
+        "surface": null,
+        "source_docs": []
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "supplier_profile",
+      "vendor_review",
+      "vendor_contract",
+      "supplier_qualification",
+      "purchase_order"
+    ],
+    "upstream_docs": [
+      "supplier_profile",
+      "vendor_review",
+      "vendor_contract",
+      "supplier_qualification",
+      "purchase_order"
+    ],
+    "downstream_docs": [],
+    "actors": [
+      "compliance officer",
+      "procurement officer",
+      "vendor manager",
+      "reviewer",
+      "legal/procurement owner",
+      "account owner",
+      "finance officer"
+    ],
+    "downstream_effects": [
+      "supports sourcing, purchase control, and risk management"
+    ],
+    "emits_records": [],
+    "handoff_targets": [
+      "supplier_profile",
+      "vendor_review",
+      "vendor_contract",
+      "supplier_qualification",
+      "purchase_order"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "supplier_qualification",
+        "target_doc": "supplier_profile",
+        "relation": "references"
+      },
+      {
+        "source_doc": "supplier_qualification",
+        "target_doc": "vendor_review",
+        "relation": "references"
+      },
+      {
+        "source_doc": "supplier_qualification",
+        "target_doc": "vendor_contract",
+        "relation": "references"
+      },
+      {
+        "source_doc": "vendor_review",
+        "target_doc": "supplier_profile",
+        "relation": "references"
+      },
+      {
+        "source_doc": "vendor_review",
+        "target_doc": "supplier_qualification",
+        "relation": "references"
+      },
+      {
+        "source_doc": "vendor_review",
+        "target_doc": "vendor_contract",
+        "relation": "references"
+      },
+      {
+        "source_doc": "supplier_profile",
+        "target_doc": "supplier_qualification",
+        "relation": "references"
+      },
+      {
+        "source_doc": "supplier_profile",
+        "target_doc": "vendor_contract",
+        "relation": "references"
+      },
+      {
+        "source_doc": "supplier_profile",
+        "target_doc": "vendor_review",
+        "relation": "references"
+      },
+      {
+        "source_doc": "supplier_profile",
+        "target_doc": "purchase_order",
+        "relation": "references"
+      },
+      {
+        "source_doc": "vendor_contract",
+        "target_doc": "supplier_profile",
+        "relation": "references"
+      },
+      {
+        "source_doc": "vendor_contract",
+        "target_doc": "vendor_review",
+        "relation": "references"
+      },
+      {
+        "source_doc": "vendor_contract",
+        "target_doc": "purchase_order",
+        "relation": "references"
+      }
+    ],
+    "operating_graph": {
+      "nodes": [
+        {
+          "id": "supplier_profile",
+          "kind": "doc"
+        },
+        {
+          "id": "vendor_review",
+          "kind": "doc"
+        },
+        {
+          "id": "vendor_contract",
+          "kind": "doc"
+        },
+        {
+          "id": "supplier_qualification",
+          "kind": "doc"
+        },
+        {
+          "id": "purchase_order",
+          "kind": "doc"
+        }
+      ],
+      "edges": [
+        {
+          "source_doc": "supplier_qualification",
+          "target_doc": "supplier_profile",
+          "relation": "references"
+        },
+        {
+          "source_doc": "supplier_qualification",
+          "target_doc": "vendor_review",
+          "relation": "references"
+        },
+        {
+          "source_doc": "supplier_qualification",
+          "target_doc": "vendor_contract",
+          "relation": "references"
+        },
+        {
+          "source_doc": "vendor_review",
+          "target_doc": "supplier_profile",
+          "relation": "references"
+        },
+        {
+          "source_doc": "vendor_review",
+          "target_doc": "supplier_qualification",
+          "relation": "references"
+        },
+        {
+          "source_doc": "vendor_review",
+          "target_doc": "vendor_contract",
+          "relation": "references"
+        },
+        {
+          "source_doc": "supplier_profile",
+          "target_doc": "supplier_qualification",
+          "relation": "references"
+        },
+        {
+          "source_doc": "supplier_profile",
+          "target_doc": "vendor_contract",
+          "relation": "references"
+        },
+        {
+          "source_doc": "supplier_profile",
+          "target_doc": "vendor_review",
+          "relation": "references"
+        },
+        {
+          "source_doc": "supplier_profile",
+          "target_doc": "purchase_order",
+          "relation": "references"
+        },
+        {
+          "source_doc": "vendor_contract",
+          "target_doc": "supplier_profile",
+          "relation": "references"
+        },
+        {
+          "source_doc": "vendor_contract",
+          "target_doc": "vendor_review",
+          "relation": "references"
+        },
+        {
+          "source_doc": "vendor_contract",
+          "target_doc": "purchase_order",
+          "relation": "references"
+        }
+      ]
+    }
+  },
+  "contract_version": 1
 }

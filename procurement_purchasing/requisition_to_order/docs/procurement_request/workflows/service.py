@@ -2,13 +2,15 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "procurement_request"
 ARCHETYPE = "transaction"
 INITIAL_STATE = 'draft'
 STATES = ['draft', 'reviewed', 'active', 'closed', 'archived']
 TERMINAL_STATES = ['closed', 'archived']
-ACTION_RULES = {'create': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': None}, 'review': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'reviewed'}, 'issue': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'active'}, 'close': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'archived'}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': None}, 'review': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'reviewed'}, 'issue': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'active'}, 'close': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'relation_context': {'related_docs': ['purchase_requisition', 'purchase_order', 'supplier_profile'], 'borrowed_fields': ['demand details from purchase_requisition'], 'inferred_roles': ['procurement officer', 'account owner']}, 'actors': ['procurement officer', 'account owner'], 'action_actors': {'create': ['procurement officer'], 'review': ['account owner'], 'issue': ['account owner'], 'close': ['account owner'], 'archive': ['account owner']}}
@@ -29,7 +31,7 @@ class WorkflowService:
 
     def next_state_for(self, action_id: str) -> str | None:
         rule = ACTION_RULES.get(action_id, {})
-        return rule.get("transitions_to")
+        return cast(str | None, rule.get("transitions_to"))
 
     def apply_action(self, action_id: str, state: str | None) -> dict:
         if not self.is_action_allowed(action_id, state):

@@ -10,7 +10,8 @@
   "doc_archetype": "workflow_case",
   "classification": {
     "archetype": "workflow_case",
-    "bundle": "operations"
+    "bundle": "operations",
+    "doc_kind": "workflow_case"
   },
   "planning_source": {
     "type": "reference_doc_generation_manifest",
@@ -23,5 +24,264 @@
       "count-sheet model",
       "tolerance rules"
     ]
-  }
+  },
+  "ui": {
+    "icon_key": "checklist",
+    "accent": "#2d6a4f",
+    "logo_image": null,
+    "cover_image": null,
+    "preferred_views": [
+      "list",
+      "table",
+      "detail",
+      "report"
+    ],
+    "default_density": "comfortable"
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "doc",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "records",
+      "flatten_submodules_in_ui": false,
+      "views": [
+        "list",
+        "table",
+        "detail",
+        "report"
+      ]
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Stock Adjustment KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "stock_adjustment",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Stock Adjustment summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "stock_adjustment",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Stock Adjustment charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "stock_adjustment",
+          "metric_family": "trend"
+        }
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Stock Adjustment reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "stock_adjustment",
+          "metric_family": "reporting"
+        }
+      },
+      {
+        "id": "records",
+        "type": "record_table",
+        "title": "Stock Adjustment records",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "stock_adjustment",
+          "metric_family": "records"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "stock_adjustment",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "stock_adjustment",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "stock_adjustment",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "stock_adjustment",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Stock Adjustment Overview",
+        "report_type": "dashboard_summary",
+        "surface": "doc"
+      },
+      {
+        "id": "trend_report",
+        "label": "Stock Adjustment Trends",
+        "report_type": "trend_analysis",
+        "surface": "doc"
+      },
+      {
+        "id": "summary_report",
+        "label": "Stock Adjustment Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Stock Adjustment Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "supports_outputs": true,
+    "supports_print_formats": true,
+    "default_views": [
+      "summary",
+      "trend",
+      "report_table"
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "stock_adjustment_trend_line",
+        "label": "Stock Adjustment trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "stock_adjustment_volume_column",
+        "label": "Stock Adjustment volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "stock_adjustment_distribution_donut",
+        "label": "Stock Adjustment distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "inventory_balance",
+      "inventory_movement",
+      "warehouse_record"
+    ],
+    "upstream_docs": [
+      "inventory_balance",
+      "inventory_movement",
+      "warehouse_record"
+    ],
+    "downstream_docs": [
+      "warehouse_record"
+    ],
+    "borrowed_fields": [
+      "balance",
+      "location context from linked docs"
+    ],
+    "emits_records": [
+      {
+        "action_id": "approve",
+        "target_doc": "warehouse_record",
+        "effect_type": "create_record"
+      }
+    ],
+    "downstream_effects": [
+      "inventory availability feeds purchasing, warehouse execution, logistics, and production planning"
+    ],
+    "actors": [
+      "storekeeper",
+      "warehouse operator",
+      "inventory controller",
+      "reviewer"
+    ],
+    "handoff_targets": [
+      "inventory_balance",
+      "inventory_movement",
+      "warehouse_record"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "stock_adjustment",
+        "target_doc": "inventory_balance",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_adjustment",
+        "target_doc": "inventory_movement",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_adjustment",
+        "target_doc": "warehouse_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_adjustment",
+        "target_doc": "warehouse_record",
+        "relation": "create_record",
+        "action_id": "approve"
+      }
+    ]
+  },
+  "contract_version": 1
 }

@@ -1,9 +1,29 @@
 {
+  "review": [
+    {
+      "type": "update_current",
+      "fields": {
+        "workflow_state": "reviewed"
+      }
+    }
+  ],
   "approve": [
     {
       "type": "update_current",
       "fields": {
         "workflow_state": "approved"
+      }
+    },
+    {
+      "type": "create_record",
+      "target_doc": "warehouse_record",
+      "values": {
+        "title": {
+          "$template": "Warehouse Record for {title|reference_no|id}"
+        },
+        "reference_no": {
+          "$template": "WAREHOUSE_RECORD-{reference_no|id}"
+        }
       }
     }
   ],

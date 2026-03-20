@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 
 DOC_ID = "shipment_record"
 ALLOWED_ACTIONS = ['create', 'pack', 'dispatch', 'deliver', 'close', 'archive']
-ACTION_RULES = {'create': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': None}, 'pack': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': None}, 'dispatch': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': None}, 'deliver': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': None}, 'close': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': 'archived'}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': None}, 'pack': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': None}, 'dispatch': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': None}, 'deliver': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': None}, 'close': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
 

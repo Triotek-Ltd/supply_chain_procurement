@@ -167,7 +167,7 @@
     {
       "field_id": "shipment",
       "label": "Shipment",
-      "type": "Data",
+      "type": "Link",
       "required": false,
       "read_only": false,
       "default": null,
@@ -306,7 +306,8 @@
         "list_visible": false,
         "filterable": false,
         "sortable": false
-      }
+      },
+      "relation_kind": "explicit"
     },
     {
       "field_id": "related_courier_tracking_event",
@@ -330,7 +331,8 @@
         "list_visible": false,
         "filterable": false,
         "sortable": false
-      }
+      },
+      "relation_kind": "explicit"
     }
   ],
   "field_groups": {
@@ -428,7 +430,9 @@
         "record",
         "review",
         "archive"
-      ]
+      ],
+      "scope": "system",
+      "ownership": "platform"
     },
     {
       "role_id": "logistics coordinator",
@@ -436,37 +440,49 @@
         "view",
         "list",
         "record",
+        "create",
         "review",
-        "archive"
-      ]
+        "archive",
+        "update"
+      ],
+      "scope": "execution",
+      "ownership": "operations"
     },
     {
       "role_id": "warehouse team",
       "actions": [
         "view",
         "list"
-      ]
+      ],
+      "scope": "execution",
+      "ownership": "operations"
     },
     {
       "role_id": "carrier",
       "actions": [
         "view",
         "list"
-      ]
+      ],
+      "scope": "document",
+      "ownership": "functional"
     },
     {
       "role_id": "dispatcher",
       "actions": [
         "view",
         "list"
-      ]
+      ],
+      "scope": "document",
+      "ownership": "functional"
     },
     {
       "role_id": "recipient",
       "actions": [
         "view",
         "list"
-      ]
+      ],
+      "scope": "document",
+      "ownership": "functional"
     }
   ],
   "transaction_behavior": {

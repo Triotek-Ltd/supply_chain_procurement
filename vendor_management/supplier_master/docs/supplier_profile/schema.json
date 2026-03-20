@@ -283,7 +283,8 @@
         "list_visible": false,
         "filterable": false,
         "sortable": false
-      }
+      },
+      "relation_kind": "explicit"
     },
     {
       "field_id": "related_vendor_contract",
@@ -307,7 +308,8 @@
         "list_visible": false,
         "filterable": false,
         "sortable": false
-      }
+      },
+      "relation_kind": "explicit"
     },
     {
       "field_id": "related_vendor_review",
@@ -331,7 +333,8 @@
         "list_visible": false,
         "filterable": false,
         "sortable": false
-      }
+      },
+      "relation_kind": "explicit"
     },
     {
       "field_id": "related_purchase_order",
@@ -355,7 +358,8 @@
         "list_visible": false,
         "filterable": false,
         "sortable": false
-      }
+      },
+      "relation_kind": "explicit"
     }
   ],
   "field_groups": {
@@ -473,7 +477,9 @@
         "review",
         "suspend",
         "archive"
-      ]
+      ],
+      "scope": "system",
+      "ownership": "platform"
     },
     {
       "role_id": "vendor manager",
@@ -482,7 +488,9 @@
         "list",
         "create",
         "update"
-      ]
+      ],
+      "scope": "approval",
+      "ownership": "managerial"
     },
     {
       "role_id": "reviewer",
@@ -490,15 +498,20 @@
         "view",
         "list",
         "review"
-      ]
+      ],
+      "scope": "review",
+      "ownership": "oversight"
     },
     {
       "role_id": "legal/procurement owner",
       "actions": [
         "view",
         "list",
-        "archive"
-      ]
+        "archive",
+        "update"
+      ],
+      "scope": "execution",
+      "ownership": "operations"
     }
   ],
   "transaction_behavior": {

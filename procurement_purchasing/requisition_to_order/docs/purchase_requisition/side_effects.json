@@ -29,6 +29,18 @@
       "fields": {
         "workflow_state": "approved"
       }
+    },
+    {
+      "type": "create_record",
+      "target_doc": "procurement_request",
+      "values": {
+        "title": {
+          "$template": "Procurement Request for {title|reference_no|id}"
+        },
+        "reference_no": {
+          "$template": "PROCUREMENT_REQUEST-{reference_no|id}"
+        }
+      }
     }
   ],
   "cancel": [

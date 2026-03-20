@@ -15,6 +15,264 @@
   },
   "doc_key": "stock_adjustment",
   "doc_title": "Stock Adjustment",
+  "ui": {
+    "icon_key": "checklist",
+    "accent": "#2d6a4f",
+    "logo_image": null,
+    "cover_image": null,
+    "preferred_views": [
+      "list",
+      "table",
+      "detail",
+      "report"
+    ],
+    "default_density": "comfortable"
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "doc",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "records",
+      "flatten_submodules_in_ui": false,
+      "views": [
+        "list",
+        "table",
+        "detail",
+        "report"
+      ]
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Stock Adjustment KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "stock_adjustment",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Stock Adjustment summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "stock_adjustment",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Stock Adjustment charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "stock_adjustment",
+          "metric_family": "trend"
+        }
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Stock Adjustment reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "stock_adjustment",
+          "metric_family": "reporting"
+        }
+      },
+      {
+        "id": "records",
+        "type": "record_table",
+        "title": "Stock Adjustment records",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "stock_adjustment",
+          "metric_family": "records"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "stock_adjustment",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "stock_adjustment",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "stock_adjustment",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "stock_adjustment",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Stock Adjustment Overview",
+        "report_type": "dashboard_summary",
+        "surface": "doc"
+      },
+      {
+        "id": "trend_report",
+        "label": "Stock Adjustment Trends",
+        "report_type": "trend_analysis",
+        "surface": "doc"
+      },
+      {
+        "id": "summary_report",
+        "label": "Stock Adjustment Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Stock Adjustment Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "supports_outputs": true,
+    "supports_print_formats": true,
+    "default_views": [
+      "summary",
+      "trend",
+      "report_table"
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "stock_adjustment_trend_line",
+        "label": "Stock Adjustment trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "stock_adjustment_volume_column",
+        "label": "Stock Adjustment volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "stock_adjustment_distribution_donut",
+        "label": "Stock Adjustment distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "inventory_balance",
+      "inventory_movement",
+      "warehouse_record"
+    ],
+    "upstream_docs": [
+      "inventory_balance",
+      "inventory_movement",
+      "warehouse_record"
+    ],
+    "downstream_docs": [
+      "warehouse_record"
+    ],
+    "borrowed_fields": [
+      "balance",
+      "location context from linked docs"
+    ],
+    "emits_records": [
+      {
+        "action_id": "approve",
+        "target_doc": "warehouse_record",
+        "effect_type": "create_record"
+      }
+    ],
+    "downstream_effects": [
+      "inventory availability feeds purchasing, warehouse execution, logistics, and production planning"
+    ],
+    "actors": [
+      "storekeeper",
+      "warehouse operator",
+      "inventory controller",
+      "reviewer"
+    ],
+    "handoff_targets": [
+      "inventory_balance",
+      "inventory_movement",
+      "warehouse_record"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "stock_adjustment",
+        "target_doc": "inventory_balance",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_adjustment",
+        "target_doc": "inventory_movement",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_adjustment",
+        "target_doc": "warehouse_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_adjustment",
+        "target_doc": "warehouse_record",
+        "relation": "create_record",
+        "action_id": "approve"
+      }
+    ]
+  },
   "allowed_actions": [
     "create",
     "review",
@@ -287,14 +545,14 @@
       {
         "field_id": "approver",
         "label": "Approver",
-        "type": "Data",
+        "type": "Link",
         "required": false,
         "read_only": false,
         "default": null,
         "unique": false,
         "options": null,
         "purpose": "actor_reference",
-        "linked_doc": null,
+        "linked_doc": "employee_record",
         "depends_on": null,
         "mandatory_depends_on": null,
         "read_only_depends_on": null,
@@ -363,7 +621,8 @@
           "list_visible": false,
           "filterable": false,
           "sortable": false
-        }
+        },
+        "relation_kind": "explicit"
       },
       {
         "field_id": "related_inventory_movement",
@@ -387,7 +646,8 @@
           "list_visible": false,
           "filterable": false,
           "sortable": false
-        }
+        },
+        "relation_kind": "explicit"
       }
     ],
     "title_field": "title",
@@ -501,7 +761,9 @@
           "apply",
           "close",
           "archive"
-        ]
+        ],
+        "scope": "system",
+        "ownership": "platform"
       },
       {
         "role_id": "storekeeper",
@@ -509,23 +771,30 @@
           "view",
           "list",
           "create",
+          "update",
           "close",
           "archive"
-        ]
+        ],
+        "scope": "document",
+        "ownership": "functional"
       },
       {
         "role_id": "warehouse operator",
         "actions": [
           "view",
           "list"
-        ]
+        ],
+        "scope": "execution",
+        "ownership": "operations"
       },
       {
         "role_id": "inventory controller",
         "actions": [
           "view",
           "list"
-        ]
+        ],
+        "scope": "document",
+        "ownership": "functional"
       },
       {
         "role_id": "reviewer",
@@ -534,7 +803,9 @@
           "list",
           "review",
           "approve"
-        ]
+        ],
+        "scope": "review",
+        "ownership": "oversight"
       }
     ],
     "transaction_behavior": {
@@ -592,7 +863,139 @@
         "modified"
       ],
       "default_filters": [],
-      "quick_entry": false
+      "quick_entry": false,
+      "form_layout": {
+        "version": 1,
+        "tabs": [
+          {
+            "id": "overview",
+            "label": "Overview",
+            "sections": [
+              {
+                "id": "identity",
+                "label": "Identity",
+                "columns": [
+                  {
+                    "id": "identity_column_1",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "title"
+                    ]
+                  },
+                  {
+                    "id": "identity_column_2",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "reference_no"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "dates",
+                "label": "Dates",
+                "columns": [
+                  {
+                    "id": "dates_column_1",
+                    "label": "",
+                    "width": 12,
+                    "fieldIds": [
+                      "count_date"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "status",
+                "label": "Workflow",
+                "columns": [
+                  {
+                    "id": "status_column_1",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "workflow_state"
+                    ]
+                  },
+                  {
+                    "id": "status_column_2",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "adjustment_status"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "details",
+            "label": "Details",
+            "sections": [
+              {
+                "id": "content",
+                "label": "Details",
+                "columns": [
+                  {
+                    "id": "content_column_1",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "adjustment_code",
+                      "approver"
+                    ]
+                  },
+                  {
+                    "id": "content_column_2",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "variance_reason"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "content_details",
+                "label": "Description",
+                "columns": [
+                  {
+                    "id": "content_details_column_1",
+                    "label": "",
+                    "width": 12,
+                    "fieldIds": [
+                      "description"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "related",
+            "label": "Related",
+            "sections": [
+              {
+                "id": "relations",
+                "label": "Related Records",
+                "columns": [
+                  {
+                    "id": "relations_column_1",
+                    "label": "",
+                    "width": 12,
+                    "fieldIds": [
+                      "warehouse"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     "related_docs": [
       {
@@ -667,7 +1070,11 @@
       "show_activity_log": true,
       "show_comments": true,
       "show_assignments": true,
-      "show_related_docs": true
+      "show_related_docs": true,
+      "show_kpis": true,
+      "show_summaries": true,
+      "show_charts": true,
+      "show_reports": true
     },
     "integration": {
       "external_refs": [],
@@ -723,6 +1130,17 @@
         }
       },
       "action_side_effects_file": "side_effects.json"
+    },
+    "dashboard": {
+      "metric_blocks": [
+        "kpis",
+        "summaries",
+        "charts",
+        "reports",
+        "records"
+      ],
+      "default_view": "list",
+      "reporting_surface": "doc"
     }
   },
   "classification": {
@@ -776,8 +1194,11 @@
       }
     },
     "report_boundary_classification": "workflow/support doc",
-    "validation_status": "ready",
-    "validation_warnings": []
+    "validation_status": "warning",
+    "validation_warnings": [
+      "helper_relation_field:related_inventory_balance",
+      "helper_relation_field:related_inventory_movement"
+    ]
   },
   "business_logic": {
     "seeded": true,
@@ -824,6 +1245,14 @@
     "api_base_path": "/apis/supply_chain_procurement/inventory_management/stock_movements/stock_adjustment/",
     "status_field": "workflow_state",
     "initial_state": "open",
+    "actions": [
+      "create",
+      "review",
+      "approve",
+      "apply",
+      "close",
+      "archive"
+    ],
     "required_fields": [
       "title",
       "workflow_state"
@@ -861,6 +1290,65 @@
     ],
     "downstream_effects": [
       "inventory availability feeds purchasing, warehouse execution, logistics, and production planning"
+    ],
+    "role_action_matrix": [
+      {
+        "role_id": "System Manager",
+        "actions": [
+          "view",
+          "list",
+          "create",
+          "review",
+          "approve",
+          "apply",
+          "close",
+          "archive"
+        ],
+        "scope": "system",
+        "ownership": "platform"
+      },
+      {
+        "role_id": "storekeeper",
+        "actions": [
+          "view",
+          "list",
+          "create",
+          "update",
+          "close",
+          "archive"
+        ],
+        "scope": "document",
+        "ownership": "functional"
+      },
+      {
+        "role_id": "warehouse operator",
+        "actions": [
+          "view",
+          "list"
+        ],
+        "scope": "execution",
+        "ownership": "operations"
+      },
+      {
+        "role_id": "inventory controller",
+        "actions": [
+          "view",
+          "list"
+        ],
+        "scope": "document",
+        "ownership": "functional"
+      },
+      {
+        "role_id": "reviewer",
+        "actions": [
+          "view",
+          "list",
+          "review",
+          "approve"
+        ],
+        "scope": "review",
+        "ownership": "oversight"
+      }
     ],
     "action_side_effects_file": "side_effects.json"
   },

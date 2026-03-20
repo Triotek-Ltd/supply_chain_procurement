@@ -9,7 +9,107 @@
       "modified"
     ],
     "default_filters": [],
-    "quick_entry": false
+    "quick_entry": false,
+    "form_layout": {
+      "version": 1,
+      "tabs": [
+        {
+          "id": "overview",
+          "label": "Overview",
+          "sections": [
+            {
+              "id": "identity",
+              "label": "Identity",
+              "columns": [
+                {
+                  "id": "identity_column_1",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "title"
+                  ]
+                },
+                {
+                  "id": "identity_column_2",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "reference_no"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "status",
+              "label": "Workflow",
+              "columns": [
+                {
+                  "id": "status_column_1",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "workflow_state"
+                  ]
+                },
+                {
+                  "id": "status_column_2",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "active_status"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "details",
+          "label": "Details",
+          "sections": [
+            {
+              "id": "content",
+              "label": "Details",
+              "columns": [
+                {
+                  "id": "content_column_1",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "warehouse_code",
+                    "site",
+                    "warehouse_type"
+                  ]
+                },
+                {
+                  "id": "content_column_2",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "name",
+                    "capacity_summary"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "content_details",
+              "label": "Description",
+              "columns": [
+                {
+                  "id": "content_details_column_1",
+                  "label": "",
+                  "width": 12,
+                  "fieldIds": [
+                    "description"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   },
   "related_docs": [
     {
@@ -95,7 +195,11 @@
     "show_activity_log": true,
     "show_comments": true,
     "show_assignments": true,
-    "show_related_docs": true
+    "show_related_docs": true,
+    "show_kpis": true,
+    "show_summaries": true,
+    "show_charts": true,
+    "show_reports": true
   },
   "integration": {
     "external_refs": [],
@@ -141,5 +245,16 @@
       }
     },
     "action_side_effects_file": "side_effects.json"
+  },
+  "dashboard": {
+    "metric_blocks": [
+      "kpis",
+      "summaries",
+      "charts",
+      "reports",
+      "records"
+    ],
+    "default_view": "list",
+    "reporting_surface": "doc"
   }
 }

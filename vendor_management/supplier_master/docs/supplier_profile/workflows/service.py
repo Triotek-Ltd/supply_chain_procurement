@@ -2,13 +2,15 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "supplier_profile"
 ARCHETYPE = "master"
 INITIAL_STATE = 'active'
 STATES = ['active', 'suspended', 'archived']
 TERMINAL_STATES = ['archived']
-ACTION_RULES = {'create': {'allowed_in_states': ['active', 'suspended'], 'transitions_to': None}, 'update': {'allowed_in_states': ['active', 'suspended'], 'transitions_to': None}, 'review': {'allowed_in_states': ['active', 'suspended'], 'transitions_to': None}, 'suspend': {'allowed_in_states': ['active', 'suspended'], 'transitions_to': None}, 'archive': {'allowed_in_states': ['active', 'suspended'], 'transitions_to': 'archived'}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['active', 'suspended'], 'transitions_to': None}, 'update': {'allowed_in_states': ['active', 'suspended'], 'transitions_to': None}, 'review': {'allowed_in_states': ['active', 'suspended'], 'transitions_to': None}, 'suspend': {'allowed_in_states': ['active', 'suspended'], 'transitions_to': None}, 'archive': {'allowed_in_states': ['active', 'suspended'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'business_objective': 'maintain supplier master quality, review vendor performance, and resolve supplier issues proactively', 'actors': ['vendor manager', 'reviewer', 'legal/procurement owner'], 'start_condition': 'a supplier is onboarded or reviewed', 'ordered_steps': ['Create or update the supplier profile.'], 'primary_actions': ['create', 'update', 'review'], 'primary_transitions': ['supplier_profile: draft -> active'], 'downstream_effects': ['supports sourcing, purchase control, and risk management'], 'action_actors': {'create': ['vendor manager'], 'update': ['vendor manager'], 'review': ['reviewer'], 'archive': ['legal/procurement owner']}}
@@ -29,7 +31,7 @@ class WorkflowService:
 
     def next_state_for(self, action_id: str) -> str | None:
         rule = ACTION_RULES.get(action_id, {})
-        return rule.get("transitions_to")
+        return cast(str | None, rule.get("transitions_to"))
 
     def apply_action(self, action_id: str, state: str | None) -> dict:
         if not self.is_action_allowed(action_id, state):

@@ -4,5 +4,701 @@
   "app_id": "supply_chain_procurement",
   "type": "module",
   "status": "draft",
-  "supports_submodules": true
+  "supports_submodules": true,
+  "ui": {
+    "icon_key": "apps",
+    "accent": "#246f89",
+    "logo_image": null,
+    "cover_image": null
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "module",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "docs",
+      "flatten_submodules_in_ui": true
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Inventory Management KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "inventory_management",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Inventory Management summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "inventory_management",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Inventory Management charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "inventory_management",
+          "metric_family": "trend"
+        },
+        "chart_specs": [
+          {
+            "id": "inventory_management_trend_line",
+            "label": "Inventory Management trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "inventory_management_volume_column",
+            "label": "Inventory Management volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "inventory_management_distribution_donut",
+            "label": "Inventory Management distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "inventory_balance_trend_line",
+            "label": "Inventory Balance trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "inventory_balance_volume_column",
+            "label": "Inventory Balance volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "inventory_balance_distribution_donut",
+            "label": "Inventory Balance distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "stock_item_trend_line",
+            "label": "Stock Item trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "stock_item_volume_column",
+            "label": "Stock Item volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "stock_item_distribution_donut",
+            "label": "Stock Item distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "inventory_movement_trend_line",
+            "label": "Inventory Movement trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "inventory_movement_volume_column",
+            "label": "Inventory Movement volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "inventory_movement_distribution_donut",
+            "label": "Inventory Movement distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "stock_adjustment_trend_line",
+            "label": "Stock Adjustment trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "stock_adjustment_volume_column",
+            "label": "Stock Adjustment volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "stock_adjustment_distribution_donut",
+            "label": "Stock Adjustment distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          }
+        ]
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Inventory Management reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "inventory_management",
+          "metric_family": "reporting"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "inventory_management",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "inventory_management",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "inventory_management",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "inventory_management",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Inventory Management Overview",
+        "report_type": "dashboard_summary",
+        "surface": "module"
+      },
+      {
+        "id": "trend_report",
+        "label": "Inventory Management Trends",
+        "report_type": "trend_analysis",
+        "surface": "module"
+      },
+      {
+        "id": "summary_report",
+        "label": "Inventory Balance Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Inventory Balance Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "inventory_management_trend_line",
+        "label": "Inventory Management trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "inventory_management_volume_column",
+        "label": "Inventory Management volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "inventory_management_distribution_donut",
+        "label": "Inventory Management distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "inventory_balance_trend_line",
+        "label": "Inventory Balance trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "inventory_balance_volume_column",
+        "label": "Inventory Balance volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "inventory_balance_distribution_donut",
+        "label": "Inventory Balance distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "stock_item_trend_line",
+        "label": "Stock Item trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "stock_item_volume_column",
+        "label": "Stock Item volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "stock_item_distribution_donut",
+        "label": "Stock Item distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "inventory_movement_trend_line",
+        "label": "Inventory Movement trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "inventory_movement_volume_column",
+        "label": "Inventory Movement volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "inventory_movement_distribution_donut",
+        "label": "Inventory Movement distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "stock_adjustment_trend_line",
+        "label": "Stock Adjustment trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "stock_adjustment_volume_column",
+        "label": "Stock Adjustment volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "stock_adjustment_distribution_donut",
+        "label": "Stock Adjustment distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ],
+    "source_docs": [],
+    "source_fields": [],
+    "child_sources": [
+      {
+        "id": "inventory_balance",
+        "title": "Inventory Balance",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "stock_item",
+        "title": "Stock Item",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "inventory_movement",
+        "title": "Inventory Movement",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "stock_adjustment",
+        "title": "Stock Adjustment",
+        "surface": null,
+        "source_docs": []
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "stock_item",
+      "warehouse_record",
+      "inventory_movement",
+      "inventory_balance",
+      "stock_adjustment",
+      "goods_receipt",
+      "shipment_record"
+    ],
+    "upstream_docs": [
+      "stock_item",
+      "warehouse_record",
+      "inventory_movement",
+      "inventory_balance",
+      "stock_adjustment",
+      "goods_receipt",
+      "shipment_record"
+    ],
+    "downstream_docs": [
+      "warehouse_record"
+    ],
+    "actors": [
+      "storekeeper",
+      "warehouse operator",
+      "inventory controller",
+      "reviewer"
+    ],
+    "downstream_effects": [
+      "inventory availability feeds purchasing, warehouse execution, logistics, and production planning"
+    ],
+    "emits_records": [
+      {
+        "action_id": "approve",
+        "target_doc": "warehouse_record",
+        "effect_type": "create_record"
+      }
+    ],
+    "handoff_targets": [
+      "stock_item",
+      "warehouse_record",
+      "inventory_movement",
+      "inventory_balance",
+      "stock_adjustment",
+      "goods_receipt",
+      "shipment_record"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "inventory_balance",
+        "target_doc": "stock_item",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_balance",
+        "target_doc": "warehouse_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_balance",
+        "target_doc": "inventory_movement",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_item",
+        "target_doc": "inventory_balance",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_item",
+        "target_doc": "inventory_movement",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_item",
+        "target_doc": "stock_adjustment",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_item",
+        "target_doc": "goods_receipt",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_movement",
+        "target_doc": "stock_item",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_movement",
+        "target_doc": "warehouse_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_movement",
+        "target_doc": "goods_receipt",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_movement",
+        "target_doc": "shipment_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_movement",
+        "target_doc": "stock_adjustment",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_movement",
+        "target_doc": "warehouse_record",
+        "relation": "create_record",
+        "action_id": "approve"
+      },
+      {
+        "source_doc": "stock_adjustment",
+        "target_doc": "inventory_balance",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_adjustment",
+        "target_doc": "inventory_movement",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_adjustment",
+        "target_doc": "warehouse_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_adjustment",
+        "target_doc": "warehouse_record",
+        "relation": "create_record",
+        "action_id": "approve"
+      }
+    ],
+    "operating_graph": {
+      "nodes": [
+        {
+          "id": "stock_item",
+          "kind": "doc"
+        },
+        {
+          "id": "warehouse_record",
+          "kind": "doc"
+        },
+        {
+          "id": "inventory_movement",
+          "kind": "doc"
+        },
+        {
+          "id": "inventory_balance",
+          "kind": "doc"
+        },
+        {
+          "id": "stock_adjustment",
+          "kind": "doc"
+        },
+        {
+          "id": "goods_receipt",
+          "kind": "doc"
+        },
+        {
+          "id": "shipment_record",
+          "kind": "doc"
+        }
+      ],
+      "edges": [
+        {
+          "source_doc": "inventory_balance",
+          "target_doc": "stock_item",
+          "relation": "references"
+        },
+        {
+          "source_doc": "inventory_balance",
+          "target_doc": "warehouse_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "inventory_balance",
+          "target_doc": "inventory_movement",
+          "relation": "references"
+        },
+        {
+          "source_doc": "stock_item",
+          "target_doc": "inventory_balance",
+          "relation": "references"
+        },
+        {
+          "source_doc": "stock_item",
+          "target_doc": "inventory_movement",
+          "relation": "references"
+        },
+        {
+          "source_doc": "stock_item",
+          "target_doc": "stock_adjustment",
+          "relation": "references"
+        },
+        {
+          "source_doc": "stock_item",
+          "target_doc": "goods_receipt",
+          "relation": "references"
+        },
+        {
+          "source_doc": "inventory_movement",
+          "target_doc": "stock_item",
+          "relation": "references"
+        },
+        {
+          "source_doc": "inventory_movement",
+          "target_doc": "warehouse_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "inventory_movement",
+          "target_doc": "goods_receipt",
+          "relation": "references"
+        },
+        {
+          "source_doc": "inventory_movement",
+          "target_doc": "shipment_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "inventory_movement",
+          "target_doc": "stock_adjustment",
+          "relation": "references"
+        },
+        {
+          "source_doc": "inventory_movement",
+          "target_doc": "warehouse_record",
+          "relation": "create_record",
+          "action_id": "approve"
+        },
+        {
+          "source_doc": "stock_adjustment",
+          "target_doc": "inventory_balance",
+          "relation": "references"
+        },
+        {
+          "source_doc": "stock_adjustment",
+          "target_doc": "inventory_movement",
+          "relation": "references"
+        },
+        {
+          "source_doc": "stock_adjustment",
+          "target_doc": "warehouse_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "stock_adjustment",
+          "target_doc": "warehouse_record",
+          "relation": "create_record",
+          "action_id": "approve"
+        }
+      ]
+    }
+  },
+  "contract_version": 1
 }

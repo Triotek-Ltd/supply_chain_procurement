@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 
 DOC_ID = "vendor_review"
 ALLOWED_ACTIONS = ['create', 'review', 'archive']
-ACTION_RULES = {'create': {'allowed_in_states': ['draft', 'reviewed'], 'transitions_to': None}, 'review': {'allowed_in_states': ['draft', 'reviewed'], 'transitions_to': 'reviewed'}, 'archive': {'allowed_in_states': ['draft', 'reviewed'], 'transitions_to': 'archived'}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['draft', 'reviewed'], 'transitions_to': None}, 'review': {'allowed_in_states': ['draft', 'reviewed'], 'transitions_to': 'reviewed'}, 'archive': {'allowed_in_states': ['draft', 'reviewed'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
 

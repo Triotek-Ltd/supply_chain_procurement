@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 
 DOC_ID = "delivery_route"
 ALLOWED_ACTIONS = ['create', 'assign', 'optimize', 'dispatch', 'close', 'archive']
-ACTION_RULES = {'create': {'allowed_in_states': ['draft', 'assigned', 'dispatched', 'completed'], 'transitions_to': None}, 'assign': {'allowed_in_states': ['draft', 'assigned', 'dispatched', 'completed'], 'transitions_to': None}, 'optimize': {'allowed_in_states': ['draft', 'assigned', 'dispatched', 'completed'], 'transitions_to': None}, 'dispatch': {'allowed_in_states': ['draft', 'assigned', 'dispatched', 'completed'], 'transitions_to': None}, 'close': {'allowed_in_states': ['draft', 'assigned', 'dispatched', 'completed'], 'transitions_to': None}, 'archive': {'allowed_in_states': ['draft', 'assigned', 'dispatched', 'completed'], 'transitions_to': 'archived'}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['draft', 'assigned', 'dispatched', 'completed'], 'transitions_to': None}, 'assign': {'allowed_in_states': ['draft', 'assigned', 'dispatched', 'completed'], 'transitions_to': None}, 'optimize': {'allowed_in_states': ['draft', 'assigned', 'dispatched', 'completed'], 'transitions_to': None}, 'dispatch': {'allowed_in_states': ['draft', 'assigned', 'dispatched', 'completed'], 'transitions_to': None}, 'close': {'allowed_in_states': ['draft', 'assigned', 'dispatched', 'completed'], 'transitions_to': None}, 'archive': {'allowed_in_states': ['draft', 'assigned', 'dispatched', 'completed'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
 

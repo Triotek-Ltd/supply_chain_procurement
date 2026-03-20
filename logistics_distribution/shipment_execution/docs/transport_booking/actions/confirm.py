@@ -2,17 +2,19 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "transport_booking"
 ACTION_ID = "confirm"
-ACTION_RULE = {'allowed_in_states': ['draft', 'submitted', 'confirmed', 'cancelled'], 'transitions_to': 'confirmed'}
+ACTION_RULE: dict[str, Any] = {'allowed_in_states': ['draft', 'submitted', 'confirmed', 'cancelled'], 'transitions_to': 'confirmed'}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'business_objective': 'plan, dispatch, track, and confirm outbound delivery execution', 'actors': ['logistics coordinator', 'warehouse team', 'carrier', 'dispatcher', 'recipient'], 'start_condition': 'a delivery request or shipping order is ready for execution', 'ordered_steps': ['Assign route and transport method.'], 'primary_actions': ['create', 'assign', 'submit', 'confirm'], 'primary_transitions': ['transport_booking: draft -> submitted -> confirmed'], 'downstream_effects': ['delivery completion feeds billing, customer service, and performance reporting'], 'action_actors': {'create': ['logistics coordinator'], 'submit': ['logistics coordinator'], 'confirm': ['warehouse team'], 'cancel': ['logistics coordinator'], 'archive': ['logistics coordinator']}}
 
 def handle_confirm(payload: dict, context: dict | None = None) -> dict:
     context = context or {}
-    next_state = ACTION_RULE.get("transitions_to")
+    next_state = cast(str | None, ACTION_RULE.get("transitions_to"))
     updates = {STATE_FIELD: next_state} if STATE_FIELD and next_state else {}
     return {
         "doc_id": DOC_ID,

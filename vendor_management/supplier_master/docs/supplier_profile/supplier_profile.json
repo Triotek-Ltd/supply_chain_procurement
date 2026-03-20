@@ -15,6 +15,256 @@
   },
   "doc_key": "supplier_profile",
   "doc_title": "Supplier Profile",
+  "ui": {
+    "icon_key": "user",
+    "accent": "#246f89",
+    "logo_image": null,
+    "cover_image": null,
+    "preferred_views": [
+      "list",
+      "table",
+      "detail",
+      "report"
+    ],
+    "default_density": "comfortable"
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "doc",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "records",
+      "flatten_submodules_in_ui": false,
+      "views": [
+        "list",
+        "table",
+        "detail",
+        "report"
+      ]
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Supplier Profile KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "supplier_profile",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Supplier Profile summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "supplier_profile",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Supplier Profile charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "supplier_profile",
+          "metric_family": "trend"
+        }
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Supplier Profile reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "supplier_profile",
+          "metric_family": "reporting"
+        }
+      },
+      {
+        "id": "records",
+        "type": "record_table",
+        "title": "Supplier Profile records",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "supplier_profile",
+          "metric_family": "records"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "supplier_profile",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "supplier_profile",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "supplier_profile",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "supplier_profile",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Supplier Profile Overview",
+        "report_type": "dashboard_summary",
+        "surface": "doc"
+      },
+      {
+        "id": "trend_report",
+        "label": "Supplier Profile Trends",
+        "report_type": "trend_analysis",
+        "surface": "doc"
+      },
+      {
+        "id": "summary_report",
+        "label": "Supplier Profile Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Supplier Profile Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "supports_outputs": false,
+    "supports_print_formats": true,
+    "default_views": [
+      "summary",
+      "trend",
+      "report_table"
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "supplier_profile_trend_line",
+        "label": "Supplier Profile trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "supplier_profile_volume_column",
+        "label": "Supplier Profile volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "supplier_profile_distribution_donut",
+        "label": "Supplier Profile distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "supplier_qualification",
+      "vendor_contract",
+      "vendor_review",
+      "purchase_order"
+    ],
+    "upstream_docs": [
+      "supplier_qualification",
+      "vendor_contract",
+      "vendor_review",
+      "purchase_order"
+    ],
+    "downstream_docs": [],
+    "borrowed_fields": [
+      "external compliance/capability context from ecosystem supplier docs where linked"
+    ],
+    "emits_records": [],
+    "downstream_effects": [
+      "supports sourcing, purchase control, and risk management"
+    ],
+    "actors": [
+      "vendor manager",
+      "reviewer",
+      "legal/procurement owner"
+    ],
+    "handoff_targets": [
+      "supplier_qualification",
+      "vendor_contract",
+      "vendor_review",
+      "purchase_order"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "supplier_profile",
+        "target_doc": "supplier_qualification",
+        "relation": "references"
+      },
+      {
+        "source_doc": "supplier_profile",
+        "target_doc": "vendor_contract",
+        "relation": "references"
+      },
+      {
+        "source_doc": "supplier_profile",
+        "target_doc": "vendor_review",
+        "relation": "references"
+      },
+      {
+        "source_doc": "supplier_profile",
+        "target_doc": "purchase_order",
+        "relation": "references"
+      }
+    ]
+  },
   "allowed_actions": [
     "create",
     "update",
@@ -342,7 +592,8 @@
           "list_visible": false,
           "filterable": false,
           "sortable": false
-        }
+        },
+        "relation_kind": "explicit"
       },
       {
         "field_id": "related_vendor_contract",
@@ -366,7 +617,8 @@
           "list_visible": false,
           "filterable": false,
           "sortable": false
-        }
+        },
+        "relation_kind": "explicit"
       },
       {
         "field_id": "related_vendor_review",
@@ -390,7 +642,8 @@
           "list_visible": false,
           "filterable": false,
           "sortable": false
-        }
+        },
+        "relation_kind": "explicit"
       },
       {
         "field_id": "related_purchase_order",
@@ -414,7 +667,8 @@
           "list_visible": false,
           "filterable": false,
           "sortable": false
-        }
+        },
+        "relation_kind": "explicit"
       }
     ],
     "title_field": "title",
@@ -504,7 +758,9 @@
           "review",
           "suspend",
           "archive"
-        ]
+        ],
+        "scope": "system",
+        "ownership": "platform"
       },
       {
         "role_id": "vendor manager",
@@ -513,7 +769,9 @@
           "list",
           "create",
           "update"
-        ]
+        ],
+        "scope": "approval",
+        "ownership": "managerial"
       },
       {
         "role_id": "reviewer",
@@ -521,15 +779,20 @@
           "view",
           "list",
           "review"
-        ]
+        ],
+        "scope": "review",
+        "ownership": "oversight"
       },
       {
         "role_id": "legal/procurement owner",
         "actions": [
           "view",
           "list",
-          "archive"
-        ]
+          "archive",
+          "update"
+        ],
+        "scope": "execution",
+        "ownership": "operations"
       }
     ],
     "transaction_behavior": {
@@ -587,7 +850,100 @@
         "modified"
       ],
       "default_filters": [],
-      "quick_entry": false
+      "quick_entry": false,
+      "form_layout": {
+        "version": 1,
+        "tabs": [
+          {
+            "id": "overview",
+            "label": "Overview",
+            "sections": [
+              {
+                "id": "identity",
+                "label": "Identity",
+                "columns": [
+                  {
+                    "id": "identity_column_1",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "title"
+                    ]
+                  },
+                  {
+                    "id": "identity_column_2",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "reference_no"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "status",
+                "label": "Workflow",
+                "columns": [
+                  {
+                    "id": "status_column_1",
+                    "label": "",
+                    "width": 12,
+                    "fieldIds": [
+                      "workflow_state"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "details",
+            "label": "Details",
+            "sections": [
+              {
+                "id": "content",
+                "label": "Details",
+                "columns": [
+                  {
+                    "id": "content_column_1",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "supplier_code",
+                      "payment_terms",
+                      "qualification_state"
+                    ]
+                  },
+                  {
+                    "id": "content_column_2",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "supplier_identity",
+                      "category"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "content_details",
+                "label": "Extended Details",
+                "columns": [
+                  {
+                    "id": "content_details_column_1",
+                    "label": "",
+                    "width": 12,
+                    "fieldIds": [
+                      "description",
+                      "tax_registration_details"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     "related_docs": [
       {
@@ -661,7 +1017,11 @@
       "show_activity_log": true,
       "show_comments": true,
       "show_assignments": true,
-      "show_related_docs": true
+      "show_related_docs": true,
+      "show_kpis": true,
+      "show_summaries": true,
+      "show_charts": true,
+      "show_reports": true
     },
     "integration": {
       "external_refs": [],
@@ -709,6 +1069,17 @@
         }
       },
       "action_side_effects_file": "side_effects.json"
+    },
+    "dashboard": {
+      "metric_blocks": [
+        "kpis",
+        "summaries",
+        "charts",
+        "reports",
+        "records"
+      ],
+      "default_view": "list",
+      "reporting_surface": "doc"
     }
   },
   "classification": {
@@ -762,8 +1133,13 @@
       }
     },
     "report_boundary_classification": "source business doc",
-    "validation_status": "ready",
-    "validation_warnings": []
+    "validation_status": "warning",
+    "validation_warnings": [
+      "helper_relation_field:related_supplier_qualification",
+      "helper_relation_field:related_vendor_contract",
+      "helper_relation_field:related_vendor_review",
+      "helper_relation_field:related_purchase_order"
+    ]
   },
   "business_logic": {
     "seeded": true,
@@ -809,6 +1185,13 @@
     "api_base_path": "/apis/supply_chain_procurement/vendor_management/supplier_master/supplier_profile/",
     "status_field": "workflow_state",
     "initial_state": "active",
+    "actions": [
+      "create",
+      "update",
+      "review",
+      "suspend",
+      "archive"
+    ],
     "required_fields": [
       "title",
       "workflow_state"
@@ -829,6 +1212,54 @@
     ],
     "downstream_effects": [
       "supports sourcing, purchase control, and risk management"
+    ],
+    "role_action_matrix": [
+      {
+        "role_id": "System Manager",
+        "actions": [
+          "view",
+          "list",
+          "create",
+          "update",
+          "review",
+          "suspend",
+          "archive"
+        ],
+        "scope": "system",
+        "ownership": "platform"
+      },
+      {
+        "role_id": "vendor manager",
+        "actions": [
+          "view",
+          "list",
+          "create",
+          "update"
+        ],
+        "scope": "approval",
+        "ownership": "managerial"
+      },
+      {
+        "role_id": "reviewer",
+        "actions": [
+          "view",
+          "list",
+          "review"
+        ],
+        "scope": "review",
+        "ownership": "oversight"
+      },
+      {
+        "role_id": "legal/procurement owner",
+        "actions": [
+          "view",
+          "list",
+          "archive",
+          "update"
+        ],
+        "scope": "execution",
+        "ownership": "operations"
+      }
     ],
     "action_side_effects_file": "side_effects.json"
   },

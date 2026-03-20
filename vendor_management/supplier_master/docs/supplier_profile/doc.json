@@ -10,7 +10,8 @@
   "doc_archetype": "master",
   "classification": {
     "archetype": "master",
-    "bundle": "operations"
+    "bundle": "operations",
+    "doc_kind": "master"
   },
   "planning_source": {
     "type": "reference_doc_generation_manifest",
@@ -22,5 +23,256 @@
     "evidence_gaps": [
       "supplier master harmonization with ecosystem records"
     ]
-  }
+  },
+  "ui": {
+    "icon_key": "user",
+    "accent": "#246f89",
+    "logo_image": null,
+    "cover_image": null,
+    "preferred_views": [
+      "list",
+      "table",
+      "detail",
+      "report"
+    ],
+    "default_density": "comfortable"
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "doc",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "records",
+      "flatten_submodules_in_ui": false,
+      "views": [
+        "list",
+        "table",
+        "detail",
+        "report"
+      ]
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Supplier Profile KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "supplier_profile",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Supplier Profile summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "supplier_profile",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Supplier Profile charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "supplier_profile",
+          "metric_family": "trend"
+        }
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Supplier Profile reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "supplier_profile",
+          "metric_family": "reporting"
+        }
+      },
+      {
+        "id": "records",
+        "type": "record_table",
+        "title": "Supplier Profile records",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "supplier_profile",
+          "metric_family": "records"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "supplier_profile",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "supplier_profile",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "supplier_profile",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "supplier_profile",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Supplier Profile Overview",
+        "report_type": "dashboard_summary",
+        "surface": "doc"
+      },
+      {
+        "id": "trend_report",
+        "label": "Supplier Profile Trends",
+        "report_type": "trend_analysis",
+        "surface": "doc"
+      },
+      {
+        "id": "summary_report",
+        "label": "Supplier Profile Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Supplier Profile Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "supports_outputs": false,
+    "supports_print_formats": true,
+    "default_views": [
+      "summary",
+      "trend",
+      "report_table"
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "supplier_profile_trend_line",
+        "label": "Supplier Profile trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "supplier_profile_volume_column",
+        "label": "Supplier Profile volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "supplier_profile_distribution_donut",
+        "label": "Supplier Profile distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "supplier_qualification",
+      "vendor_contract",
+      "vendor_review",
+      "purchase_order"
+    ],
+    "upstream_docs": [
+      "supplier_qualification",
+      "vendor_contract",
+      "vendor_review",
+      "purchase_order"
+    ],
+    "downstream_docs": [],
+    "borrowed_fields": [
+      "external compliance/capability context from ecosystem supplier docs where linked"
+    ],
+    "emits_records": [],
+    "downstream_effects": [
+      "supports sourcing, purchase control, and risk management"
+    ],
+    "actors": [
+      "vendor manager",
+      "reviewer",
+      "legal/procurement owner"
+    ],
+    "handoff_targets": [
+      "supplier_qualification",
+      "vendor_contract",
+      "vendor_review",
+      "purchase_order"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "supplier_profile",
+        "target_doc": "supplier_qualification",
+        "relation": "references"
+      },
+      {
+        "source_doc": "supplier_profile",
+        "target_doc": "vendor_contract",
+        "relation": "references"
+      },
+      {
+        "source_doc": "supplier_profile",
+        "target_doc": "vendor_review",
+        "relation": "references"
+      },
+      {
+        "source_doc": "supplier_profile",
+        "target_doc": "purchase_order",
+        "relation": "references"
+      }
+    ]
+  },
+  "contract_version": 1
 }

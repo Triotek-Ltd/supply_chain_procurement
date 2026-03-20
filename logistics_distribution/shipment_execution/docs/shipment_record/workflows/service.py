@@ -2,13 +2,15 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "shipment_record"
 ARCHETYPE = "transaction"
 INITIAL_STATE = 'draft'
 STATES = ['draft', 'packed', 'dispatched', 'delivered', 'exception', 'closed', 'archived']
 TERMINAL_STATES = ['closed', 'archived']
-ACTION_RULES = {'create': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': None}, 'pack': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': None}, 'dispatch': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': None}, 'deliver': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': None}, 'close': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': 'archived'}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': None}, 'pack': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': None}, 'dispatch': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': None}, 'deliver': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': None}, 'close': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['draft', 'packed', 'dispatched', 'delivered', 'exception'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'business_objective': 'receive goods into warehouse storage, put them away correctly, pick them for orders, and keep warehouse records current', 'actors': ['warehouse supervisor', 'receiving operator', 'picker', 'putaway operator'], 'start_condition': 'goods are received or outgoing orders require warehouse execution', 'ordered_steps': ['Create pick work for outgoing demand.'], 'primary_actions': ['create', 'assign'], 'primary_transitions': [], 'downstream_effects': ['warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy'], 'action_actors': {'create': ['warehouse supervisor'], 'dispatch': ['putaway operator'], 'close': ['warehouse supervisor'], 'archive': ['warehouse supervisor']}}
@@ -29,7 +31,7 @@ class WorkflowService:
 
     def next_state_for(self, action_id: str) -> str | None:
         rule = ACTION_RULES.get(action_id, {})
-        return rule.get("transitions_to")
+        return cast(str | None, rule.get("transitions_to"))
 
     def apply_action(self, action_id: str, state: str | None) -> dict:
         if not self.is_action_allowed(action_id, state):

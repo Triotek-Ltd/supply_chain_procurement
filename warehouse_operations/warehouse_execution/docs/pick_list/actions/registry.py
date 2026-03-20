@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 
 DOC_ID = "pick_list"
 ALLOWED_ACTIONS = ['create', 'assign', 'start', 'complete', 'close', 'archive']
-ACTION_RULES = {'create': {'allowed_in_states': ['draft', 'assigned', 'in_progress', 'completed'], 'transitions_to': None}, 'assign': {'allowed_in_states': ['draft', 'assigned', 'in_progress', 'completed'], 'transitions_to': 'in_progress'}, 'start': {'allowed_in_states': ['draft', 'assigned', 'in_progress', 'completed'], 'transitions_to': None}, 'complete': {'allowed_in_states': ['draft', 'assigned', 'in_progress', 'completed'], 'transitions_to': None}, 'close': {'allowed_in_states': ['draft', 'assigned', 'in_progress', 'completed'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['draft', 'assigned', 'in_progress', 'completed'], 'transitions_to': 'archived'}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['draft', 'assigned', 'in_progress', 'completed'], 'transitions_to': None}, 'assign': {'allowed_in_states': ['draft', 'assigned', 'in_progress', 'completed'], 'transitions_to': 'in_progress'}, 'start': {'allowed_in_states': ['draft', 'assigned', 'in_progress', 'completed'], 'transitions_to': None}, 'complete': {'allowed_in_states': ['draft', 'assigned', 'in_progress', 'completed'], 'transitions_to': None}, 'close': {'allowed_in_states': ['draft', 'assigned', 'in_progress', 'completed'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['draft', 'assigned', 'in_progress', 'completed'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
 

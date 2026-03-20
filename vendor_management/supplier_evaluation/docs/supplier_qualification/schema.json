@@ -286,7 +286,8 @@
         "list_visible": false,
         "filterable": false,
         "sortable": false
-      }
+      },
+      "relation_kind": "explicit"
     },
     {
       "field_id": "related_vendor_contract",
@@ -310,7 +311,8 @@
         "list_visible": false,
         "filterable": false,
         "sortable": false
-      }
+      },
+      "relation_kind": "explicit"
     }
   ],
   "field_groups": {
@@ -450,7 +452,9 @@
         "reject",
         "close",
         "archive"
-      ]
+      ],
+      "scope": "system",
+      "ownership": "platform"
     },
     {
       "role_id": "compliance officer",
@@ -458,11 +462,14 @@
         "view",
         "list",
         "create",
+        "update",
         "approve",
         "reject",
         "close",
         "archive"
-      ]
+      ],
+      "scope": "review",
+      "ownership": "oversight"
     },
     {
       "role_id": "procurement officer",
@@ -470,7 +477,9 @@
         "view",
         "list",
         "review"
-      ]
+      ],
+      "scope": "execution",
+      "ownership": "operations"
     }
   ],
   "transaction_behavior": {

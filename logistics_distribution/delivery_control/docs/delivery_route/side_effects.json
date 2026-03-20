@@ -22,5 +22,28 @@
         "workflow_state": "archived"
       }
     }
+  ],
+  "dispatch": [
+    {
+      "type": "create_record",
+      "target_doc": "shipment_record",
+      "values": {
+        "title": {
+          "$template": "Shipment Record for {title|reference_no|id}"
+        },
+        "reference_no": {
+          "$template": "SHIPMENT_RECORD-{reference_no|id}"
+        },
+        "source_reference": {
+          "$from": [
+            "reference_no",
+            "id"
+          ]
+        },
+        "source_doc_id": {
+          "$template": "{id}"
+        }
+      }
+    }
   ]
 }

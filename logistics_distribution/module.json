@@ -4,5 +4,717 @@
   "app_id": "supply_chain_procurement",
   "type": "module",
   "status": "draft",
-  "supports_submodules": true
+  "supports_submodules": true,
+  "ui": {
+    "icon_key": "apps",
+    "accent": "#246f89",
+    "logo_image": null,
+    "cover_image": null
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "module",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "docs",
+      "flatten_submodules_in_ui": true
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Logistics Distribution KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "logistics_distribution",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Logistics Distribution summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "logistics_distribution",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Logistics Distribution charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "logistics_distribution",
+          "metric_family": "trend"
+        },
+        "chart_specs": [
+          {
+            "id": "logistics_distribution_trend_line",
+            "label": "Logistics Distribution trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "logistics_distribution_volume_column",
+            "label": "Logistics Distribution volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "logistics_distribution_distribution_donut",
+            "label": "Logistics Distribution distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "delivery_confirmation_trend_line",
+            "label": "Delivery Confirmation trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "delivery_confirmation_volume_column",
+            "label": "Delivery Confirmation volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "delivery_confirmation_distribution_donut",
+            "label": "Delivery Confirmation distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "delivery_route_trend_line",
+            "label": "Delivery Route trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "delivery_route_volume_column",
+            "label": "Delivery Route volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "delivery_route_distribution_donut",
+            "label": "Delivery Route distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "shipment_record_trend_line",
+            "label": "Shipment Record trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "shipment_record_volume_column",
+            "label": "Shipment Record volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "shipment_record_distribution_donut",
+            "label": "Shipment Record distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "transport_booking_trend_line",
+            "label": "Transport Booking trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "transport_booking_volume_column",
+            "label": "Transport Booking volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "transport_booking_distribution_donut",
+            "label": "Transport Booking distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          }
+        ]
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Logistics Distribution reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "logistics_distribution",
+          "metric_family": "reporting"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "logistics_distribution",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "logistics_distribution",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "logistics_distribution",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "logistics_distribution",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Logistics Distribution Overview",
+        "report_type": "dashboard_summary",
+        "surface": "module"
+      },
+      {
+        "id": "trend_report",
+        "label": "Logistics Distribution Trends",
+        "report_type": "trend_analysis",
+        "surface": "module"
+      },
+      {
+        "id": "summary_report",
+        "label": "Delivery Confirmation Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Delivery Confirmation Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "logistics_distribution_trend_line",
+        "label": "Logistics Distribution trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "logistics_distribution_volume_column",
+        "label": "Logistics Distribution volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "logistics_distribution_distribution_donut",
+        "label": "Logistics Distribution distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "delivery_confirmation_trend_line",
+        "label": "Delivery Confirmation trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "delivery_confirmation_volume_column",
+        "label": "Delivery Confirmation volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "delivery_confirmation_distribution_donut",
+        "label": "Delivery Confirmation distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "delivery_route_trend_line",
+        "label": "Delivery Route trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "delivery_route_volume_column",
+        "label": "Delivery Route volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "delivery_route_distribution_donut",
+        "label": "Delivery Route distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "shipment_record_trend_line",
+        "label": "Shipment Record trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "shipment_record_volume_column",
+        "label": "Shipment Record volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "shipment_record_distribution_donut",
+        "label": "Shipment Record distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "transport_booking_trend_line",
+        "label": "Transport Booking trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "transport_booking_volume_column",
+        "label": "Transport Booking volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "transport_booking_distribution_donut",
+        "label": "Transport Booking distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ],
+    "source_docs": [],
+    "source_fields": [],
+    "child_sources": [
+      {
+        "id": "delivery_confirmation",
+        "title": "Delivery Confirmation",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "delivery_route",
+        "title": "Delivery Route",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "shipment_record",
+        "title": "Shipment Record",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "transport_booking",
+        "title": "Transport Booking",
+        "surface": null,
+        "source_docs": []
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "shipment_record",
+      "delivery_route",
+      "courier_tracking_event",
+      "delivery_confirmation",
+      "transport_booking",
+      "sales_order",
+      "courier_shipment_request",
+      "freight_booking"
+    ],
+    "upstream_docs": [
+      "shipment_record",
+      "delivery_route",
+      "courier_tracking_event",
+      "delivery_confirmation",
+      "transport_booking",
+      "sales_order",
+      "courier_shipment_request",
+      "freight_booking"
+    ],
+    "downstream_docs": [
+      "shipment_record",
+      "courier_shipment_request"
+    ],
+    "actors": [
+      "logistics coordinator",
+      "warehouse team",
+      "carrier",
+      "dispatcher",
+      "recipient",
+      "warehouse supervisor",
+      "receiving operator",
+      "picker",
+      "putaway operator"
+    ],
+    "downstream_effects": [
+      "delivery completion feeds billing, customer service, and performance reporting",
+      "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy"
+    ],
+    "emits_records": [
+      {
+        "action_id": "dispatch",
+        "target_doc": "shipment_record",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "dispatch",
+        "target_doc": "courier_shipment_request",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "confirm",
+        "target_doc": "shipment_record",
+        "effect_type": "create_record"
+      }
+    ],
+    "handoff_targets": [
+      "shipment_record",
+      "delivery_route",
+      "courier_tracking_event",
+      "delivery_confirmation",
+      "transport_booking",
+      "sales_order",
+      "courier_shipment_request",
+      "freight_booking"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "delivery_confirmation",
+        "target_doc": "shipment_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "delivery_confirmation",
+        "target_doc": "delivery_route",
+        "relation": "references"
+      },
+      {
+        "source_doc": "delivery_confirmation",
+        "target_doc": "courier_tracking_event",
+        "relation": "references"
+      },
+      {
+        "source_doc": "delivery_route",
+        "target_doc": "shipment_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "delivery_route",
+        "target_doc": "delivery_confirmation",
+        "relation": "references"
+      },
+      {
+        "source_doc": "delivery_route",
+        "target_doc": "shipment_record",
+        "relation": "create_record",
+        "action_id": "dispatch"
+      },
+      {
+        "source_doc": "shipment_record",
+        "target_doc": "delivery_route",
+        "relation": "references"
+      },
+      {
+        "source_doc": "shipment_record",
+        "target_doc": "transport_booking",
+        "relation": "references"
+      },
+      {
+        "source_doc": "shipment_record",
+        "target_doc": "delivery_confirmation",
+        "relation": "references"
+      },
+      {
+        "source_doc": "shipment_record",
+        "target_doc": "sales_order",
+        "relation": "references"
+      },
+      {
+        "source_doc": "shipment_record",
+        "target_doc": "courier_shipment_request",
+        "relation": "references"
+      },
+      {
+        "source_doc": "shipment_record",
+        "target_doc": "courier_shipment_request",
+        "relation": "create_record",
+        "action_id": "dispatch"
+      },
+      {
+        "source_doc": "transport_booking",
+        "target_doc": "shipment_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "transport_booking",
+        "target_doc": "freight_booking",
+        "relation": "references"
+      },
+      {
+        "source_doc": "transport_booking",
+        "target_doc": "courier_shipment_request",
+        "relation": "references"
+      },
+      {
+        "source_doc": "transport_booking",
+        "target_doc": "shipment_record",
+        "relation": "create_record",
+        "action_id": "confirm"
+      }
+    ],
+    "operating_graph": {
+      "nodes": [
+        {
+          "id": "shipment_record",
+          "kind": "doc"
+        },
+        {
+          "id": "delivery_route",
+          "kind": "doc"
+        },
+        {
+          "id": "courier_tracking_event",
+          "kind": "doc"
+        },
+        {
+          "id": "delivery_confirmation",
+          "kind": "doc"
+        },
+        {
+          "id": "transport_booking",
+          "kind": "doc"
+        },
+        {
+          "id": "sales_order",
+          "kind": "doc"
+        },
+        {
+          "id": "courier_shipment_request",
+          "kind": "doc"
+        },
+        {
+          "id": "freight_booking",
+          "kind": "doc"
+        }
+      ],
+      "edges": [
+        {
+          "source_doc": "delivery_confirmation",
+          "target_doc": "shipment_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "delivery_confirmation",
+          "target_doc": "delivery_route",
+          "relation": "references"
+        },
+        {
+          "source_doc": "delivery_confirmation",
+          "target_doc": "courier_tracking_event",
+          "relation": "references"
+        },
+        {
+          "source_doc": "delivery_route",
+          "target_doc": "shipment_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "delivery_route",
+          "target_doc": "delivery_confirmation",
+          "relation": "references"
+        },
+        {
+          "source_doc": "delivery_route",
+          "target_doc": "shipment_record",
+          "relation": "create_record",
+          "action_id": "dispatch"
+        },
+        {
+          "source_doc": "shipment_record",
+          "target_doc": "delivery_route",
+          "relation": "references"
+        },
+        {
+          "source_doc": "shipment_record",
+          "target_doc": "transport_booking",
+          "relation": "references"
+        },
+        {
+          "source_doc": "shipment_record",
+          "target_doc": "delivery_confirmation",
+          "relation": "references"
+        },
+        {
+          "source_doc": "shipment_record",
+          "target_doc": "sales_order",
+          "relation": "references"
+        },
+        {
+          "source_doc": "shipment_record",
+          "target_doc": "courier_shipment_request",
+          "relation": "references"
+        },
+        {
+          "source_doc": "shipment_record",
+          "target_doc": "courier_shipment_request",
+          "relation": "create_record",
+          "action_id": "dispatch"
+        },
+        {
+          "source_doc": "transport_booking",
+          "target_doc": "shipment_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "transport_booking",
+          "target_doc": "freight_booking",
+          "relation": "references"
+        },
+        {
+          "source_doc": "transport_booking",
+          "target_doc": "courier_shipment_request",
+          "relation": "references"
+        },
+        {
+          "source_doc": "transport_booking",
+          "target_doc": "shipment_record",
+          "relation": "create_record",
+          "action_id": "confirm"
+        }
+      ]
+    }
+  },
+  "contract_version": 1
 }

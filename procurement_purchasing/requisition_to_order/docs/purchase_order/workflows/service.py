@@ -2,13 +2,15 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "purchase_order"
 ARCHETYPE = "transaction"
 INITIAL_STATE = 'draft'
 STATES = ['draft', 'submitted', 'partially_received', 'received', 'billed', 'closed', 'archived']
 TERMINAL_STATES = ['closed', 'archived']
-ACTION_RULES = {'create': {'allowed_in_states': ['draft', 'submitted', 'partially_received', 'received', 'billed'], 'transitions_to': None}, 'review': {'allowed_in_states': ['draft', 'submitted', 'partially_received', 'received', 'billed'], 'transitions_to': None}, 'approve': {'allowed_in_states': ['draft', 'submitted', 'partially_received', 'received', 'billed'], 'transitions_to': None}, 'issue': {'allowed_in_states': ['draft', 'submitted', 'partially_received', 'received', 'billed'], 'transitions_to': None}, 'receive': {'allowed_in_states': ['draft', 'submitted', 'partially_received', 'received', 'billed'], 'transitions_to': None}, 'bill': {'allowed_in_states': ['draft', 'submitted', 'partially_received', 'received', 'billed'], 'transitions_to': None}, 'close': {'allowed_in_states': ['draft', 'submitted', 'partially_received', 'received', 'billed'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['draft', 'submitted', 'partially_received', 'received', 'billed'], 'transitions_to': 'archived'}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['draft', 'submitted', 'partially_received', 'received', 'billed'], 'transitions_to': None}, 'review': {'allowed_in_states': ['draft', 'submitted', 'partially_received', 'received', 'billed'], 'transitions_to': None}, 'approve': {'allowed_in_states': ['draft', 'submitted', 'partially_received', 'received', 'billed'], 'transitions_to': None}, 'issue': {'allowed_in_states': ['draft', 'submitted', 'partially_received', 'received', 'billed'], 'transitions_to': None}, 'receive': {'allowed_in_states': ['draft', 'submitted', 'partially_received', 'received', 'billed'], 'transitions_to': None}, 'bill': {'allowed_in_states': ['draft', 'submitted', 'partially_received', 'received', 'billed'], 'transitions_to': None}, 'close': {'allowed_in_states': ['draft', 'submitted', 'partially_received', 'received', 'billed'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['draft', 'submitted', 'partially_received', 'received', 'billed'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'business_objective': 'convert an internal purchasing need into an approved purchase order issued to the right supplier', 'actors': ['requesting department', 'procurement officer', 'reviewer', 'approver', 'supplier'], 'start_condition': 'a department raises a purchasing need', 'ordered_steps': ['Create and issue the purchase order.', 'Record the committed procurement obligation.'], 'primary_actions': ['create', 'review', 'approve', 'issue'], 'primary_transitions': ['purchase_order: draft -> submitted -> approved'], 'downstream_effects': ['purchase orders feed goods receipt, supplier invoice matching, and vendor performance tracking'], 'action_actors': {'create': ['requesting department'], 'review': ['reviewer'], 'approve': ['approver'], 'issue': ['requesting department'], 'close': ['requesting department'], 'archive': ['requesting department']}}
@@ -29,7 +31,7 @@ class WorkflowService:
 
     def next_state_for(self, action_id: str) -> str | None:
         rule = ACTION_RULES.get(action_id, {})
-        return rule.get("transitions_to")
+        return cast(str | None, rule.get("transitions_to"))
 
     def apply_action(self, action_id: str, state: str | None) -> dict:
         if not self.is_action_allowed(action_id, state):

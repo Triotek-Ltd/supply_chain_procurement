@@ -2,17 +2,19 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "procurement_request"
 ACTION_ID = "create"
-ACTION_RULE = {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': None}
+ACTION_RULE: dict[str, Any] = {'allowed_in_states': ['draft', 'reviewed', 'active'], 'transitions_to': None}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'relation_context': {'related_docs': ['purchase_requisition', 'purchase_order', 'supplier_profile'], 'borrowed_fields': ['demand details from purchase_requisition'], 'inferred_roles': ['procurement officer', 'account owner']}, 'actors': ['procurement officer', 'account owner'], 'action_actors': {'create': ['procurement officer'], 'review': ['account owner'], 'issue': ['account owner'], 'close': ['account owner'], 'archive': ['account owner']}}
 
 def handle_create(payload: dict, context: dict | None = None) -> dict:
     context = context or {}
-    next_state = ACTION_RULE.get("transitions_to")
+    next_state = cast(str | None, ACTION_RULE.get("transitions_to"))
     updates = {STATE_FIELD: next_state} if STATE_FIELD and next_state else {}
     return {
         "doc_id": DOC_ID,

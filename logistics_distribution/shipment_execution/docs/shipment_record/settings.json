@@ -11,7 +11,171 @@
       "workflow_state"
     ],
     "default_filters": [],
-    "quick_entry": false
+    "quick_entry": false,
+    "form_layout": {
+      "version": 1,
+      "tabs": [
+        {
+          "id": "overview",
+          "label": "Overview",
+          "sections": [
+            {
+              "id": "identity",
+              "label": "Identity",
+              "columns": [
+                {
+                  "id": "identity_column_1",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "title"
+                  ]
+                },
+                {
+                  "id": "identity_column_2",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "reference_no"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "parties",
+              "label": "Parties",
+              "columns": [
+                {
+                  "id": "parties_column_1",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "party"
+                  ]
+                },
+                {
+                  "id": "parties_column_2",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "customer_or_destination"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "dates",
+              "label": "Dates",
+              "columns": [
+                {
+                  "id": "dates_column_1",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "transaction_date"
+                  ]
+                },
+                {
+                  "id": "dates_column_2",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "ship_date"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "status",
+              "label": "Workflow",
+              "columns": [
+                {
+                  "id": "status_column_1",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "workflow_state"
+                  ]
+                },
+                {
+                  "id": "status_column_2",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "shipment_status"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "details",
+          "label": "Details",
+          "sections": [
+            {
+              "id": "content",
+              "label": "Details",
+              "columns": [
+                {
+                  "id": "content_column_1",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "shipment_code",
+                    "fulfillment_reference"
+                  ]
+                },
+                {
+                  "id": "content_column_2",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "carrier"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "content_details",
+              "label": "Description",
+              "columns": [
+                {
+                  "id": "content_details_column_1",
+                  "label": "",
+                  "width": 12,
+                  "fieldIds": [
+                    "description"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "amounts",
+              "label": "Amounts",
+              "columns": [
+                {
+                  "id": "amounts_column_1",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "currency"
+                  ]
+                },
+                {
+                  "id": "amounts_column_2",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "total_amount"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   },
   "related_docs": [
     {
@@ -103,7 +267,11 @@
     "show_activity_log": true,
     "show_comments": true,
     "show_assignments": true,
-    "show_related_docs": true
+    "show_related_docs": true,
+    "show_kpis": true,
+    "show_summaries": true,
+    "show_charts": true,
+    "show_reports": true
   },
   "integration": {
     "external_refs": [],
@@ -149,5 +317,16 @@
       }
     },
     "action_side_effects_file": "side_effects.json"
+  },
+  "dashboard": {
+    "metric_blocks": [
+      "kpis",
+      "summaries",
+      "charts",
+      "reports",
+      "records"
+    ],
+    "default_view": "list",
+    "reporting_surface": "doc"
   }
 }

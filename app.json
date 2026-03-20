@@ -8,5 +8,2680 @@
     "id": "CUSTOM-PROPRIETARY",
     "type": "proprietary_custom",
     "terms_ref": "LICENSE"
+  },
+  "ui": {
+    "icon_key": "apps",
+    "accent": "#246f89",
+    "logo_image": null,
+    "cover_image": null
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "app",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "modules",
+      "flatten_submodules_in_ui": false
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "My Plug App KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "app",
+          "entity_id": "supply_chain_procurement",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "My Plug App summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "app",
+          "entity_id": "supply_chain_procurement",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "My Plug App charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "app",
+          "entity_id": "supply_chain_procurement",
+          "metric_family": "trend"
+        },
+        "chart_specs": [
+          {
+            "id": "supply_chain_procurement_trend_line",
+            "label": "My Plug App trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "supply_chain_procurement_volume_column",
+            "label": "My Plug App volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "supply_chain_procurement_distribution_donut",
+            "label": "My Plug App distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "inventory_management_trend_line",
+            "label": "Inventory Management trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "inventory_management_volume_column",
+            "label": "Inventory Management volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "inventory_management_distribution_donut",
+            "label": "Inventory Management distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "inventory_balance_trend_line",
+            "label": "Inventory Balance trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "inventory_balance_volume_column",
+            "label": "Inventory Balance volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "inventory_balance_distribution_donut",
+            "label": "Inventory Balance distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "stock_item_trend_line",
+            "label": "Stock Item trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "stock_item_volume_column",
+            "label": "Stock Item volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "stock_item_distribution_donut",
+            "label": "Stock Item distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "inventory_movement_trend_line",
+            "label": "Inventory Movement trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "inventory_movement_volume_column",
+            "label": "Inventory Movement volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "inventory_movement_distribution_donut",
+            "label": "Inventory Movement distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "stock_adjustment_trend_line",
+            "label": "Stock Adjustment trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "stock_adjustment_volume_column",
+            "label": "Stock Adjustment volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "stock_adjustment_distribution_donut",
+            "label": "Stock Adjustment distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "logistics_distribution_trend_line",
+            "label": "Logistics Distribution trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "logistics_distribution_volume_column",
+            "label": "Logistics Distribution volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "logistics_distribution_distribution_donut",
+            "label": "Logistics Distribution distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "delivery_confirmation_trend_line",
+            "label": "Delivery Confirmation trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "delivery_confirmation_volume_column",
+            "label": "Delivery Confirmation volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "delivery_confirmation_distribution_donut",
+            "label": "Delivery Confirmation distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "delivery_route_trend_line",
+            "label": "Delivery Route trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "delivery_route_volume_column",
+            "label": "Delivery Route volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "delivery_route_distribution_donut",
+            "label": "Delivery Route distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "shipment_record_trend_line",
+            "label": "Shipment Record trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "shipment_record_volume_column",
+            "label": "Shipment Record volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "shipment_record_distribution_donut",
+            "label": "Shipment Record distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "transport_booking_trend_line",
+            "label": "Transport Booking trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "transport_booking_volume_column",
+            "label": "Transport Booking volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "transport_booking_distribution_donut",
+            "label": "Transport Booking distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "procurement_purchasing_trend_line",
+            "label": "Procurement Purchasing trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "procurement_purchasing_volume_column",
+            "label": "Procurement Purchasing volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "procurement_purchasing_distribution_donut",
+            "label": "Procurement Purchasing distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "goods_receipt_trend_line",
+            "label": "Goods Receipt trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "goods_receipt_volume_column",
+            "label": "Goods Receipt volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "goods_receipt_distribution_donut",
+            "label": "Goods Receipt distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "procurement_request_trend_line",
+            "label": "Procurement Request trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "procurement_request_volume_column",
+            "label": "Procurement Request volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "procurement_request_distribution_donut",
+            "label": "Procurement Request distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "purchase_order_trend_line",
+            "label": "Purchase Order trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "purchase_order_volume_column",
+            "label": "Purchase Order volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "purchase_order_distribution_donut",
+            "label": "Purchase Order distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "purchase_requisition_trend_line",
+            "label": "Purchase Requisition trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "purchase_requisition_volume_column",
+            "label": "Purchase Requisition volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "purchase_requisition_distribution_donut",
+            "label": "Purchase Requisition distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "vendor_management_trend_line",
+            "label": "Vendor Management trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "vendor_management_volume_column",
+            "label": "Vendor Management volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "vendor_management_distribution_donut",
+            "label": "Vendor Management distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "supplier_qualification_trend_line",
+            "label": "Supplier Qualification trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "supplier_qualification_volume_column",
+            "label": "Supplier Qualification volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "supplier_qualification_distribution_donut",
+            "label": "Supplier Qualification distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "vendor_review_trend_line",
+            "label": "Vendor Review trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "vendor_review_volume_column",
+            "label": "Vendor Review volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "vendor_review_distribution_donut",
+            "label": "Vendor Review distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "supplier_profile_trend_line",
+            "label": "Supplier Profile trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "supplier_profile_volume_column",
+            "label": "Supplier Profile volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "supplier_profile_distribution_donut",
+            "label": "Supplier Profile distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "vendor_contract_trend_line",
+            "label": "Vendor Contract trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "vendor_contract_volume_column",
+            "label": "Vendor Contract volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "vendor_contract_distribution_donut",
+            "label": "Vendor Contract distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "warehouse_operations_trend_line",
+            "label": "Warehouse Operations trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "warehouse_operations_volume_column",
+            "label": "Warehouse Operations volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "warehouse_operations_distribution_donut",
+            "label": "Warehouse Operations distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "storage_bin_trend_line",
+            "label": "Storage Bin trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "storage_bin_volume_column",
+            "label": "Storage Bin volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "storage_bin_distribution_donut",
+            "label": "Storage Bin distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "warehouse_record_trend_line",
+            "label": "Warehouse Record trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "warehouse_record_volume_column",
+            "label": "Warehouse Record volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "warehouse_record_distribution_donut",
+            "label": "Warehouse Record distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "pick_list_trend_line",
+            "label": "Pick List trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "pick_list_volume_column",
+            "label": "Pick List volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "pick_list_distribution_donut",
+            "label": "Pick List distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "putaway_task_trend_line",
+            "label": "Putaway Task trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "putaway_task_volume_column",
+            "label": "Putaway Task volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "putaway_task_distribution_donut",
+            "label": "Putaway Task distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          }
+        ]
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "My Plug App reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "app",
+          "entity_id": "supply_chain_procurement",
+          "metric_family": "reporting"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "app",
+        "entity_id": "supply_chain_procurement",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "app",
+        "entity_id": "supply_chain_procurement",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "app",
+        "entity_id": "supply_chain_procurement",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "app",
+        "entity_id": "supply_chain_procurement",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "My Plug App Overview",
+        "report_type": "dashboard_summary",
+        "surface": "app"
+      },
+      {
+        "id": "trend_report",
+        "label": "My Plug App Trends",
+        "report_type": "trend_analysis",
+        "surface": "app"
+      },
+      {
+        "id": "summary_report",
+        "label": "Inventory Balance Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Inventory Balance Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "supply_chain_procurement_trend_line",
+        "label": "My Plug App trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "supply_chain_procurement_volume_column",
+        "label": "My Plug App volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "supply_chain_procurement_distribution_donut",
+        "label": "My Plug App distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "inventory_management_trend_line",
+        "label": "Inventory Management trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "inventory_management_volume_column",
+        "label": "Inventory Management volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "inventory_management_distribution_donut",
+        "label": "Inventory Management distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "inventory_balance_trend_line",
+        "label": "Inventory Balance trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "inventory_balance_volume_column",
+        "label": "Inventory Balance volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "inventory_balance_distribution_donut",
+        "label": "Inventory Balance distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "stock_item_trend_line",
+        "label": "Stock Item trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "stock_item_volume_column",
+        "label": "Stock Item volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "stock_item_distribution_donut",
+        "label": "Stock Item distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "inventory_movement_trend_line",
+        "label": "Inventory Movement trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "inventory_movement_volume_column",
+        "label": "Inventory Movement volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "inventory_movement_distribution_donut",
+        "label": "Inventory Movement distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "stock_adjustment_trend_line",
+        "label": "Stock Adjustment trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "stock_adjustment_volume_column",
+        "label": "Stock Adjustment volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "stock_adjustment_distribution_donut",
+        "label": "Stock Adjustment distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "logistics_distribution_trend_line",
+        "label": "Logistics Distribution trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "logistics_distribution_volume_column",
+        "label": "Logistics Distribution volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "logistics_distribution_distribution_donut",
+        "label": "Logistics Distribution distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "delivery_confirmation_trend_line",
+        "label": "Delivery Confirmation trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "delivery_confirmation_volume_column",
+        "label": "Delivery Confirmation volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "delivery_confirmation_distribution_donut",
+        "label": "Delivery Confirmation distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "delivery_route_trend_line",
+        "label": "Delivery Route trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "delivery_route_volume_column",
+        "label": "Delivery Route volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "delivery_route_distribution_donut",
+        "label": "Delivery Route distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "shipment_record_trend_line",
+        "label": "Shipment Record trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "shipment_record_volume_column",
+        "label": "Shipment Record volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "shipment_record_distribution_donut",
+        "label": "Shipment Record distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "transport_booking_trend_line",
+        "label": "Transport Booking trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "transport_booking_volume_column",
+        "label": "Transport Booking volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "transport_booking_distribution_donut",
+        "label": "Transport Booking distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "procurement_purchasing_trend_line",
+        "label": "Procurement Purchasing trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "procurement_purchasing_volume_column",
+        "label": "Procurement Purchasing volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "procurement_purchasing_distribution_donut",
+        "label": "Procurement Purchasing distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "goods_receipt_trend_line",
+        "label": "Goods Receipt trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "goods_receipt_volume_column",
+        "label": "Goods Receipt volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "goods_receipt_distribution_donut",
+        "label": "Goods Receipt distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "procurement_request_trend_line",
+        "label": "Procurement Request trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "procurement_request_volume_column",
+        "label": "Procurement Request volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "procurement_request_distribution_donut",
+        "label": "Procurement Request distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "purchase_order_trend_line",
+        "label": "Purchase Order trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "purchase_order_volume_column",
+        "label": "Purchase Order volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "purchase_order_distribution_donut",
+        "label": "Purchase Order distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "purchase_requisition_trend_line",
+        "label": "Purchase Requisition trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "purchase_requisition_volume_column",
+        "label": "Purchase Requisition volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "purchase_requisition_distribution_donut",
+        "label": "Purchase Requisition distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "vendor_management_trend_line",
+        "label": "Vendor Management trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "vendor_management_volume_column",
+        "label": "Vendor Management volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "vendor_management_distribution_donut",
+        "label": "Vendor Management distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "supplier_qualification_trend_line",
+        "label": "Supplier Qualification trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "supplier_qualification_volume_column",
+        "label": "Supplier Qualification volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "supplier_qualification_distribution_donut",
+        "label": "Supplier Qualification distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "vendor_review_trend_line",
+        "label": "Vendor Review trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "vendor_review_volume_column",
+        "label": "Vendor Review volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "vendor_review_distribution_donut",
+        "label": "Vendor Review distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "supplier_profile_trend_line",
+        "label": "Supplier Profile trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "supplier_profile_volume_column",
+        "label": "Supplier Profile volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "supplier_profile_distribution_donut",
+        "label": "Supplier Profile distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "vendor_contract_trend_line",
+        "label": "Vendor Contract trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "vendor_contract_volume_column",
+        "label": "Vendor Contract volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "vendor_contract_distribution_donut",
+        "label": "Vendor Contract distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "warehouse_operations_trend_line",
+        "label": "Warehouse Operations trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "warehouse_operations_volume_column",
+        "label": "Warehouse Operations volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "warehouse_operations_distribution_donut",
+        "label": "Warehouse Operations distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "storage_bin_trend_line",
+        "label": "Storage Bin trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "storage_bin_volume_column",
+        "label": "Storage Bin volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "storage_bin_distribution_donut",
+        "label": "Storage Bin distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "warehouse_record_trend_line",
+        "label": "Warehouse Record trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "warehouse_record_volume_column",
+        "label": "Warehouse Record volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "warehouse_record_distribution_donut",
+        "label": "Warehouse Record distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "pick_list_trend_line",
+        "label": "Pick List trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "pick_list_volume_column",
+        "label": "Pick List volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "pick_list_distribution_donut",
+        "label": "Pick List distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "putaway_task_trend_line",
+        "label": "Putaway Task trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "putaway_task_volume_column",
+        "label": "Putaway Task volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "putaway_task_distribution_donut",
+        "label": "Putaway Task distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ],
+    "source_docs": [],
+    "source_fields": [],
+    "child_sources": [
+      {
+        "id": "inventory_management",
+        "title": "Inventory Management",
+        "surface": "module",
+        "source_docs": []
+      },
+      {
+        "id": "logistics_distribution",
+        "title": "Logistics Distribution",
+        "surface": "module",
+        "source_docs": []
+      },
+      {
+        "id": "procurement_purchasing",
+        "title": "Procurement Purchasing",
+        "surface": "module",
+        "source_docs": []
+      },
+      {
+        "id": "vendor_management",
+        "title": "Vendor Management",
+        "surface": "module",
+        "source_docs": []
+      },
+      {
+        "id": "warehouse_operations",
+        "title": "Warehouse Operations",
+        "surface": "module",
+        "source_docs": []
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "stock_item",
+      "warehouse_record",
+      "inventory_movement",
+      "inventory_balance",
+      "stock_adjustment",
+      "goods_receipt",
+      "shipment_record",
+      "delivery_route",
+      "courier_tracking_event",
+      "delivery_confirmation",
+      "transport_booking",
+      "sales_order",
+      "courier_shipment_request",
+      "freight_booking",
+      "purchase_order",
+      "supplier_invoice",
+      "purchase_requisition",
+      "supplier_profile",
+      "procurement_request",
+      "vendor_review",
+      "vendor_contract",
+      "supplier_qualification",
+      "pick_list",
+      "putaway_task",
+      "storage_bin"
+    ],
+    "upstream_docs": [
+      "stock_item",
+      "warehouse_record",
+      "inventory_movement",
+      "inventory_balance",
+      "stock_adjustment",
+      "goods_receipt",
+      "shipment_record",
+      "delivery_route",
+      "courier_tracking_event",
+      "delivery_confirmation",
+      "transport_booking",
+      "sales_order",
+      "courier_shipment_request",
+      "freight_booking",
+      "purchase_order",
+      "supplier_invoice",
+      "purchase_requisition",
+      "supplier_profile",
+      "procurement_request",
+      "vendor_review",
+      "vendor_contract",
+      "supplier_qualification",
+      "pick_list",
+      "putaway_task",
+      "storage_bin"
+    ],
+    "downstream_docs": [
+      "warehouse_record",
+      "shipment_record",
+      "courier_shipment_request",
+      "supplier_invoice",
+      "procurement_request",
+      "putaway_task"
+    ],
+    "actors": [
+      "storekeeper",
+      "warehouse operator",
+      "inventory controller",
+      "reviewer",
+      "logistics coordinator",
+      "warehouse team",
+      "carrier",
+      "dispatcher",
+      "recipient",
+      "warehouse supervisor",
+      "receiving operator",
+      "picker",
+      "putaway operator",
+      "procurement officer",
+      "account owner",
+      "requesting department",
+      "approver",
+      "supplier",
+      "compliance officer",
+      "vendor manager",
+      "legal/procurement owner",
+      "finance officer"
+    ],
+    "downstream_effects": [
+      "inventory availability feeds purchasing, warehouse execution, logistics, and production planning",
+      "delivery completion feeds billing, customer service, and performance reporting",
+      "warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy",
+      "purchase orders feed goods receipt, supplier invoice matching, and vendor performance tracking",
+      "supports sourcing, purchase control, and risk management"
+    ],
+    "emits_records": [
+      {
+        "action_id": "approve",
+        "target_doc": "warehouse_record",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "dispatch",
+        "target_doc": "shipment_record",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "dispatch",
+        "target_doc": "courier_shipment_request",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "confirm",
+        "target_doc": "shipment_record",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "issue",
+        "target_doc": "supplier_invoice",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "approve",
+        "target_doc": "procurement_request",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "assign",
+        "target_doc": "putaway_task",
+        "effect_type": "create_record"
+      }
+    ],
+    "handoff_targets": [
+      "stock_item",
+      "warehouse_record",
+      "inventory_movement",
+      "inventory_balance",
+      "stock_adjustment",
+      "goods_receipt",
+      "shipment_record",
+      "delivery_route",
+      "courier_tracking_event",
+      "delivery_confirmation",
+      "transport_booking",
+      "sales_order",
+      "courier_shipment_request",
+      "freight_booking",
+      "purchase_order",
+      "supplier_invoice",
+      "purchase_requisition",
+      "supplier_profile",
+      "procurement_request",
+      "vendor_review",
+      "vendor_contract",
+      "supplier_qualification",
+      "pick_list",
+      "putaway_task",
+      "storage_bin"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "inventory_balance",
+        "target_doc": "stock_item",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_balance",
+        "target_doc": "warehouse_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_balance",
+        "target_doc": "inventory_movement",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_item",
+        "target_doc": "inventory_balance",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_item",
+        "target_doc": "inventory_movement",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_item",
+        "target_doc": "stock_adjustment",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_item",
+        "target_doc": "goods_receipt",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_movement",
+        "target_doc": "stock_item",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_movement",
+        "target_doc": "warehouse_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_movement",
+        "target_doc": "goods_receipt",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_movement",
+        "target_doc": "shipment_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_movement",
+        "target_doc": "stock_adjustment",
+        "relation": "references"
+      },
+      {
+        "source_doc": "inventory_movement",
+        "target_doc": "warehouse_record",
+        "relation": "create_record",
+        "action_id": "approve"
+      },
+      {
+        "source_doc": "stock_adjustment",
+        "target_doc": "inventory_balance",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_adjustment",
+        "target_doc": "inventory_movement",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_adjustment",
+        "target_doc": "warehouse_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "stock_adjustment",
+        "target_doc": "warehouse_record",
+        "relation": "create_record",
+        "action_id": "approve"
+      },
+      {
+        "source_doc": "delivery_confirmation",
+        "target_doc": "shipment_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "delivery_confirmation",
+        "target_doc": "delivery_route",
+        "relation": "references"
+      },
+      {
+        "source_doc": "delivery_confirmation",
+        "target_doc": "courier_tracking_event",
+        "relation": "references"
+      },
+      {
+        "source_doc": "delivery_route",
+        "target_doc": "shipment_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "delivery_route",
+        "target_doc": "delivery_confirmation",
+        "relation": "references"
+      },
+      {
+        "source_doc": "delivery_route",
+        "target_doc": "shipment_record",
+        "relation": "create_record",
+        "action_id": "dispatch"
+      },
+      {
+        "source_doc": "shipment_record",
+        "target_doc": "delivery_route",
+        "relation": "references"
+      },
+      {
+        "source_doc": "shipment_record",
+        "target_doc": "transport_booking",
+        "relation": "references"
+      },
+      {
+        "source_doc": "shipment_record",
+        "target_doc": "delivery_confirmation",
+        "relation": "references"
+      },
+      {
+        "source_doc": "shipment_record",
+        "target_doc": "sales_order",
+        "relation": "references"
+      },
+      {
+        "source_doc": "shipment_record",
+        "target_doc": "courier_shipment_request",
+        "relation": "references"
+      },
+      {
+        "source_doc": "shipment_record",
+        "target_doc": "courier_shipment_request",
+        "relation": "create_record",
+        "action_id": "dispatch"
+      },
+      {
+        "source_doc": "transport_booking",
+        "target_doc": "shipment_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "transport_booking",
+        "target_doc": "freight_booking",
+        "relation": "references"
+      },
+      {
+        "source_doc": "transport_booking",
+        "target_doc": "courier_shipment_request",
+        "relation": "references"
+      },
+      {
+        "source_doc": "transport_booking",
+        "target_doc": "shipment_record",
+        "relation": "create_record",
+        "action_id": "confirm"
+      },
+      {
+        "source_doc": "goods_receipt",
+        "target_doc": "purchase_order",
+        "relation": "references"
+      },
+      {
+        "source_doc": "goods_receipt",
+        "target_doc": "supplier_invoice",
+        "relation": "references"
+      },
+      {
+        "source_doc": "goods_receipt",
+        "target_doc": "warehouse_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "goods_receipt",
+        "target_doc": "stock_item",
+        "relation": "references"
+      },
+      {
+        "source_doc": "procurement_request",
+        "target_doc": "purchase_requisition",
+        "relation": "references"
+      },
+      {
+        "source_doc": "procurement_request",
+        "target_doc": "purchase_order",
+        "relation": "references"
+      },
+      {
+        "source_doc": "procurement_request",
+        "target_doc": "supplier_profile",
+        "relation": "references"
+      },
+      {
+        "source_doc": "purchase_order",
+        "target_doc": "purchase_requisition",
+        "relation": "references"
+      },
+      {
+        "source_doc": "purchase_order",
+        "target_doc": "goods_receipt",
+        "relation": "references"
+      },
+      {
+        "source_doc": "purchase_order",
+        "target_doc": "supplier_invoice",
+        "relation": "references"
+      },
+      {
+        "source_doc": "purchase_order",
+        "target_doc": "supplier_profile",
+        "relation": "references"
+      },
+      {
+        "source_doc": "purchase_order",
+        "target_doc": "supplier_invoice",
+        "relation": "create_record",
+        "action_id": "issue"
+      },
+      {
+        "source_doc": "purchase_requisition",
+        "target_doc": "purchase_order",
+        "relation": "references"
+      },
+      {
+        "source_doc": "purchase_requisition",
+        "target_doc": "procurement_request",
+        "relation": "references"
+      },
+      {
+        "source_doc": "purchase_requisition",
+        "target_doc": "supplier_profile",
+        "relation": "references"
+      },
+      {
+        "source_doc": "purchase_requisition",
+        "target_doc": "procurement_request",
+        "relation": "create_record",
+        "action_id": "approve"
+      },
+      {
+        "source_doc": "supplier_qualification",
+        "target_doc": "supplier_profile",
+        "relation": "references"
+      },
+      {
+        "source_doc": "supplier_qualification",
+        "target_doc": "vendor_review",
+        "relation": "references"
+      },
+      {
+        "source_doc": "supplier_qualification",
+        "target_doc": "vendor_contract",
+        "relation": "references"
+      },
+      {
+        "source_doc": "vendor_review",
+        "target_doc": "supplier_profile",
+        "relation": "references"
+      },
+      {
+        "source_doc": "vendor_review",
+        "target_doc": "supplier_qualification",
+        "relation": "references"
+      },
+      {
+        "source_doc": "vendor_review",
+        "target_doc": "vendor_contract",
+        "relation": "references"
+      },
+      {
+        "source_doc": "supplier_profile",
+        "target_doc": "supplier_qualification",
+        "relation": "references"
+      },
+      {
+        "source_doc": "supplier_profile",
+        "target_doc": "vendor_contract",
+        "relation": "references"
+      },
+      {
+        "source_doc": "supplier_profile",
+        "target_doc": "vendor_review",
+        "relation": "references"
+      },
+      {
+        "source_doc": "supplier_profile",
+        "target_doc": "purchase_order",
+        "relation": "references"
+      },
+      {
+        "source_doc": "vendor_contract",
+        "target_doc": "supplier_profile",
+        "relation": "references"
+      },
+      {
+        "source_doc": "vendor_contract",
+        "target_doc": "vendor_review",
+        "relation": "references"
+      },
+      {
+        "source_doc": "vendor_contract",
+        "target_doc": "purchase_order",
+        "relation": "references"
+      },
+      {
+        "source_doc": "storage_bin",
+        "target_doc": "warehouse_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "storage_bin",
+        "target_doc": "inventory_balance",
+        "relation": "references"
+      },
+      {
+        "source_doc": "storage_bin",
+        "target_doc": "pick_list",
+        "relation": "references"
+      },
+      {
+        "source_doc": "storage_bin",
+        "target_doc": "putaway_task",
+        "relation": "references"
+      },
+      {
+        "source_doc": "warehouse_record",
+        "target_doc": "storage_bin",
+        "relation": "references"
+      },
+      {
+        "source_doc": "warehouse_record",
+        "target_doc": "goods_receipt",
+        "relation": "references"
+      },
+      {
+        "source_doc": "warehouse_record",
+        "target_doc": "inventory_balance",
+        "relation": "references"
+      },
+      {
+        "source_doc": "warehouse_record",
+        "target_doc": "pick_list",
+        "relation": "references"
+      },
+      {
+        "source_doc": "warehouse_record",
+        "target_doc": "putaway_task",
+        "relation": "references"
+      },
+      {
+        "source_doc": "pick_list",
+        "target_doc": "shipment_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "pick_list",
+        "target_doc": "storage_bin",
+        "relation": "references"
+      },
+      {
+        "source_doc": "pick_list",
+        "target_doc": "stock_item",
+        "relation": "references"
+      },
+      {
+        "source_doc": "pick_list",
+        "target_doc": "putaway_task",
+        "relation": "references"
+      },
+      {
+        "source_doc": "pick_list",
+        "target_doc": "putaway_task",
+        "relation": "create_record",
+        "action_id": "assign"
+      },
+      {
+        "source_doc": "putaway_task",
+        "target_doc": "goods_receipt",
+        "relation": "references"
+      },
+      {
+        "source_doc": "putaway_task",
+        "target_doc": "storage_bin",
+        "relation": "references"
+      },
+      {
+        "source_doc": "putaway_task",
+        "target_doc": "warehouse_record",
+        "relation": "references"
+      }
+    ],
+    "operating_graph": {
+      "nodes": [
+        {
+          "id": "inventory_management",
+          "kind": "module",
+          "title": "Inventory Management"
+        },
+        {
+          "id": "logistics_distribution",
+          "kind": "module",
+          "title": "Logistics Distribution"
+        },
+        {
+          "id": "procurement_purchasing",
+          "kind": "module",
+          "title": "Procurement Purchasing"
+        },
+        {
+          "id": "vendor_management",
+          "kind": "module",
+          "title": "Vendor Management"
+        },
+        {
+          "id": "warehouse_operations",
+          "kind": "module",
+          "title": "Warehouse Operations"
+        },
+        {
+          "id": "stock_item",
+          "kind": "doc"
+        },
+        {
+          "id": "warehouse_record",
+          "kind": "doc"
+        },
+        {
+          "id": "inventory_movement",
+          "kind": "doc"
+        },
+        {
+          "id": "inventory_balance",
+          "kind": "doc"
+        },
+        {
+          "id": "stock_adjustment",
+          "kind": "doc"
+        },
+        {
+          "id": "goods_receipt",
+          "kind": "doc"
+        },
+        {
+          "id": "shipment_record",
+          "kind": "doc"
+        },
+        {
+          "id": "delivery_route",
+          "kind": "doc"
+        },
+        {
+          "id": "courier_tracking_event",
+          "kind": "doc"
+        },
+        {
+          "id": "delivery_confirmation",
+          "kind": "doc"
+        },
+        {
+          "id": "transport_booking",
+          "kind": "doc"
+        },
+        {
+          "id": "sales_order",
+          "kind": "doc"
+        },
+        {
+          "id": "courier_shipment_request",
+          "kind": "doc"
+        },
+        {
+          "id": "freight_booking",
+          "kind": "doc"
+        },
+        {
+          "id": "purchase_order",
+          "kind": "doc"
+        },
+        {
+          "id": "supplier_invoice",
+          "kind": "doc"
+        },
+        {
+          "id": "purchase_requisition",
+          "kind": "doc"
+        },
+        {
+          "id": "supplier_profile",
+          "kind": "doc"
+        },
+        {
+          "id": "procurement_request",
+          "kind": "doc"
+        },
+        {
+          "id": "vendor_review",
+          "kind": "doc"
+        },
+        {
+          "id": "vendor_contract",
+          "kind": "doc"
+        },
+        {
+          "id": "supplier_qualification",
+          "kind": "doc"
+        },
+        {
+          "id": "pick_list",
+          "kind": "doc"
+        },
+        {
+          "id": "putaway_task",
+          "kind": "doc"
+        },
+        {
+          "id": "storage_bin",
+          "kind": "doc"
+        }
+      ],
+      "edges": [
+        {
+          "source_doc": "inventory_balance",
+          "target_doc": "stock_item",
+          "relation": "references"
+        },
+        {
+          "source_doc": "inventory_balance",
+          "target_doc": "warehouse_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "inventory_balance",
+          "target_doc": "inventory_movement",
+          "relation": "references"
+        },
+        {
+          "source_doc": "stock_item",
+          "target_doc": "inventory_balance",
+          "relation": "references"
+        },
+        {
+          "source_doc": "stock_item",
+          "target_doc": "inventory_movement",
+          "relation": "references"
+        },
+        {
+          "source_doc": "stock_item",
+          "target_doc": "stock_adjustment",
+          "relation": "references"
+        },
+        {
+          "source_doc": "stock_item",
+          "target_doc": "goods_receipt",
+          "relation": "references"
+        },
+        {
+          "source_doc": "inventory_movement",
+          "target_doc": "stock_item",
+          "relation": "references"
+        },
+        {
+          "source_doc": "inventory_movement",
+          "target_doc": "warehouse_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "inventory_movement",
+          "target_doc": "goods_receipt",
+          "relation": "references"
+        },
+        {
+          "source_doc": "inventory_movement",
+          "target_doc": "shipment_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "inventory_movement",
+          "target_doc": "stock_adjustment",
+          "relation": "references"
+        },
+        {
+          "source_doc": "inventory_movement",
+          "target_doc": "warehouse_record",
+          "relation": "create_record",
+          "action_id": "approve"
+        },
+        {
+          "source_doc": "stock_adjustment",
+          "target_doc": "inventory_balance",
+          "relation": "references"
+        },
+        {
+          "source_doc": "stock_adjustment",
+          "target_doc": "inventory_movement",
+          "relation": "references"
+        },
+        {
+          "source_doc": "stock_adjustment",
+          "target_doc": "warehouse_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "stock_adjustment",
+          "target_doc": "warehouse_record",
+          "relation": "create_record",
+          "action_id": "approve"
+        },
+        {
+          "source_doc": "delivery_confirmation",
+          "target_doc": "shipment_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "delivery_confirmation",
+          "target_doc": "delivery_route",
+          "relation": "references"
+        },
+        {
+          "source_doc": "delivery_confirmation",
+          "target_doc": "courier_tracking_event",
+          "relation": "references"
+        },
+        {
+          "source_doc": "delivery_route",
+          "target_doc": "shipment_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "delivery_route",
+          "target_doc": "delivery_confirmation",
+          "relation": "references"
+        },
+        {
+          "source_doc": "delivery_route",
+          "target_doc": "shipment_record",
+          "relation": "create_record",
+          "action_id": "dispatch"
+        },
+        {
+          "source_doc": "shipment_record",
+          "target_doc": "delivery_route",
+          "relation": "references"
+        },
+        {
+          "source_doc": "shipment_record",
+          "target_doc": "transport_booking",
+          "relation": "references"
+        },
+        {
+          "source_doc": "shipment_record",
+          "target_doc": "delivery_confirmation",
+          "relation": "references"
+        },
+        {
+          "source_doc": "shipment_record",
+          "target_doc": "sales_order",
+          "relation": "references"
+        },
+        {
+          "source_doc": "shipment_record",
+          "target_doc": "courier_shipment_request",
+          "relation": "references"
+        },
+        {
+          "source_doc": "shipment_record",
+          "target_doc": "courier_shipment_request",
+          "relation": "create_record",
+          "action_id": "dispatch"
+        },
+        {
+          "source_doc": "transport_booking",
+          "target_doc": "shipment_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "transport_booking",
+          "target_doc": "freight_booking",
+          "relation": "references"
+        },
+        {
+          "source_doc": "transport_booking",
+          "target_doc": "courier_shipment_request",
+          "relation": "references"
+        },
+        {
+          "source_doc": "transport_booking",
+          "target_doc": "shipment_record",
+          "relation": "create_record",
+          "action_id": "confirm"
+        },
+        {
+          "source_doc": "goods_receipt",
+          "target_doc": "purchase_order",
+          "relation": "references"
+        },
+        {
+          "source_doc": "goods_receipt",
+          "target_doc": "supplier_invoice",
+          "relation": "references"
+        },
+        {
+          "source_doc": "goods_receipt",
+          "target_doc": "warehouse_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "goods_receipt",
+          "target_doc": "stock_item",
+          "relation": "references"
+        },
+        {
+          "source_doc": "procurement_request",
+          "target_doc": "purchase_requisition",
+          "relation": "references"
+        },
+        {
+          "source_doc": "procurement_request",
+          "target_doc": "purchase_order",
+          "relation": "references"
+        },
+        {
+          "source_doc": "procurement_request",
+          "target_doc": "supplier_profile",
+          "relation": "references"
+        },
+        {
+          "source_doc": "purchase_order",
+          "target_doc": "purchase_requisition",
+          "relation": "references"
+        },
+        {
+          "source_doc": "purchase_order",
+          "target_doc": "goods_receipt",
+          "relation": "references"
+        },
+        {
+          "source_doc": "purchase_order",
+          "target_doc": "supplier_invoice",
+          "relation": "references"
+        },
+        {
+          "source_doc": "purchase_order",
+          "target_doc": "supplier_profile",
+          "relation": "references"
+        },
+        {
+          "source_doc": "purchase_order",
+          "target_doc": "supplier_invoice",
+          "relation": "create_record",
+          "action_id": "issue"
+        },
+        {
+          "source_doc": "purchase_requisition",
+          "target_doc": "purchase_order",
+          "relation": "references"
+        },
+        {
+          "source_doc": "purchase_requisition",
+          "target_doc": "procurement_request",
+          "relation": "references"
+        },
+        {
+          "source_doc": "purchase_requisition",
+          "target_doc": "supplier_profile",
+          "relation": "references"
+        },
+        {
+          "source_doc": "purchase_requisition",
+          "target_doc": "procurement_request",
+          "relation": "create_record",
+          "action_id": "approve"
+        },
+        {
+          "source_doc": "supplier_qualification",
+          "target_doc": "supplier_profile",
+          "relation": "references"
+        },
+        {
+          "source_doc": "supplier_qualification",
+          "target_doc": "vendor_review",
+          "relation": "references"
+        },
+        {
+          "source_doc": "supplier_qualification",
+          "target_doc": "vendor_contract",
+          "relation": "references"
+        },
+        {
+          "source_doc": "vendor_review",
+          "target_doc": "supplier_profile",
+          "relation": "references"
+        },
+        {
+          "source_doc": "vendor_review",
+          "target_doc": "supplier_qualification",
+          "relation": "references"
+        },
+        {
+          "source_doc": "vendor_review",
+          "target_doc": "vendor_contract",
+          "relation": "references"
+        },
+        {
+          "source_doc": "supplier_profile",
+          "target_doc": "supplier_qualification",
+          "relation": "references"
+        },
+        {
+          "source_doc": "supplier_profile",
+          "target_doc": "vendor_contract",
+          "relation": "references"
+        },
+        {
+          "source_doc": "supplier_profile",
+          "target_doc": "vendor_review",
+          "relation": "references"
+        },
+        {
+          "source_doc": "supplier_profile",
+          "target_doc": "purchase_order",
+          "relation": "references"
+        },
+        {
+          "source_doc": "vendor_contract",
+          "target_doc": "supplier_profile",
+          "relation": "references"
+        },
+        {
+          "source_doc": "vendor_contract",
+          "target_doc": "vendor_review",
+          "relation": "references"
+        },
+        {
+          "source_doc": "vendor_contract",
+          "target_doc": "purchase_order",
+          "relation": "references"
+        },
+        {
+          "source_doc": "storage_bin",
+          "target_doc": "warehouse_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "storage_bin",
+          "target_doc": "inventory_balance",
+          "relation": "references"
+        },
+        {
+          "source_doc": "storage_bin",
+          "target_doc": "pick_list",
+          "relation": "references"
+        },
+        {
+          "source_doc": "storage_bin",
+          "target_doc": "putaway_task",
+          "relation": "references"
+        },
+        {
+          "source_doc": "warehouse_record",
+          "target_doc": "storage_bin",
+          "relation": "references"
+        },
+        {
+          "source_doc": "warehouse_record",
+          "target_doc": "goods_receipt",
+          "relation": "references"
+        },
+        {
+          "source_doc": "warehouse_record",
+          "target_doc": "inventory_balance",
+          "relation": "references"
+        },
+        {
+          "source_doc": "warehouse_record",
+          "target_doc": "pick_list",
+          "relation": "references"
+        },
+        {
+          "source_doc": "warehouse_record",
+          "target_doc": "putaway_task",
+          "relation": "references"
+        },
+        {
+          "source_doc": "pick_list",
+          "target_doc": "shipment_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "pick_list",
+          "target_doc": "storage_bin",
+          "relation": "references"
+        },
+        {
+          "source_doc": "pick_list",
+          "target_doc": "stock_item",
+          "relation": "references"
+        },
+        {
+          "source_doc": "pick_list",
+          "target_doc": "putaway_task",
+          "relation": "references"
+        },
+        {
+          "source_doc": "pick_list",
+          "target_doc": "putaway_task",
+          "relation": "create_record",
+          "action_id": "assign"
+        },
+        {
+          "source_doc": "putaway_task",
+          "target_doc": "goods_receipt",
+          "relation": "references"
+        },
+        {
+          "source_doc": "putaway_task",
+          "target_doc": "storage_bin",
+          "relation": "references"
+        },
+        {
+          "source_doc": "putaway_task",
+          "target_doc": "warehouse_record",
+          "relation": "references"
+        }
+      ]
+    }
   }
 }

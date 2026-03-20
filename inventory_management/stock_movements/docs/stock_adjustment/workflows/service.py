@@ -2,13 +2,15 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "stock_adjustment"
 ARCHETYPE = "workflow_case"
 INITIAL_STATE = 'open'
 STATES = ['open', 'reviewed', 'approved', 'applied', 'closed', 'archived']
 TERMINAL_STATES = ['closed', 'archived']
-ACTION_RULES = {'create': {'allowed_in_states': ['open', 'reviewed', 'approved', 'applied'], 'transitions_to': None}, 'review': {'allowed_in_states': ['open', 'reviewed', 'approved', 'applied'], 'transitions_to': 'reviewed'}, 'approve': {'allowed_in_states': ['open', 'reviewed', 'approved', 'applied'], 'transitions_to': 'approved'}, 'apply': {'allowed_in_states': ['open', 'reviewed', 'approved', 'applied'], 'transitions_to': None}, 'close': {'allowed_in_states': ['open', 'reviewed', 'approved', 'applied'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['open', 'reviewed', 'approved', 'applied'], 'transitions_to': 'archived'}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['open', 'reviewed', 'approved', 'applied'], 'transitions_to': None}, 'review': {'allowed_in_states': ['open', 'reviewed', 'approved', 'applied'], 'transitions_to': 'reviewed'}, 'approve': {'allowed_in_states': ['open', 'reviewed', 'approved', 'applied'], 'transitions_to': 'approved'}, 'apply': {'allowed_in_states': ['open', 'reviewed', 'approved', 'applied'], 'transitions_to': None}, 'close': {'allowed_in_states': ['open', 'reviewed', 'approved', 'applied'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['open', 'reviewed', 'approved', 'applied'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'business_objective': 'receive, verify, store, monitor, count, reconcile, and replenish inventory accurately', 'actors': ['storekeeper', 'warehouse operator', 'inventory controller', 'reviewer'], 'start_condition': 'stock is received, moved, counted, or adjusted', 'ordered_steps': ['Monitor stock levels and trigger recount or replenishment as needed.', 'Reconcile physical count variances and apply adjustments.'], 'primary_actions': ['review', 'create', 'approve', 'apply', 'close'], 'primary_transitions': ['stock_adjustment: opened', 'stock_adjustment: opened -> reviewed -> approved -> applied -> closed'], 'downstream_effects': ['inventory availability feeds purchasing, warehouse execution, logistics, and production planning'], 'action_actors': {'create': ['storekeeper'], 'review': ['reviewer'], 'approve': ['reviewer'], 'close': ['storekeeper'], 'archive': ['storekeeper']}}
@@ -29,7 +31,7 @@ class WorkflowService:
 
     def next_state_for(self, action_id: str) -> str | None:
         rule = ACTION_RULES.get(action_id, {})
-        return rule.get("transitions_to")
+        return cast(str | None, rule.get("transitions_to"))
 
     def apply_action(self, action_id: str, state: str | None) -> dict:
         if not self.is_action_allowed(action_id, state):

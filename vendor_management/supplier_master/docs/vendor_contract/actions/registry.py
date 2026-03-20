@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 
 DOC_ID = "vendor_contract"
 ALLOWED_ACTIONS = ['create', 'review', 'approve', 'activate', 'renew', 'archive']
-ACTION_RULES = {'create': {'allowed_in_states': ['draft', 'approved', 'active', 'expired', 'renewed'], 'transitions_to': None}, 'review': {'allowed_in_states': ['draft', 'approved', 'active', 'expired', 'renewed'], 'transitions_to': None}, 'approve': {'allowed_in_states': ['draft', 'approved', 'active', 'expired', 'renewed'], 'transitions_to': 'approved'}, 'activate': {'allowed_in_states': ['draft'], 'transitions_to': 'active'}, 'renew': {'allowed_in_states': ['draft', 'approved', 'active', 'expired', 'renewed'], 'transitions_to': 'renewed'}, 'archive': {'allowed_in_states': ['draft', 'approved', 'active', 'expired', 'renewed'], 'transitions_to': 'archived'}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['draft', 'approved', 'active', 'expired', 'renewed'], 'transitions_to': None}, 'review': {'allowed_in_states': ['draft', 'approved', 'active', 'expired', 'renewed'], 'transitions_to': None}, 'approve': {'allowed_in_states': ['draft', 'approved', 'active', 'expired', 'renewed'], 'transitions_to': 'approved'}, 'activate': {'allowed_in_states': ['draft'], 'transitions_to': 'active'}, 'renew': {'allowed_in_states': ['draft', 'approved', 'active', 'expired', 'renewed'], 'transitions_to': 'renewed'}, 'archive': {'allowed_in_states': ['draft', 'approved', 'active', 'expired', 'renewed'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
 

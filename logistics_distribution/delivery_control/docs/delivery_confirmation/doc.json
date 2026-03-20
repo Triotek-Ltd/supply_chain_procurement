@@ -10,7 +10,8 @@
   "doc_archetype": "ledger",
   "classification": {
     "archetype": "ledger",
-    "bundle": "operations"
+    "bundle": "operations",
+    "doc_kind": "ledger"
   },
   "planning_source": {
     "type": "reference_doc_generation_manifest",
@@ -23,5 +24,251 @@
       "proof-of-delivery artifact handling",
       "recipient-signature model"
     ]
-  }
+  },
+  "ui": {
+    "icon_key": "report",
+    "accent": "#205072",
+    "logo_image": null,
+    "cover_image": null,
+    "preferred_views": [
+      "list",
+      "table",
+      "detail",
+      "report"
+    ],
+    "default_density": "comfortable"
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "doc",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "records",
+      "flatten_submodules_in_ui": false,
+      "views": [
+        "list",
+        "table",
+        "detail",
+        "report"
+      ]
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Delivery Confirmation KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "delivery_confirmation",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Delivery Confirmation summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "delivery_confirmation",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Delivery Confirmation charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "delivery_confirmation",
+          "metric_family": "trend"
+        }
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Delivery Confirmation reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "delivery_confirmation",
+          "metric_family": "reporting"
+        }
+      },
+      {
+        "id": "records",
+        "type": "record_table",
+        "title": "Delivery Confirmation records",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "delivery_confirmation",
+          "metric_family": "records"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "delivery_confirmation",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "delivery_confirmation",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "delivery_confirmation",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "delivery_confirmation",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Delivery Confirmation Overview",
+        "report_type": "dashboard_summary",
+        "surface": "doc"
+      },
+      {
+        "id": "trend_report",
+        "label": "Delivery Confirmation Trends",
+        "report_type": "trend_analysis",
+        "surface": "doc"
+      },
+      {
+        "id": "summary_report",
+        "label": "Delivery Confirmation Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Delivery Confirmation Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "supports_outputs": true,
+    "supports_print_formats": true,
+    "default_views": [
+      "summary",
+      "trend",
+      "report_table"
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "delivery_confirmation_trend_line",
+        "label": "Delivery Confirmation trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "delivery_confirmation_volume_column",
+        "label": "Delivery Confirmation volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "delivery_confirmation_distribution_donut",
+        "label": "Delivery Confirmation distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "shipment_record",
+      "delivery_route",
+      "courier_tracking_event"
+    ],
+    "upstream_docs": [
+      "shipment_record",
+      "delivery_route",
+      "courier_tracking_event"
+    ],
+    "downstream_docs": [],
+    "borrowed_fields": [
+      "shipment",
+      "route context from linked records"
+    ],
+    "emits_records": [],
+    "downstream_effects": [
+      "delivery completion feeds billing, customer service, and performance reporting"
+    ],
+    "actors": [
+      "logistics coordinator",
+      "warehouse team",
+      "carrier",
+      "dispatcher",
+      "recipient"
+    ],
+    "handoff_targets": [
+      "shipment_record",
+      "delivery_route",
+      "courier_tracking_event"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "delivery_confirmation",
+        "target_doc": "shipment_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "delivery_confirmation",
+        "target_doc": "delivery_route",
+        "relation": "references"
+      },
+      {
+        "source_doc": "delivery_confirmation",
+        "target_doc": "courier_tracking_event",
+        "relation": "references"
+      }
+    ]
+  },
+  "contract_version": 1
 }

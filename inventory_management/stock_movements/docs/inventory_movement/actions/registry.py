@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 
 DOC_ID = "inventory_movement"
 ALLOWED_ACTIONS = ['create', 'review', 'approve', 'post', 'reverse', 'archive']
-ACTION_RULES = {'create': {'allowed_in_states': ['draft', 'approved', 'posted'], 'transitions_to': None}, 'review': {'allowed_in_states': ['draft', 'approved', 'posted'], 'transitions_to': None}, 'approve': {'allowed_in_states': ['draft', 'approved', 'posted'], 'transitions_to': 'approved'}, 'post': {'allowed_in_states': ['draft', 'approved', 'posted'], 'transitions_to': None}, 'reverse': {'allowed_in_states': ['draft', 'approved', 'posted'], 'transitions_to': 'reversed'}, 'archive': {'allowed_in_states': ['draft', 'approved', 'posted'], 'transitions_to': 'archived'}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['draft', 'approved', 'posted'], 'transitions_to': None}, 'review': {'allowed_in_states': ['draft', 'approved', 'posted'], 'transitions_to': None}, 'approve': {'allowed_in_states': ['draft', 'approved', 'posted'], 'transitions_to': 'approved'}, 'post': {'allowed_in_states': ['draft', 'approved', 'posted'], 'transitions_to': None}, 'reverse': {'allowed_in_states': ['draft', 'approved', 'posted'], 'transitions_to': 'reversed'}, 'archive': {'allowed_in_states': ['draft', 'approved', 'posted'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
 

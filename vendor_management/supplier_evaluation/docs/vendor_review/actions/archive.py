@@ -2,17 +2,19 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "vendor_review"
 ACTION_ID = "archive"
-ACTION_RULE = {'allowed_in_states': ['draft', 'reviewed'], 'transitions_to': 'archived'}
+ACTION_RULE: dict[str, Any] = {'allowed_in_states': ['draft', 'reviewed'], 'transitions_to': 'archived'}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'business_objective': 'maintain supplier master quality, review vendor performance, and resolve supplier issues proactively', 'actors': ['vendor manager', 'reviewer', 'legal/procurement owner'], 'start_condition': 'a supplier is onboarded or reviewed', 'ordered_steps': ['Review supplier performance and compliance status.'], 'primary_actions': ['create', 'review', 'close'], 'primary_transitions': ['vendor_review: opened -> reviewed -> closed'], 'downstream_effects': ['supports sourcing, purchase control, and risk management'], 'action_actors': {'create': ['vendor manager'], 'review': ['reviewer'], 'archive': ['legal/procurement owner']}}
 
 def handle_archive(payload: dict, context: dict | None = None) -> dict:
     context = context or {}
-    next_state = ACTION_RULE.get("transitions_to")
+    next_state = cast(str | None, ACTION_RULE.get("transitions_to"))
     updates = {STATE_FIELD: next_state} if STATE_FIELD and next_state else {}
     return {
         "doc_id": DOC_ID,

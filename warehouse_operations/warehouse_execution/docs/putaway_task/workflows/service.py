@@ -2,13 +2,15 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "putaway_task"
 ARCHETYPE = "workflow_case"
 INITIAL_STATE = 'open'
 STATES = ['open', 'assigned', 'in_progress', 'completed', 'closed', 'archived']
 TERMINAL_STATES = ['closed', 'archived']
-ACTION_RULES = {'create': {'allowed_in_states': ['open', 'assigned', 'in_progress', 'completed'], 'transitions_to': None}, 'assign': {'allowed_in_states': ['open', 'assigned', 'in_progress', 'completed'], 'transitions_to': 'in_progress'}, 'start': {'allowed_in_states': ['open', 'assigned', 'in_progress', 'completed'], 'transitions_to': None}, 'complete': {'allowed_in_states': ['open', 'assigned', 'in_progress', 'completed'], 'transitions_to': None}, 'close': {'allowed_in_states': ['open', 'assigned', 'in_progress', 'completed'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['open', 'assigned', 'in_progress', 'completed'], 'transitions_to': 'archived'}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['open', 'assigned', 'in_progress', 'completed'], 'transitions_to': None}, 'assign': {'allowed_in_states': ['open', 'assigned', 'in_progress', 'completed'], 'transitions_to': 'in_progress'}, 'start': {'allowed_in_states': ['open', 'assigned', 'in_progress', 'completed'], 'transitions_to': None}, 'complete': {'allowed_in_states': ['open', 'assigned', 'in_progress', 'completed'], 'transitions_to': None}, 'close': {'allowed_in_states': ['open', 'assigned', 'in_progress', 'completed'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['open', 'assigned', 'in_progress', 'completed'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'business_objective': 'receive goods into warehouse storage, put them away correctly, pick them for orders, and keep warehouse records current', 'actors': ['warehouse supervisor', 'receiving operator', 'picker', 'putaway operator'], 'start_condition': 'goods are received or outgoing orders require warehouse execution', 'ordered_steps': ['Receive goods into the warehouse and assign a storage destination.', 'Execute putaway and confirm storage completion.'], 'primary_actions': ['create', 'assign', 'start', 'complete', 'close'], 'primary_transitions': ['putaway_task: opened -> assigned', 'putaway_task: assigned -> in_progress -> completed -> closed'], 'downstream_effects': ['warehouse execution feeds shipment, fulfillment, replenishment, and inventory accuracy'], 'action_actors': {'create': ['warehouse supervisor'], 'assign': ['warehouse supervisor'], 'close': ['warehouse supervisor'], 'archive': ['warehouse supervisor']}}
@@ -29,7 +31,7 @@ class WorkflowService:
 
     def next_state_for(self, action_id: str) -> str | None:
         rule = ACTION_RULES.get(action_id, {})
-        return rule.get("transitions_to")
+        return cast(str | None, rule.get("transitions_to"))
 
     def apply_action(self, action_id: str, state: str | None) -> dict:
         if not self.is_action_allowed(action_id, state):

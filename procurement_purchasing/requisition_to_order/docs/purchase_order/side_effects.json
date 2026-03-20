@@ -30,5 +30,19 @@
         "workflow_state": "archived"
       }
     }
+  ],
+  "issue": [
+    {
+      "type": "create_record",
+      "target_doc": "supplier_invoice",
+      "values": {
+        "title": {
+          "$template": "Supplier Invoice for {title|reference_no|id}"
+        },
+        "reference_no": {
+          "$template": "SUPPLIER_INVOICE-{reference_no|id}"
+        }
+      }
+    }
   ]
 }
